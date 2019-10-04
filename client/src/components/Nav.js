@@ -32,6 +32,7 @@ const Nav = props => {
                   <Link to="/register">Register</Link>
                   <Link to="/newAnimal">New Animal</Link>
                   <Link to="/newApplication">New Application</Link>
+                  <Link to="/newShelter">New Shelter</Link>
                 </div>
               );
             }

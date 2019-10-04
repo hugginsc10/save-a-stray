@@ -5,10 +5,12 @@ const UserType = require("./types/user_type");
 const User = mongoose.model("user");
 const Animal = mongoose.model("animal");
 const Application = mongoose.model("application");
+const Shelter = mongoose.model("shelter");
 
 
 const AuthService = require("../services/auth")
 const AnimalType = require("./types/animal_type")
+const ShelterType = require("./types/shelter_type")
 const ApplicationType = require("./types/application_type")
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -88,6 +90,32 @@ const mutation = new GraphQLObjectType({
           animalId,
           userId,
           applicationData
+        })
+      }
+    },
+    newShelter: {
+      type: ShelterType,
+      args:{
+        name: {type: GraphQLString},
+        location: {type: GraphQLString},
+        users: {type: GraphQLString},
+        paymentEmail: {type: GraphQLString},
+        animals: {type: GraphQLString}
+        
+      },
+      resolve(parentValue, {
+          name,
+          location,
+          users,
+          paymentEmail,
+          animals
+        }) {
+        return new Shelter({
+          name,
+          location,
+          users,
+          paymentEmail,
+          animals
         })
       }
     }

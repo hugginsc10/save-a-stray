@@ -47,6 +47,17 @@ export default {
         applicationData
         }
     }
+  `,
+  CREATE_SHELTER: gql`
+    mutation CreateShelter($name: String!, $location: String!, $users: String!, $paymentEmail: String!, $animals: String!) {
+      newShelter(name: $name, location: $location, users: $users, paymentEmail: $paymentEmail, animals: $animals) {
+        name
+        location
+        users
+        paymentEmail
+        animals
+        }
+    }
   `
 
 }
