@@ -43,7 +43,7 @@ column name       | data type | details
 `password` | string    | not null
 `sessionToken`   | string    | not null, indexed, unique
 `userRole`       | string    | includes [ admin , endUser , volunteer ] 
-`paymentEmail  `  | string    | not null 
+`paymentEmail  `  | string    | 
 --- 
 <!--  -->
 ### `Dogs`
