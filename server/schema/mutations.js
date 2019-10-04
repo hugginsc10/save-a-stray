@@ -3,12 +3,11 @@ const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql;
 const mongoose = require("mongoose");
 const UserType = require("./types/user_type");
 const User = mongoose.model("user");
-const Dog = mongoose.model("dog");
-const Cat = mongoose.model("cat");
+const Animal = mongoose.model("animal");
+
 
 const AuthService = require("../services/auth")
-const DogType = require("./types/dog_type")
-const CatType = require("./types/cat_type")
+const AnimalType = require("./types/animal_type")
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
@@ -52,10 +51,11 @@ const mutation = new GraphQLObjectType({
         return AuthService.verifyUser(args);
       }
     },
-    newDog: {
-      type: DogType,
+    newAnimal: {
+      type: AnimalType,
       args:{
         name: {type: GraphQLString},
+        type: {type: GraphQLString},
         age: {type: GraphQLInt},
         sex: {type: GraphQLString},
         color: {type: GraphQLString},
@@ -65,25 +65,8 @@ const mutation = new GraphQLObjectType({
         application: {type: GraphQLID}
         
       },
-      resolve(parentValue, { name, Age, sex, color, Description, image, video, Application}){
-        return new Dog({ name, Age, sex, color, Description, image, video})
-      }
-    }, 
-    newCat: {
-      type: CatType,
-      args:{
-        name: {type: GraphQLString},
-        age: {type: GraphQLInt},
-        sex: {type: GraphQLString},
-        color: {type: GraphQLString},
-        description: {type: GraphQLString},
-        image: {type: GraphQLString},
-        video: {type: GraphQLString},
-        application: {type: GraphQLID}
-        
-      },
-      resolve(parentValue, { name, Age, sex, color, Description, image, video, Application}){
-        return new Cat({ name, Age, sex, color, Description, image, video})
+      resolve(parentValue, { name,type, age, sex, color, description, image, video, Application}){
+        return new Animal({ name, age, sex, color, description, image, video})
       }
     }, 
   }

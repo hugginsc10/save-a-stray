@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const CatSchema = new Schema({
+const AnimalSchema = new Schema({
     name: {
+        type: String,
+        required: true
+    },
+    type: {
         type: String,
         required: true
     },
@@ -37,4 +41,4 @@ const CatSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('cat', CatSchema);
+module.exports = mongoose.model('animal', AnimalSchema);

@@ -9,12 +9,13 @@ const {
     GraphQLInt
 } = graphql;
 
-const CatType = new GraphQLObjectType({
-  name: "CatType",
+const AnimalType = new GraphQLObjectType({
+  name: "AnimalType",
   // remember we wrap the fields in a thunk to avoid circular dependency issues
   fields: () => ({
     _id: { type: GraphQLID },
-    name: { type: GraphQLInt},
+    name: { type: GraphQLString},
+    type: { type: GraphQLString},
     age: { type: GraphQLInt},
     breed: { type: GraphQLString },
     sex: { type: GraphQLString },
@@ -26,4 +27,4 @@ const CatType = new GraphQLObjectType({
   })
 });
 
-module.exports = CatType;
+module.exports = AnimalType;

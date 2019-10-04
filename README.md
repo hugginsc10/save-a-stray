@@ -46,33 +46,19 @@ column name       | data type | details
 `paymentEmail  `  | string    | 
 --- 
 <!--  -->
-### `Dogs`
+### `Animal`
 column name     | data type | details
 ----------------|-----------|-----------------------
 `id`            | integer   | not null, primary key
-`name`          | string    | not null,  unique​
-`Age`           | integer   | not null
+`type`          | string    | not null  
+`name`          | string    | not null
+`age`           | integer   | not null
 `sex`           | string    | not null
 `color `        | string    | not null
-`Description`   | string    | not null
+`description`   | string    | not null
 `image`         | string    | 
 `video`         | string    | 
-`Application`   | text      | 
---- 
-
-### `Cats`
-column name     | data type | details
-----------------|-----------|-----------------------
-`id`            | integer   | not null, primary key
-`name`          | string    | not null,  unique
-`Age`           | integer   | not null
-`sex`           | string    | not null
-`color`         | string    | not null
-`Description`   | string    | not null
-`image`         | string    |
-`video`         | string    |
-`Application`   | text      | 
-
+`application`   | text      | 
 --- 
 
 
@@ -84,6 +70,7 @@ column name     | data type | details
 `location  `    | string    | not null 
 `users  `       | array     | not null 
 `paymentEmail  `| string    | not null 
+`animals  `     | string    | not null 
 
 --- 
 
@@ -99,7 +86,8 @@ column name     | data type | details
         users:
             [userId]    
 
-    Dogs:
+    animal:
+        type
         age
         breed
         sex
@@ -107,17 +95,9 @@ column name     | data type | details
         description
         [image]
         [video]
+        application
 
-    Cats:
-        age
-        breed
-        sex
-        color
-        description
-        [image]
-        [video]
-
-    Application:
+    application:
         animalId:
         userId:
         applicationData:
