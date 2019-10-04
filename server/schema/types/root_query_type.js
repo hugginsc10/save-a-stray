@@ -8,6 +8,9 @@ const User = mongoose.model("user");
 const DogType = require("./dog_type");
 const Dog = mongoose.model("dog");
 
+const CatType = require("./cat_type");
+const Cat = mongoose.model("cat");
+
 
 
 const RootQueryType = new GraphQLObjectType({
@@ -27,9 +30,8 @@ const RootQueryType = new GraphQLObjectType({
       }
     },
     dogs: {
-      type: new GraphQLList(DogType),
-      resolve() {
-        return Dog.find({});
+      type: new GraphQLList(CatType),
+      resolve() {return Dog.find({});
       }
     },
     dog: {
@@ -39,6 +41,19 @@ const RootQueryType = new GraphQLObjectType({
         return Dog.findById(args._id);
       }
     },
+    cats: {
+      type: new GraphQLList(CatType),
+      resolve() {
+        return Cat.find({});
+      }
+    },
+    cat: {
+      type: CatType,
+      args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, args) {
+        return Cat.findById(args._id);
+      }
+    }
    
   })
 });
