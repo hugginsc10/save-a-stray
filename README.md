@@ -75,7 +75,7 @@ column name     | data type | details
 --- 
 
 
-### `shelter`
+### `Shelter`
 column name     | data type | details
 ----------------|-----------|-----------------------
 `id `           | integer   | not null, primary key
@@ -96,19 +96,25 @@ column name     | data type | details
             [Dogs, Cats]
         users:
             [userId]    
+            
     Dogs:
         age
         breed
         sex
         color
         description
+        image
+        video
+
     Cats:
         age
         breed
         sex
         color
         description
-        
+        image
+        video
+
     Application:
         animalId:
         userId:
