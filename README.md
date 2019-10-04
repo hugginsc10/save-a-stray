@@ -128,7 +128,7 @@ The overall application architecture is geared toward rapid development and main
 
 To that end, **Save A Stray** is built with the **MERN** stack (**MongoDB, Express, React, and Node**).
 
-Additionally, **Apollo** is used for front-end devlopment with **React**, bundling of **client-side javascript** is accomplished by Webpack, and Babel is used to transpile **ES6+ Javascript** for backward browser compatibility.
+Additionally, **Apollo** is used for front-end devlopment with **React**, bundling of **client-side javascript** is accomplished by **Webpack**, and **Babel** is used to transpile **ES6+ Javascript** for backward browser compatibility.
 
 Finally, the app will be deployed to **Heroku** with **Docker**.
 
