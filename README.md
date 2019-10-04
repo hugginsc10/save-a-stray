@@ -4,14 +4,14 @@ _An application that connects Shelter Animals to their Furever homes._
 
 ## Background and Overview
 
-Save A Stray is a new age solution for a problem that is at historically high levels.  It tackles the following three obstacles faced by Animal Shelters: 
+**Save A Stray** is a new age solution for a problem that is at historically high levels.  It tackles the following *three obstacles* faced by *Animal Shelters*: 
 
-- Reach: Without a dynamic website and a social media presence its next to impossible for Shelters to get their Animals the exposure they need in order to be adopted.
-- Cost: In order for Animal Shelters to build their online presence there can be significant upfront costs for building websites, marketing, etc.  Save A Stray has no upfront costs and only charges a small fee with each successful adoption.
-- Convenience:  Potential adopters have to search through multiple websites in order to find all the potential pets in the area.  With Save A Pet you have to search one website to see all the animals in your specified area. 
+- Reach: _Without a dynamic website and a social media presence its next to impossible for Shelters to get their Animals the exposure they need in order to be adopted._
+- Cost: _In order for Animal Shelters to build their online presence there can be significant upfront costs for building websites, marketing, etc.  Save A Stray has no upfront costs and only charges a small fee with each successful adoption._
+- Convenience:  _Potential adopters have to search through multiple websites in order to find all the potential pets in the area.  With Save A Pet you have to search one website to see all the animals in your specified area._ 
 
 
-Save A Stray is primarily built with the MERN stack, a combination of the following technologies: MongoDB, Node, React, Express and Apollo.
+**Save A Stray** is primarily built with the **MERN** stack, a combination of the following technologies: **MongoDB, Node, React, Express** and **Apollo**.
 
 ## Functionality & MVP
 
@@ -35,31 +35,42 @@ Save A Stray is primarily built with the MERN stack, a combination of the follow
 ## Schema
 
 ### `users`
-column name     | data type | details
-----------------|-----------|-----------------------
+column name       | data type | details
+------------------|-----------|-----------------------
 `id `             | integer   | not null, primary key
-`username  `      | string    | not null, indexed, unique
+`username`        | string    | not null, indexed, unique
 `password_digest` | string    | not null
 `session_token`   | string    | not null, indexed, unique
-`user_role`       | string    | not null
-`pronunciation `  | string    | 
-`paymentEmail  `| string    | not null 
+`user_role`       | string    | includes [ admin , endUser , volunteer ] 
+`paymentEmail  `  | string    | not null 
 --- 
-
+<!--  -->
 ### `Dogs`
 column name     | data type | details
 ----------------|-----------|-----------------------
-`id `           | integer   | not null, primary key
-`name  `        | string    | not null,  unique​
-` Application ` | text      | 
+`id`            | integer   | not null, primary key
+`name`          | string    | not null,  unique​
+`Age`           | integer   | not null
+`sex`           | string    | not null
+`color `        | string    | not null
+`Description`   | string    | not null
+`image`         | string    | 
+`video`         | string    | 
+`Application`   | text      | 
 --- 
 
 ### `Cats`
 column name     | data type | details
 ----------------|-----------|-----------------------
-`id `           | integer   | not null, primary key
-`name  `        | string    | not null,  unique
-` Application ` | text      | 
+`id`            | integer   | not null, primary key
+`name`          | string    | not null,  unique
+`Age`           | integer   | not null
+`sex`           | string    | not null
+`color`         | string    | not null
+`Description`   | string    | not null
+`image`         | string    |
+`video`         | string    |
+`Application`   | text      | 
 
 --- 
 
@@ -74,9 +85,6 @@ column name     | data type | details
 `paymentEmail  `| string    | not null 
 
 --- 
-
-
-
 
  
 ## Graphql Schema
@@ -111,9 +119,9 @@ column name     | data type | details
 ### Architecture
 The overall application architecture is geared toward rapid development and maintainability of an application that is deployed on both web and mobile.
 
-To that end, Save A Stray is built with the MERN stack (MongoDB, Express, React, and Node).
+To that end, **Save A Stray** is built with the **MERN** stack (**MongoDB, Express, React, and Node**).
 
-Additionally, Apollo is used for front-end devlopment with React, bundling of client-side javascript is accomplished by Webpack, and Babel is used to transpile ES6+ Javascript for backward browser compatibility.
+Additionally, **Apollo** is used for front-end devlopment with **React**, bundling of **client-side javascript** is accomplished by Webpack, and Babel is used to transpile **ES6+ Javascript** for backward browser compatibility.
 
 #### Backend: Node, Express, MongoDB, GraphQL
 The backend will be entirely platform agnostic with the exception of potential performance optimizations per platform. The separation of the back and front allows for either to be modified, built, updated, or swapped out entirely with minimal impact to the other.
