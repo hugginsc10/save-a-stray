@@ -8,7 +8,7 @@ _An application that connects Shelter Animals to their Furever homes._
 
 - Reach: _Without a dynamic website and a social media presence its next to impossible for Shelters to get their Animals the exposure they need in order to be adopted._
 - Cost: _In order for Animal Shelters to build their online presence there can be significant upfront costs for building websites, marketing, etc.  Save A Stray has no upfront costs and only charges a small fee with each successful adoption._
-- Convenience:  _Potential adopters have to search through multiple websites in order to find all the potential pets in the area.  With Save A Pet you have to search one website to see all the animals in your specified area._ 
+- Convenience:  _Potential adopters have to search through multiple websites in order to find all the potential pets in the area.  With Save A Stray you have to search one website to see all the animals in your specified area._ 
 
 
 **Save A Stray** is primarily built with the **MERN** stack, a combination of the following technologies: **MongoDB, Node, React, Express** and **Apollo**.
