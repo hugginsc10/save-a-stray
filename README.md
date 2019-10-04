@@ -125,6 +125,6 @@ The backend will be entirely platform agnostic with the exception of potential p
 
 ## Group Members & Work Breakdown
 
-**Chas Huggins** => Backend and Frontend;
-**Daniel Hernandez** => Backend and Frontend;
-**Tom Driscoll** => Frontend and UI/UX
+- **Chas Huggins** => Backend and Frontend;
+- **Daniel Hernandez** => Backend and Frontend;
+- **Tom Driscoll** => Frontend and UI/UX
