@@ -22,7 +22,8 @@ const AnimalType = new GraphQLObjectType({
     color: { type: GraphQLString },
     image: { type: GraphQLString },
     video: { type: GraphQLString },
-    description: { type: GraphQLString }
+    description: { type: GraphQLString },
+    application: { type: GraphQLString }
 
   })
 });

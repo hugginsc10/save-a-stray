@@ -30,6 +30,7 @@ const Nav = props => {
                 <div>
                   <Link to="/login">Login</Link>
                   <Link to="/register">Register</Link>
+                  <Link to="/newAnimal">New Animal</Link>
                 </div>
               );
             }

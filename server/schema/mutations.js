@@ -62,7 +62,7 @@ const mutation = new GraphQLObjectType({
         description: {type: GraphQLString},
         image: {type: GraphQLString},
         video: {type: GraphQLString},
-        application: {type: GraphQLID}
+        application: {type: GraphQLString}
         
       },
       resolve(parentValue, { name,type, age, sex, color, description, image, video, Application}){
