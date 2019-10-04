@@ -96,7 +96,7 @@ column name     | data type | details
             [Dogs, Cats]
         users:
             [userId]    
-            
+
     Dogs:
         age
         breed
@@ -133,9 +133,10 @@ Additionally, **Apollo** is used for front-end devlopment with **React**, bundli
 The backend will be entirely platform agnostic with the exception of potential performance optimizations per platform. The separation of the back and front allows for either to be modified, built, updated, or swapped out entirely with minimal impact to the other.
 
 ### Frontend: React and Apollo
-
+Docker React Apollo
 
 ## UI/UX
+Tom
 
 ## Group Members & Work Breakdown
 
