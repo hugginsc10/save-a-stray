@@ -143,6 +143,6 @@ Tom
 
 ## Group Members & Work Breakdown
 
-- **Chas Huggins** => Backend and Frontend;
-- **Daniel Hernandez** => Backend and Frontend;
+- **Chas Huggins** => Backend and Frontend
+- **Daniel Hernandez** => Backend and Frontend
 - **Tom Driscoll** => Frontend and UI/UX
