@@ -4,10 +4,12 @@ const mongoose = require("mongoose");
 const UserType = require("./types/user_type");
 const User = mongoose.model("user");
 const Animal = mongoose.model("animal");
+const Application = mongoose.model("application");
 
 
 const AuthService = require("../services/auth")
 const AnimalType = require("./types/animal_type")
+const ApplicationType = require("./types/application_type")
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
@@ -69,6 +71,26 @@ const mutation = new GraphQLObjectType({
         return new Animal({ name, age, sex, color, description, image, video})
       }
     }, 
+    newApplication: {
+      type: ApplicationType,
+      args:{
+        animalId: {type: GraphQLString},
+        userId: {type: GraphQLString},
+        applicationData: {type: GraphQLString}
+        
+      },
+      resolve(parentValue, {
+          animalId,
+          userId,
+          applicationData
+        }) {
+        return new Application({
+          animalId,
+          userId,
+          applicationData
+        })
+      }
+    }
   }
 });
 
