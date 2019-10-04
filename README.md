@@ -38,10 +38,11 @@ _An application that connects Shelter Animals to their Furever homes._
 column name       | data type | details
 ------------------|-----------|-----------------------
 `id `             | integer   | not null, primary key
-`username`        | string    | not null, indexed, unique
-`password_digest` | string    | not null
-`session_token`   | string    | not null, indexed, unique
-`user_role`       | string    | includes [ admin , endUser , volunteer ] 
+`name`            | string    | not null, unique
+`email`            | string    | not null, unique
+`password` | string    | not null
+`sessionToken`   | string    | not null, indexed, unique
+`userRole`       | string    | includes [ admin , endUser , volunteer ] 
 `paymentEmail  `  | string    | not null 
 --- 
 <!--  -->

@@ -12,6 +12,13 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  userRole: {
+    type: String,
+    required: true
+  },
+  paymentEmail: {
+    type: String
+  },
   password: {
     type: String,
     required: true,
