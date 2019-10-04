@@ -3,9 +3,12 @@ const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql;
 const mongoose = require("mongoose");
 const UserType = require("./types/user_type");
 const User = mongoose.model("user");
+const Dog = mongoose.model("dog");
+const Cat = mongoose.model("cat");
 
 const AuthService = require("../services/auth")
-
+const DogType = require("./types/dog_type")
+const CatType = require("./types/cat_type")
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
@@ -48,7 +51,41 @@ const mutation = new GraphQLObjectType({
       resolve(_, args) {
         return AuthService.verifyUser(args);
       }
-    }
+    },
+    newDog: {
+      type: DogType,
+      args:{
+        name: {type: GraphQLString},
+        age: {type: GraphQLInt},
+        sex: {type: GraphQLString},
+        color: {type: GraphQLString},
+        description: {type: GraphQLString},
+        image: {type: GraphQLString},
+        video: {type: GraphQLString},
+        application: {type: GraphQLID}
+        
+      },
+      resolve(parentValue, { name, Age, sex, color, Description, image, video, Application}){
+        return new Dog({ name, Age, sex, color, Description, image, video})
+      }
+    }, 
+    newCat: {
+      type: CatType,
+      args:{
+        name: {type: GraphQLString},
+        age: {type: GraphQLInt},
+        sex: {type: GraphQLString},
+        color: {type: GraphQLString},
+        description: {type: GraphQLString},
+        image: {type: GraphQLString},
+        video: {type: GraphQLString},
+        application: {type: GraphQLID}
+        
+      },
+      resolve(parentValue, { name, Age, sex, color, Description, image, video, Application}){
+        return new Cat({ name, Age, sex, color, Description, image, video})
+      }
+    }, 
   }
 });
 

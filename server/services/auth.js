@@ -15,7 +15,12 @@ const register = async data => {
       throw new Error(message);
     }
     // deconstruct our data
-    const { name, email, password } = data;
+    const {
+      name,
+      email,
+      password,
+      userRole
+    } = data;
 
     // we want to wait until our model can tell us whether a user exists with that email
     const existingEmail = await User.findOne({ email });
@@ -38,7 +43,8 @@ const register = async data => {
       {
         name,
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        userRole
       },
       err => {
         if (err) throw err;

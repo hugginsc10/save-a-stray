@@ -5,6 +5,7 @@ module.exports = function validateLoginInput(data) {
   data.name = validText(data.name) ? data.name : "";
   data.email = validText(data.email) ? data.email : "";
   data.password = validText(data.password) ? data.password : "";
+  data.userRole = validText(data.userRole) ? data.userRole : "";
 
   if (!Validator.isEmail(data.email)) {
     return { message: "Email is invalid", isValid: false };
@@ -12,6 +13,10 @@ module.exports = function validateLoginInput(data) {
 
   if (Validator.isEmpty(data.email)) {
     return { message: "Email field is required", isValid: false };
+  };
+
+  if (Validator.userRole(data.userRole)) {
+    return { message: "User Role field is required", isValid: false };
   };
 
   if (Validator.isEmpty(data.password)) {

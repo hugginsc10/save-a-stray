@@ -8,6 +8,7 @@ class Register extends Component {
     super(props);
 
     this.state = {
+      userRole: "",
       name: "",
       email: "",
       password: ""
@@ -44,6 +45,7 @@ class Register extends Component {
                 registerUser({
                   variables: {
                     name: this.state.name,
+                    userRole: this.state.userRole,
                     email: this.state.email,
                     password: this.state.password
                   }
@@ -60,6 +62,11 @@ class Register extends Component {
                 onChange={this.update("email")}
                 placeholder="Email"
               />
+              <select onChange={this.update("userRole")}>
+                <option value="admin">Admin</option>
+                <option value="endUser">Adopt</option>
+                <option value="volunteer">Volunteer</option>
+              </select>
               <input
                 value={this.state.password}
                 onChange={this.update("password")}
