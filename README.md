@@ -92,8 +92,9 @@ column name     | data type | details
     shelter:
         location/address
         contact info
-        animals: 
-            [Dogs, Cats]
+        animals: [
+            [Dogs], [Cats]
+        ]
         users:
             [userId]    
 
@@ -103,8 +104,8 @@ column name     | data type | details
         sex
         color
         description
-        image
-        video
+        [image]
+        [video]
 
     Cats:
         age
@@ -112,8 +113,8 @@ column name     | data type | details
         sex
         color
         description
-        image
-        video
+        [image]
+        [video]
 
     Application:
         animalId:
@@ -128,6 +129,8 @@ The overall application architecture is geared toward rapid development and main
 To that end, **Save A Stray** is built with the **MERN** stack (**MongoDB, Express, React, and Node**).
 
 Additionally, **Apollo** is used for front-end devlopment with **React**, bundling of **client-side javascript** is accomplished by Webpack, and Babel is used to transpile **ES6+ Javascript** for backward browser compatibility.
+
+Finally, the app will be deployed to **Heroku** with **Docker**.
 
 ### Backend: Node, Express, MongoDB, GraphQL
 The backend will be entirely platform agnostic with the exception of potential performance optimizations per platform. The separation of the back and front allows for either to be modified, built, updated, or swapped out entirely with minimal impact to the other.
