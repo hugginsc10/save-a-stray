@@ -8,7 +8,7 @@ const {
     GraphQLList,
     GraphQLInt
 } = graphql;
-
+const Shelter = mongoose.model("shelter")
 const ShelterType = new GraphQLObjectType({
     name: "ShelterType",
     // remember we wrap the fields in a thunk to avoid circular dependency issues
@@ -22,14 +22,26 @@ const ShelterType = new GraphQLObjectType({
         location: {
             type: GraphQLString
         },
-        users: {
-            type: GraphQLString
-        },
         paymentEmail: {
             type: GraphQLString
         },
         animals: {
-            type: GraphQLString
+            type: require("./animal_type"),
+            resolve(parentValue) {
+                console.log(parentValue)
+                return Shelter.findById(parentValue._Id).populate("animals").then(shelter => {
+                    return shelter.animals
+                })
+            }
+        },
+        users: {
+            type: require("./user_type"),
+            resolve(parentValue) {
+                console.log(parentValue)
+                return Shelter.findById(parentValue._Id).populate("users").then(shelter => {
+                    return shelter.users
+                })
+            }
         }
 
     })

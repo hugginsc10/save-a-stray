@@ -28,15 +28,9 @@ const AnimalType = new GraphQLObjectType({
     applications: {
         type: new GraphQLList(require("./application_type")),
         resolve(parentValue) {
-          // console.log(11111111111111111111111111111111111)
-          // console.log(parentValue)
-          // console.log(11111111111111111111111111111111111)
           return Animal.findById(parentValue._id)
             .populate("applications")
-            .then(animal => {
-              console.log(11111111111111111111111111111111111)
-              console.log(animal)
-              console.log(11111111111111111111111111111111111)              
+            .then(animal => {             
               return animal.applications
             });
         }

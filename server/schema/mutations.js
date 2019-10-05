@@ -107,9 +107,9 @@ const mutation = new GraphQLObjectType({
       args:{
         name: {type: GraphQLString},
         location: {type: GraphQLString},
-        users: {type: GraphQLString},
-        paymentEmail: {type: GraphQLString},
-        animals: {type: GraphQLString}
+        // users: {type: GraphQLString},
+        paymentEmail: {type: GraphQLString}
+        // animals: {type: GraphQLString}
         
       },
       resolve(parentValue, {
@@ -119,13 +119,16 @@ const mutation = new GraphQLObjectType({
           paymentEmail,
           animals
         }) {
-        return new Shelter({
+         
+        const newShelter = new Shelter({
           name,
           location,
           users,
           paymentEmail,
           animals
         })
+        newShelter.save()
+        return newShelter
       }
     }
   }

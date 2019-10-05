@@ -10,18 +10,18 @@ const ShelterSchema = new Schema({
         type: String,
         required: true
     },
-    users: {
-        type: String,
-        required: true
-    },
+    users: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    }],
     paymentEmail: {
         type: String,
         required: true
     },
-    animals: {
-        type: String,
-        required: true
-    }
+    animals: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'animal'
+    }]
 });
 
 

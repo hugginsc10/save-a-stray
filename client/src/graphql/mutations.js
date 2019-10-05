@@ -51,13 +51,11 @@ export default {
     }
   `,
   CREATE_SHELTER: gql`
-    mutation CreateShelter($name: String!, $location: String!, $users: String!, $paymentEmail: String!, $animals: String!) {
-      newShelter(name: $name, location: $location, users: $users, paymentEmail: $paymentEmail, animals: $animals) {
+    mutation CreateShelter($name: String!, $location: String!, $paymentEmail: String!) {
+      newShelter(name: $name, location: $location, paymentEmail: $paymentEmail) {
         name
         location
-        users
         paymentEmail
-        animals
         }
     }
   `
