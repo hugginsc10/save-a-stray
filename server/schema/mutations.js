@@ -3,12 +3,15 @@ const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql;
 const mongoose = require("mongoose");
 const UserType = require("./types/user_type");
 const User = mongoose.model("user");
-const Dog = mongoose.model("dog");
-const Cat = mongoose.model("cat");
+const Animal = mongoose.model("animal");
+const Application = mongoose.model("application");
+const Shelter = mongoose.model("shelter");
+
 
 const AuthService = require("../services/auth")
-const DogType = require("./types/dog_type")
-const CatType = require("./types/cat_type")
+const AnimalType = require("./types/animal_type")
+const ShelterType = require("./types/shelter_type")
+const ApplicationType = require("./types/application_type")
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
@@ -17,7 +20,8 @@ const mutation = new GraphQLObjectType({
       args: {
         name: { type: GraphQLString },
         email: { type: GraphQLString },
-        password: { type: GraphQLString }
+        password: { type: GraphQLString },
+        userRole:{type: GraphQLString}
       },
       resolve(_, args) {
         return AuthService.register(args);
@@ -52,40 +56,81 @@ const mutation = new GraphQLObjectType({
         return AuthService.verifyUser(args);
       }
     },
-    newDog: {
-      type: DogType,
+    newAnimal: {
+      type: AnimalType,
       args:{
         name: {type: GraphQLString},
+        type: {type: GraphQLString},
         age: {type: GraphQLInt},
         sex: {type: GraphQLString},
         color: {type: GraphQLString},
         description: {type: GraphQLString},
         image: {type: GraphQLString},
         video: {type: GraphQLString},
-        application: {type: GraphQLID}
+        applications: {type: GraphQLID}
         
       },
-      resolve(parentValue, { name, Age, sex, color, Description, image, video, Application}){
-        return new Dog({ name, Age, sex, color, Description, image, video})
+      resolve(parentValue, { name,type, age, sex, color, description, image, video}){
+        const newAn = new Animal({ name,type, age, sex, color, description, image, video})
+        newAn.save()
+        return newAn
       }
     }, 
-    newCat: {
-      type: CatType,
+    newApplication: {
+      type: ApplicationType,
+      args:{
+        animalId: {type: GraphQLString},
+        userId: {type: GraphQLString},
+        applicationData: {type: GraphQLString}
+        
+      },
+      resolve(parentValue, {
+          animalId,
+          userId,
+          applicationData
+        }) {
+        const newApp = new Application({
+          animalId,
+          userId,
+          applicationData
+        })
+        return Animal.findById(animalId).then(animal => {
+          animal.applications.push(newApp._id)
+          animal.save()
+          newApp.save()
+          return newApp
+        })
+      }
+    },
+    newShelter: {
+      type: ShelterType,
       args:{
         name: {type: GraphQLString},
-        age: {type: GraphQLInt},
-        sex: {type: GraphQLString},
-        color: {type: GraphQLString},
-        description: {type: GraphQLString},
-        image: {type: GraphQLString},
-        video: {type: GraphQLString},
-        application: {type: GraphQLID}
+        location: {type: GraphQLString},
+        // users: {type: GraphQLString},
+        paymentEmail: {type: GraphQLString}
+        // animals: {type: GraphQLString}
         
       },
-      resolve(parentValue, { name, Age, sex, color, Description, image, video, Application}){
-        return new Cat({ name, Age, sex, color, Description, image, video})
+      resolve(parentValue, {
+          name,
+          location,
+          users,
+          paymentEmail,
+          animals
+        }) {
+         
+        const newShelter = new Shelter({
+          name,
+          location,
+          users,
+          paymentEmail,
+          animals
+        })
+        newShelter.save()
+        return newShelter
       }
-    }, 
+    }
   }
 });
 

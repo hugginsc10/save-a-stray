@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const DogSchema = new Schema({
+const AnimalSchema = new Schema({
     name: {
+        type: String,
+        required: true
+    },
+    type: {
         type: String,
         required: true
     },
@@ -30,8 +34,11 @@ const DogSchema = new Schema({
         type: String,
         required: true
     },
-    application: [{ type: mongoose.Schema.Types.ObjectId, ref: 'applications' }]
+    applications: [{
+    type: mongoose.Schema.Types.ObjectId,
+        ref: 'application'
+    }]
 });
 
 
-module.exports = mongoose.model('dog', DogSchema);
+module.exports = mongoose.model('animal', AnimalSchema);

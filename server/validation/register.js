@@ -2,6 +2,7 @@ const Validator = require("validator");
 const validText = require("./valid-text");
 
 module.exports = function validateLoginInput(data) {
+  console.log(data.userRole)
   data.name = validText(data.name) ? data.name : "";
   data.email = validText(data.email) ? data.email : "";
   data.password = validText(data.password) ? data.password : "";
@@ -15,7 +16,7 @@ module.exports = function validateLoginInput(data) {
     return { message: "Email field is required", isValid: false };
   };
 
-  if (Validator.userRole(data.userRole)) {
+  if (Validator.isEmpty(data.userRole)) {
     return { message: "User Role field is required", isValid: false };
   };
 

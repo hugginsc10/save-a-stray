@@ -4,12 +4,11 @@ const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
 
 const UserType = require("./user_type");
 const User = mongoose.model("user");
+const Application = mongoose.model("application");
 
-const DogType = require("./dog_type");
-const Dog = mongoose.model("dog");
-
-const CatType = require("./cat_type");
-const Cat = mongoose.model("cat");
+const AnimalType = require("./animal_type");
+const Animal = mongoose.model("animal");
+const ApplicationType = require("./application_type")
 
 
 
@@ -29,29 +28,23 @@ const RootQueryType = new GraphQLObjectType({
         return User.findById(args._id);
       }
     },
-    dogs: {
-      type: new GraphQLList(CatType),
-      resolve() {return Dog.find({});
-      }
-    },
-    dog: {
-      type: DogType,
-      args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
-      resolve(_, args) {
-        return Dog.findById(args._id);
-      }
-    },
-    cats: {
-      type: new GraphQLList(CatType),
+    animals: {
+      type: new GraphQLList(AnimalType),
       resolve() {
-        return Cat.find({});
+        return Animal.find({});
       }
     },
-    cat: {
-      type: CatType,
+    applications: {
+      type: new GraphQLList(ApplicationType),
+      resolve() {
+        return Application.find({});
+      }
+    },
+    animal: {
+      type: AnimalType,
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args) {
-        return Cat.findById(args._id);
+        return Animal.findById(args._id);
       }
     }
    

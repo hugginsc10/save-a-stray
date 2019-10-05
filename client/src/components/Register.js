@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../graphql/mutations"
+import { Link } from 'react-router-dom';
 const { REGISTER_USER } = Mutations
 
 class Register extends Component {
@@ -28,6 +29,7 @@ class Register extends Component {
 
   render() {
     return (
+
       <Mutation
         mutation={REGISTER_USER}
         onCompleted={data => {
@@ -75,6 +77,8 @@ class Register extends Component {
               />
               <button type="submit">Register Account</button>
             </form>
+            <Link to="/newShelter">New Shelter</Link>
+            <br />
           </div>
         )}
       </Mutation>

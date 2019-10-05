@@ -1,3 +1,4 @@
 require("./User");
-require("./Dog");
-require("./Cat");
+require("./Animal");
+require("./Application");
+require("./Shelter");
