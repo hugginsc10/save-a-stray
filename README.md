@@ -58,7 +58,7 @@ column name     | data type | details
 `description`   | string    | not null
 `image`         | string    | 
 `video`         | string    | 
-`application`   | text      | 
+`applications`   | array      | 
 --- 
 
 

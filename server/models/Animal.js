@@ -34,10 +34,10 @@ const AnimalSchema = new Schema({
         type: String,
         required: true
     },
-    application: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'applications'
-    }
+    applications: [{
+    type: mongoose.Schema.Types.ObjectId,
+        ref: 'application'
+    }]
 });
 
 

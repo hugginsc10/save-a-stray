@@ -20,7 +20,8 @@ const mutation = new GraphQLObjectType({
       args: {
         name: { type: GraphQLString },
         email: { type: GraphQLString },
-        password: { type: GraphQLString }
+        password: { type: GraphQLString },
+        userRole:{type: GraphQLString}
       },
       resolve(_, args) {
         return AuthService.register(args);
@@ -66,11 +67,13 @@ const mutation = new GraphQLObjectType({
         description: {type: GraphQLString},
         image: {type: GraphQLString},
         video: {type: GraphQLString},
-        application: {type: GraphQLString}
+        applications: {type: GraphQLID}
         
       },
-      resolve(parentValue, { name,type, age, sex, color, description, image, video, Application}){
-        return new Animal({ name, age, sex, color, description, image, video})
+      resolve(parentValue, { name,type, age, sex, color, description, image, video}){
+        const newAn = new Animal({ name,type, age, sex, color, description, image, video})
+        newAn.save()
+        return newAn
       }
     }, 
     newApplication: {
@@ -86,10 +89,19 @@ const mutation = new GraphQLObjectType({
           userId,
           applicationData
         }) {
-        return new Application({
+        const newApp = new Application({
           animalId,
           userId,
           applicationData
+        })
+        return Animal.findById(animalId).then(animal => {
+          console.log(111111111111)
+          console.log(newApp)
+          console.log(111111111111)
+          animal.applications.push(newApp._id)
+          animal.save()
+          newApp.save()
+          return newApp
         })
       }
     },

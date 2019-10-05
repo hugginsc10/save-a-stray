@@ -4,9 +4,11 @@ const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
 
 const UserType = require("./user_type");
 const User = mongoose.model("user");
+const Application = mongoose.model("application");
 
 const AnimalType = require("./animal_type");
 const Animal = mongoose.model("animal");
+const ApplicationType = require("./application_type")
 
 
 
@@ -26,17 +28,23 @@ const RootQueryType = new GraphQLObjectType({
         return User.findById(args._id);
       }
     },
-    animal: {
+    animals: {
       type: new GraphQLList(AnimalType),
       resolve() {
-        return animal.find({});
+        return Animal.find({});
+      }
+    },
+    applications: {
+      type: new GraphQLList(ApplicationType),
+      resolve() {
+        return Application.find({});
       }
     },
     animal: {
       type: AnimalType,
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args) {
-        return animal.findById(args._id);
+        return Animal.findById(args._id);
       }
     }
    

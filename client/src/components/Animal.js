@@ -10,7 +10,7 @@ class NewAnimal extends Component {
     this.state = {
       name: "",
       type: "",
-      age: 0,
+      age: "",
       sex: "",
       color: "",
       description: "",
@@ -46,13 +46,13 @@ class NewAnimal extends Component {
                   variables: {
                     name: this.state.name,
                     type: this.state.type,
-                    age: this.state.age,
+                    age: parseInt(this.state.age),
                     sex: this.state.sex,
                     color: this.state.color,
                     description: this.state.description,
                     image: this.state.image,
                     video: this.state.video,
-                    application: this.state.application
+                    applications: this.state.application
                   }
                 });
               }}
@@ -102,7 +102,7 @@ class NewAnimal extends Component {
                 onChange={this.update("application")}
                 placeholder="application"
               />
-              <button type="submit">Log In</button>
+              <button type="submit">Add Animal</button>
             </form>
           </div>
         )}

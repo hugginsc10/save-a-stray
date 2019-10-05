@@ -4,9 +4,6 @@ const {
     GraphQLObjectType,
     GraphQLString,
     GraphQLID,
-    GraphQLBoolean,
-    GraphQLList,
-    GraphQLInt
 } = graphql;
 
 const ApplicationType = new GraphQLObjectType({
