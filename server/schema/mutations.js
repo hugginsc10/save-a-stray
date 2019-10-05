@@ -95,9 +95,6 @@ const mutation = new GraphQLObjectType({
           applicationData
         })
         return Animal.findById(animalId).then(animal => {
-          console.log(111111111111)
-          console.log(newApp)
-          console.log(111111111111)
           animal.applications.push(newApp._id)
           animal.save()
           newApp.save()
