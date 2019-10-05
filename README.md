@@ -102,6 +102,52 @@ column name     | data type | details
         userId:
         applicationData:
 
+## Frontend Routes
+
+
+Our components are organized as follows:
+
+- `Root`
+	 - `App `
+		- ` NavBar`
+		- ` (main component goes here)`
+
+The following routes, defined in App.
+
+ 1.   `/`
+	    -   `splash`
+  
+ 2.   `/login`
+	    -   `SessionForm`
+  
+ 3.   `/signup`
+	    -   `SessionForm`
+
+ 4.  `/user/:userId`
+		-   `ProfileComponent`
+			  -   `feed`
+	    
+ 5.  `/shelter/new`
+	    -   `shelterForm`
+
+ 6.  `/shelter/:userId`
+	    -   `home component`
+
+    
+ 8.  `/animal/new`
+	    -   `animalForm`
+    
+ 9.  `/application/new`
+	    -   `applicationForm`
+
+ 10.   `/animal/:animalId/edit`
+	    -   `animalForm`
+
+ 11.   `/user/:userId/edit`
+	    -   `userForm`
+
+ 12.   `/donation/:shelterId`
+	    -   `donationForm`
 ## Technologies & Challenges
 
 ### Architecture
