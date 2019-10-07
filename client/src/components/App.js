@@ -7,15 +7,18 @@ import Application from "./Application";
 import Shelter from "./Shelter";
 import AuthRoute from '../util/route_util'
 import Nav from "./Nav";
-
+import './App.css'
 const App = () => {
   return (
     <HashRouter>
-      <div>
+      <div id='root-div1'>
+        <h1 id='logo'>Save a Stray</h1>
         <Nav />
+
         <h1>Save a Stray</h1>
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
           <Route exact path="/newApplication" component={Application}  routeType="" />
+
         <Switch>
           <Route exact path="/newShelter" component={Shelter} routeType="auth" />
           <AuthRoute exact path="/register" component={Register} routeType="auth" />

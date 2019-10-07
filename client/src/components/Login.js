@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../graphql/mutations"
+import './auth.css'
 const { LOGIN_USER } = Mutations
 
 class Login extends Component {
@@ -36,31 +37,35 @@ class Login extends Component {
         update={(client, data) => this.updateCache(client, data)}
       >
         {loginUser => (
-          <div>
-            <form
-              onSubmit={e => {
-                e.preventDefault();
-                loginUser({
-                  variables: {
-                    email: this.state.email,
-                    password: this.state.password
-                  }
-                });
-              }}
-            >
-              <input
-                value={this.state.email}
-                onChange={this.update("email")}
-                placeholder="Email"
-              />
-              <input
-                value={this.state.password}
-                onChange={this.update("password")}
-                type="password"
-                placeholder="Password"
-              />
-              <button type="submit">Log In</button>
-            </form>
+
+          <div className='auth-modal'>
+            <div className='auth-div'>
+              <form className='auth-form'
+                onSubmit={e => {
+                  e.preventDefault();
+                  loginUser({
+                    variables: {
+                      email: this.state.email,
+                      password: this.state.password
+                    }
+                  });
+                }}
+              >
+                <h1>Login</h1>
+                <input
+                  value={this.state.email}
+                  onChange={this.update("email")}
+                  placeholder="Email"
+                />
+                <input
+                  value={this.state.password}
+                  onChange={this.update("password")}
+                  type="password"
+                  placeholder="Password"
+                />
+                <button className='modal-button' type="submit">Log In</button>
+              </form>
+            </div>
           </div>
         )}
       </Mutation>
