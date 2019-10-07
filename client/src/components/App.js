@@ -4,13 +4,13 @@ import Login from "./Login";
 import Register from "./Register";
 import AuthRoute from '../util/route_util'
 import Nav from "./Nav";
-
+import './App.css'
 const App = () => {
   return (
     <HashRouter>
-      <div>
+      <div id='root-div1'>
+        <h1 id='logo'>Save a Stray</h1>
         <Nav />
-        <h1>Save a Stray</h1>
         <Switch>
           <AuthRoute exact path="/register" component={Register} routeType="auth" />
           <AuthRoute exact path="/login" component={Login} routeType="auth" />

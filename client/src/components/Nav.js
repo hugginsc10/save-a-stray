@@ -8,6 +8,7 @@ const { IS_LOGGED_IN } = Queries;
 
 const Nav = props => {
   return (
+    <div id='auth-links'>
     <ApolloConsumer>
       {client => (
         <Query query={IS_LOGGED_IN}>
@@ -37,6 +38,7 @@ const Nav = props => {
         </Query>
       )}
     </ApolloConsumer>
+    </div>
   );
 };
 
