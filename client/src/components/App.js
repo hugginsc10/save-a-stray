@@ -14,8 +14,6 @@ const App = () => {
       <div id='root-div1'>
         <h1 id='logo'>Save a Stray</h1>
         <Nav />
-
-        <h1>Save a Stray</h1>
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
           <Route exact path="/newApplication" component={Application}  routeType="" />
 
