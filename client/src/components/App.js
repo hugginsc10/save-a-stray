@@ -12,6 +12,7 @@ const App = () => {
   return (
     <HashRouter>
       <div>
+
         <Nav />
         <h1>Save a Stray</h1>
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
