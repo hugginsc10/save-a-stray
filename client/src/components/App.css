@@ -60,3 +60,13 @@
 #auth-links a:hover{
   text-decoration: underline;
 }
+
+@media screen and (max-width: 510px) {
+  #root-div1 {
+    
+  }
+
+  #auth-links{
+    display: none
+  }
+}

@@ -72,3 +72,19 @@
     cursor: pointer;
     margin: 10px;
 }
+
+@media screen and (max-width: 510px) {
+    .auth-div{
+        height: -webkit-fill-available;
+        width: -webkit-fill-available;
+        margin: 0;
+        top: 0;
+        border-radius: 0;
+
+    
+    }
+
+    .auth-form h1{
+        padding: 20px 0;
+    }
+  }
