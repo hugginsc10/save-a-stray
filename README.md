@@ -46,33 +46,19 @@ column name       | data type | details
 `paymentEmail  `  | string    | 
 --- 
 <!--  -->
-### `Dogs`
+### `Animal`
 column name     | data type | details
 ----------------|-----------|-----------------------
 `id`            | integer   | not null, primary key
-`name`          | string    | not null,  unique​
-`Age`           | integer   | not null
+`type`          | string    | not null  
+`name`          | string    | not null
+`age`           | integer   | not null
 `sex`           | string    | not null
 `color `        | string    | not null
-`Description`   | string    | not null
+`description`   | string    | not null
 `image`         | string    | 
 `video`         | string    | 
-`Application`   | text      | 
---- 
-
-### `Cats`
-column name     | data type | details
-----------------|-----------|-----------------------
-`id`            | integer   | not null, primary key
-`name`          | string    | not null,  unique
-`Age`           | integer   | not null
-`sex`           | string    | not null
-`color`         | string    | not null
-`Description`   | string    | not null
-`image`         | string    |
-`video`         | string    |
-`Application`   | text      | 
-
+`applications`   | array      | 
 --- 
 
 
@@ -84,6 +70,7 @@ column name     | data type | details
 `location  `    | string    | not null 
 `users  `       | array     | not null 
 `paymentEmail  `| string    | not null 
+`animals  `     | string    | not null 
 
 --- 
 
@@ -99,7 +86,8 @@ column name     | data type | details
         users:
             [userId]    
 
-    Dogs:
+    animal:
+        type
         age
         breed
         sex
@@ -107,21 +95,59 @@ column name     | data type | details
         description
         [image]
         [video]
+        application
 
-    Cats:
-        age
-        breed
-        sex
-        color
-        description
-        [image]
-        [video]
-
-    Application:
+    application:
         animalId:
         userId:
         applicationData:
 
+## Frontend Routes
+
+
+Our components are organized as follows:
+
+- `Root`
+	 - `App `
+		- ` NavBar`
+		- ` (main component goes here)`
+
+The following routes, defined in App.
+
+ 1.   `/`
+	    -   `splash`
+  
+ 2.   `/login`
+	    -   `SessionForm`
+  
+ 3.   `/signup`
+	    -   `SessionForm`
+
+ 4.  `/user/:userId`
+		-   `ProfileComponent`
+			  -   `feed`
+	    
+ 5.  `/shelter/new`
+	    -   `shelterForm`
+
+ 6.  `/shelter/:userId`
+	    -   `home component`
+
+    
+ 8.  `/animal/new`
+	    -   `animalForm`
+    
+ 9.  `/application/new`
+	    -   `applicationForm`
+
+ 10.   `/animal/:animalId/edit`
+	    -   `animalForm`
+
+ 11.   `/user/:userId/edit`
+	    -   `userForm`
+
+ 12.   `/donation/:shelterId`
+	    -   `donationForm`
 ## Technologies & Challenges
 
 ### Architecture

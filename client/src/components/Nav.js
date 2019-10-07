@@ -15,22 +15,32 @@ const Nav = props => {
           {({ data }) => {
             if (data.isLoggedIn) {
               return (
-                <button
-                  onClick={e => {
-                    e.preventDefault();
-                    localStorage.removeItem("auth-token");
-                    client.writeData({ data: { isLoggedIn: false } });
-                    props.history.push("/");
-                  }}
-                >
-                  Logout
-                </button>
+                <div>
+                  <button
+                    onClick={e => {
+                      e.preventDefault();
+                      localStorage.removeItem("auth-token");
+                      client.writeData({ data: { isLoggedIn: false } });
+                      props.history.push("/");
+                    }}
+                  >
+                    Logout
+                  </button>
+                   <br />
+                  <Link to="/newAnimal">New Animal</Link>
+                  <br />
+                  <Link to="/newApplication">New Application</Link>
+                </div>
+
               );
             } else {
               return (
                 <div>
                   <Link to="/login">Login</Link>
+                  <br />
                   <Link to="/register">Register</Link>
+
+
                 </div>
               );
             }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../graphql/mutations"
 import './auth.css'
+import { Link } from 'react-router-dom';
 const { REGISTER_USER } = Mutations
 
 class Register extends Component {
@@ -29,6 +30,7 @@ class Register extends Component {
 
   render() {
     return (
+
       <Mutation
         mutation={REGISTER_USER}
         onCompleted={data => {
@@ -39,6 +41,7 @@ class Register extends Component {
         update={(client, data) => this.updateCache(client, data)}
       >
         {registerUser => (
+
           <div className='auth-modal'>
             <div className='auth-div'>
               <form className='auth-form'
@@ -79,6 +82,45 @@ class Register extends Component {
                 <button className='modal-button' type="submit">Register Account</button>
               </form>
             </div>
+          <div>
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                registerUser({
+                  variables: {
+                    name: this.state.name,
+                    userRole: this.state.userRole,
+                    email: this.state.email,
+                    password: this.state.password
+                  }
+                });
+              }}
+            >
+              <input
+                value={this.state.name}
+                onChange={this.update("name")}
+                placeholder="name"
+              />
+              <input
+                value={this.state.email}
+                onChange={this.update("email")}
+                placeholder="Email"
+              />
+              <select onChange={this.update("userRole")}>
+                <option value="admin">Admin</option>
+                <option value="endUser">Adopt</option>
+                <option value="volunteer">Volunteer</option>
+              </select>
+              <input
+                value={this.state.password}
+                onChange={this.update("password")}
+                type="password"
+                placeholder="Password"
+              />
+              <button type="submit">Register Account</button>
+            </form>
+            <Link to="/newShelter">New Shelter</Link>
+            <br />
           </div>
         )}
       </Mutation>
