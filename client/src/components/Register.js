@@ -40,11 +40,11 @@ class Register extends Component {
               const { token } = data.register;
               localStorage.setItem("auth-token", token);
               if (client.cache.data.data.ROOT_QUERY.userRole === "admin") {
-                this.props.history.push("/")
+                this.props.history.push("/Shelter");
               } else {
+                this.props.history.push("/User")
                 
               }
-              this.props.history.push("/Shelter");
             }}
             update={(client, data) => this.updateCache(client, data)}
           >
