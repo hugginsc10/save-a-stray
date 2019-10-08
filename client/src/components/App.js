@@ -23,8 +23,8 @@ const App = () => {
           <Route exact path="/newShelter" component={Shelter} routeType="auth" />
           <AuthRoute exact path="/register" component={Register} routeType="auth" />
           <AuthRoute exact path="/login" component={Login} routeType="auth" />
-          <Route exact path = "/privacy" component = {Privacy} />
-          <Route exact path = "/tos" component = {TermsOfService} />
+          <Route exact path="/privacy" component ={Privacy} />
+          <Route exact path="/tos" component={TermsOfService} />
         </Switch>
       </div>
     </HashRouter>
