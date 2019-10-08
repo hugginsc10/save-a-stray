@@ -8,6 +8,8 @@ import Shelter from "./Shelter";
 import AuthRoute from '../util/route_util'
 import Nav from "./Nav";
 import './App.css'
+import Privacy from "./Privacy";
+import TermsOfService from "./TermsOfService";
 const App = () => {
   return (
     <HashRouter>
@@ -21,6 +23,8 @@ const App = () => {
           <Route exact path="/newShelter" component={Shelter} routeType="auth" />
           <AuthRoute exact path="/register" component={Register} routeType="auth" />
           <AuthRoute exact path="/login" component={Login} routeType="auth" />
+          <Route exact path = "/privacy" component = {Privacy} />
+          <Route exact path = "/tos" component = {TermsOfService} />
         </Switch>
       </div>
     </HashRouter>
