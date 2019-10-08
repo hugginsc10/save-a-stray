@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
-import Mutations from "../graphql/mutations"
-import './auth.css'
+import FacebookLogin from "./FacebookLogin";
+import Mutations from "../graphql/mutations";
+import './auth.css';
 const { LOGIN_USER } = Mutations
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -64,6 +64,7 @@ class Login extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Log In</button>
+                <FacebookLogin/>
               </form>
             </div>
           </div>

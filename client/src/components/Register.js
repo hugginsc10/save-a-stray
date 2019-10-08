@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import FacebookLogin from "./FacebookLogin";
 import { Mutation } from "react-apollo";
 import Mutations from "../graphql/mutations"
 import './auth.css'
@@ -80,6 +81,7 @@ class Register extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Register Account</button>
+                <FacebookLogin/>
               </form>
             </div>
         
