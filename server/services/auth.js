@@ -120,7 +120,7 @@ const verifyUser = async data => {
     // then we try to use the User with the id we just decoded
     // making sure we await the response
     const loggedIn = await User.findById(id).then(user => {
-      return user ? true : false;
+      return user ? {is:true,userRole: user.userRole} : {is:false};
     });
 
     return { loggedIn };

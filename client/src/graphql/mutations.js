@@ -5,7 +5,8 @@ export default {
     mutation RegisterUser($userRole: String!,$name: String!, $email: String!, $password: String!) {
       register(userRole: $userRole,name: $name, email: $email, password: $password) {
         token
-        loggedIn
+        loggedIn,
+        userRole
       }
     }
   `,
@@ -13,7 +14,8 @@ export default {
     mutation LoginUser($email: String!, $password: String!) {
       login(email: $email, password: $password) {
         token
-        loggedIn
+        loggedIn,
+        userRole
       }
     }
   `,

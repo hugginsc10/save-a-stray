@@ -21,7 +21,7 @@ class Login extends Component {
   updateCache(client, {data}) {
     console.log(data);
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn }
+      data: { isLoggedIn: data.login.loggedIn.is,userRole: data.login.loggedIn.userRole }
     });
   }  
   
@@ -32,6 +32,7 @@ class Login extends Component {
         onCompleted={data => {
           const { token } = data.login;
           localStorage.setItem("auth-token", token);
+          // console.log(client)
           this.props.history.push("/");
         }}
         update={(client, data) => this.updateCache(client, data)}

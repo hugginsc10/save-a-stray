@@ -26,10 +26,7 @@ const Nav = props => {
                   >
                     Logout
                   </button>
-                   <br />
-                  <Link to="/newAnimal">New Animal</Link>
-                  <br />
-                  <Link to="/newApplication">New Application</Link>
+
                 </div>
 
               );
