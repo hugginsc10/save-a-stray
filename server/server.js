@@ -46,7 +46,6 @@ app.get(
     session: false
   }),
   (req, res) => {
-    console.log(Keys.fbookClient)
     res.send(Keys.fbookClient);
   },
 );
