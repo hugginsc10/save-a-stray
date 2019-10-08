@@ -28,6 +28,7 @@ passport.use(
     },
     (accessToken, refreshToken, profile, cb) => {
       console.log(profile);
+      console.log(Keys.fbookClient);
       cb(null, profile);
     },
   ),
