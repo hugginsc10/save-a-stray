@@ -38,7 +38,6 @@ passport.use(
 app.use(passport.initialize());
 
 app.get('/facebooklogin', passport.authenticate('facebook'));
-app.get('/test', console.log(Keys.fbookClient));
 
 app.get(
   '/auth/facebook/callback',
@@ -46,7 +45,8 @@ app.get(
     session: false
   }),
   (req, res) => {
-    res.send('AUTH WAS GOOD!');
+    console.log(Keys.fbookClient)
+    res.send(Keys.fbookClient);
   },
 );
 
