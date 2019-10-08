@@ -22,7 +22,6 @@ class Login extends Component {
   }
   
   updateCache(client, {data}) {
-    debugger
 
     client.writeData({
       data: { isLoggedIn: data.login.loggedIn,userRole: data.login.userRole }
@@ -38,7 +37,6 @@ class Login extends Component {
             onCompleted={data => {
               const { token } = data.login;
               localStorage.setItem("auth-token", token);
-              debugger
               if (client.cache.data.data.ROOT_QUERY.userRole === "admin") {
                 this.props.history.push("/Shelter");
               } else {
