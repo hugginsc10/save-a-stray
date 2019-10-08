@@ -12,7 +12,7 @@ class FacebookSignIn extends Component {
     this.appId = '515957642529597';
     this.redirectUrl = `${document.location.protocol}//${document.location.host}/facebook-callback`;
 
-    if (document.location.pathname === '/facebook-callback') {
+    if (document.location.pathname === '/') {
       this.code = querystring.parse(document.location.search)['?code'];
     }
 

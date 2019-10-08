@@ -49,45 +49,6 @@ app.get(
   },
 );
 
-// const addUser = async (req, res, next) => {
-//   const {
-//     name,
-//     email,
-//     userRole
-//   } = data;
-
-//   // create a new user with all our arguments
-//   const user = new User({
-//       name,
-//       email,
-//       password: hashedPassword,
-//       userRole
-//     },
-//     err => {
-//       if (err) throw err;
-//     }
-//   );
-
-//   // save our user
-//   user.save();
-//   // we'll create a token for the user
-//   const token = jwt.sign({
-//     id: user._id
-//   }, keys.secretOrKey);
-
-//   // then return our created token, set loggedIn to be true, null their password, and send the rest of the user
-//   return {
-//     token,
-//     loggedIn: true,
-//     ...user._doc,
-//     password: null
-//   };
-//   next();
-// };
-
-// app.use(addUser);
-
-
 mongoose
   .connect(db, {
     useNewUrlParser: true,
