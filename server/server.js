@@ -11,14 +11,8 @@ const FacebookStrategy = require("passport-facebook");
 const Keys = require("../config/keys");
 const User = require("./models/User");
 const passport = require("passport");
-const path = require('path');
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  })
-}
+
 
 app.use(passport.initialize());
 if (!db) {
