@@ -9,7 +9,7 @@ class FacebookSignIn extends Component {
   constructor(props) {
     super(props);
     this.onFacebookLogin = this.onFacebookLogin.bind(this);
-    this.appId = '1671352442997178';
+    this.appId = '515957642529597';
     this.redirectUrl = `${document.location.protocol}//${document.location.host}/facebook-callback`;
 
     if (document.location.pathname === '/facebook-callback') {
