@@ -38,6 +38,7 @@ passport.use(
 app.use(passport.initialize());
 
 app.get('/facebooklogin', passport.authenticate('facebook'));
+app.get('/test', console.log(Keys.fbookClient));
 
 app.get(
   '/auth/facebook/callback',
