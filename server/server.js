@@ -6,6 +6,10 @@ const db = require("../config/keys.js").MONGO_URI;
 const expressGraphQL = require("express-graphql");
 const schema = require("./schema/schema");
 const cors = require("cors");
+import passport from 'passport'
+import facebookStrategy from 'passport-facebook'
+
+
 const app = express();
 
 if (!db) {
