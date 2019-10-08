@@ -78,7 +78,7 @@ render() {
 	unfavorably on us or our accredited businesses (for example, trade associations or other organizations
 	representing inherently suspect types of business, such as work-at-home opportunities, shall not be allowed
 	to link); (b)the organization does not have an unsatisfactory record with us; (c) the benefit to us from
-	the visibility associated with the hyperlink outweighs the absence of <?=$companyName?>; and (d) where the
+	the visibility associated with the hyperlink outweighs the absence of Save A Stray and (d) where the
 	link is in the context of general resource information or is otherwise consistent with editorial content
 	in a newsletter or similar product furthering the mission of the organization.</p>
 
