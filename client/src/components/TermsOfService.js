@@ -11,7 +11,7 @@ render() {
 
 <h2>Welcome to Save A Stray</h2>
 	<p>These terms and conditions outline the rules and regulations for the use of Save A Stray's Website.</p> <br /> 
-	<span style="text-transform: capitalize;"> Save A Stray</span> is located at:<br /> 
+	<span> Save A Stray</span> is located at:<br /> 
 	<address><br />
 	</address>
 	<p>By accessing this website we assume you accept these terms and conditions in full. Do not continue to use Save A Stray's website 
@@ -140,10 +140,8 @@ render() {
 	we will not be liable for any loss or damage of any nature.</p>
 <h2></h2>
 	<p></p>
-<h2>Credit & Contact Information</h2>
-	<p>This Terms and conditions page was created at <a style="color:inherit;text-decoration:none;cursor:text;"
-		href="https://termsandconditionstemplate.com">termsandconditionstemplate.com</a> generator. If you have
-	any queries regarding any of our terms, please contact us.</p>
+
+
   </div>
     )
   }
