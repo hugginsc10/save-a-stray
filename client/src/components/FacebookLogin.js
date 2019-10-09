@@ -9,10 +9,10 @@ class FacebookSignIn extends Component {
   constructor(props) {
     super(props);
     this.onFacebookLogin = this.onFacebookLogin.bind(this);
-    this.appId = '1671352442997178';
+    this.appId = '515957642529597';
     this.redirectUrl = `${document.location.protocol}//${document.location.host}/facebook-callback`;
 
-    if (document.location.pathname === '/facebook-callback') {
+    if (document.location.pathname === '/') {
       this.code = querystring.parse(document.location.search)['?code'];
     }
 
@@ -63,7 +63,7 @@ class FacebookSignIn extends Component {
       } = this.state;
       const icon = 'fa ' + (loading ? 'fa-refresh fa-spin' : 'fa-facebook');
 
-      return (<a href = '/facebook-login'
+      return (<a href = '/facebooklogin'
         onClick = {this.onFacebookLogin}> 
         <i className = {icon} > 
         </i> Facebook </a >

@@ -24,10 +24,11 @@ passport.use(
   new FacebookStrategy({
       clientID: Keys.fbookClient,
       clientSecret: Keys.fbookKey,
-      callbackURL: 'http://localhost:5000/auth/facebook/callback',
+      callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
       console.log(profile);
+      console.log(Keys.fbookClient);
       cb(null, profile);
     },
   ),
@@ -45,48 +46,9 @@ app.get(
     session: false
   }),
   (req, res) => {
-    res.send('AUTH WAS GOOD!');
+    res.send(Keys.fbookClient);
   },
 );
-
-// const addUser = async (req, res, next) => {
-//   const {
-//     name,
-//     email,
-//     userRole
-//   } = data;
-
-//   // create a new user with all our arguments
-//   const user = new User({
-//       name,
-//       email,
-//       password: hashedPassword,
-//       userRole
-//     },
-//     err => {
-//       if (err) throw err;
-//     }
-//   );
-
-//   // save our user
-//   user.save();
-//   // we'll create a token for the user
-//   const token = jwt.sign({
-//     id: user._id
-//   }, keys.secretOrKey);
-
-//   // then return our created token, set loggedIn to be true, null their password, and send the rest of the user
-//   return {
-//     token,
-//     loggedIn: true,
-//     ...user._doc,
-//     password: null
-//   };
-//   next();
-// };
-
-// app.use(addUser);
-
 
 mongoose
   .connect(db, {
