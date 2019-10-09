@@ -1,19 +1,19 @@
 const models = require("./models");
 const express = require("express");
-// const app = express();
+const app = express();
 const db = require("../config/keys.js").MONGO_URI;
 const expressGraphQL = require("express-graphql");
 const schema = require("./schema/schema");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const FacebookStrategy = require("passport-facebook");
+const FacebookStrategy = require("passport-facebook").Strategy;
 const Keys = require("../config/keys");
 const User = require("./models/User");
 const passport = require("passport");
 const facebookRegister = require("./services/auth");
-const GoogleStrategy = require("passport-google");
-const AmazonStrategy = require("passport-amazon");
+const GoogleStrategy = require("passport-google").Strategy;
+const AmazonStrategy = require("passport-amazon").Strategy;
 
 const chalk = require("chalk");
 
@@ -38,7 +38,6 @@ passport.deserializeUser((user, cb) => {
   cb(null, user);
 });
 
-const app = express();
 
 app.use(cors());
 // app.use(passport.initialize());
