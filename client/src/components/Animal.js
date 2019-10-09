@@ -33,6 +33,7 @@ class NewAnimal extends Component {
           console.log(data)
           const { newAnimal } = data.newAnimal;
           localStorage.setItem("Animal", newAnimal);
+          // console.log(client)
           this.props.history.push("/");
         }}
 
