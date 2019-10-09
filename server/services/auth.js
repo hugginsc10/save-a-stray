@@ -65,6 +65,50 @@ const register = async data => {
   }
 };
 
+const facebookRegister = async data => {
+  console.log(data)
+  try {
+
+    const { id, displayName } = data
+    const email = id
+    const name = displayName
+    const userRole = "endUser"
+    // we want to wait until our model can tell us whether a user exists with that email
+    const existingEmail = await User.findOne({ email:id });
+
+    if (existingEmail) {
+      throw new Error("This User is already ");
+    }
+
+    // hash our password
+    const hashedPassword = await bcrypt.hash(email, 10);
+
+    // create a new user with all our arguments
+    const user = new User(
+      {
+        name,
+        email,
+        password: hashedPassword,
+        userRole
+      },
+      err => {
+        if (err) throw err;
+      }
+    );
+
+    // save our user
+    user.save();
+    // we'll create a token for the user
+    const token = jwt.sign({ id: user._id }, keys.secretOrKey);
+
+    // then return our created token, set loggedIn to be true, null their password, and send the rest of the user
+    return { token, loggedIn: true, ...user._doc, password: null };
+
+  } catch (err) {
+    throw err;
+  }
+};
+
 const login = async data => {
   try {
     // use our other validator we wrote to validate this data
@@ -129,4 +173,10 @@ const verifyUser = async data => {
   }
 };
 
-module.exports = { register, login, logout, verifyUser };
+module.exports = {
+  register,
+  login,
+  logout,
+  verifyUser,
+  facebookRegister
+};
