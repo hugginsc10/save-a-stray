@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../graphql/mutations"
 import './auth.css'
+import { Link, withRouter } from 'react-router-dom';
 const { LOGIN_USER } = Mutations
 
 class Login extends Component {
@@ -40,6 +41,7 @@ class Login extends Component {
 
           <div className='auth-modal'>
             <div className='auth-div'>
+            <Link className='modal-exit' to="/">X</Link> 
               <form className='auth-form'
                 onSubmit={e => {
                   e.preventDefault();
@@ -65,6 +67,7 @@ class Login extends Component {
                 />
                 <button className='modal-button' type="submit">Log In</button>
               </form>
+              
             </div>
           </div>
         )}

@@ -44,6 +44,7 @@ class Register extends Component {
 
           <div className='auth-modal'>
             <div className='auth-div'>
+            <Link className='modal-exit' to="/">X</Link>   
               <form className='auth-form'
                 onSubmit={e => {
                   e.preventDefault();
@@ -82,7 +83,7 @@ class Register extends Component {
                 <button className='modal-button' type="submit">Register Account</button>
               </form>
             </div>
-        
+            
             <Link to="/newShelter">New Shelter</Link>
             <br />
           </div>

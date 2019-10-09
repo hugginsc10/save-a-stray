@@ -1,6 +1,6 @@
 .auth-modal{
     position: fixed;
-    background: rgba(131, 131, 250, 0.3);
+    background: rgba(43, 177, 255, 0.6);
     width: -webkit-fill-available;
     height: -webkit-fill-available;
     transition: all .25s ease-in-out;
@@ -18,7 +18,7 @@
     flex-direction: column;
     width: fit-content;
     position: absolute;
-    top: 20%;
+    top: 15%;
     justify-content: space-around;
     border-radius: 7px;  
 }
@@ -37,7 +37,7 @@
     font-size: 85px;
     overflow-wrap: break-word;
     color: rgb(43, 177, 255);
-    margin-top: 5%;
+    margin-top: 0;
     text-align: center;
     font-family: 'Capriola', sans-serif;
     text-decoration: underline;
@@ -49,7 +49,7 @@
 .auth-form input {
     margin-top: 7.5px;
     padding: 10px;
-    color: rgb(43, 177, 255);
+    color: black;
     font-size: 16px;
     border:none;
     border-radius: 6px;
@@ -67,25 +67,39 @@
     color: white;
     font-size: 16px;
     background: rgb(43, 177, 255);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Capriola', sans-serif;
     width: 75%;
     align-self: center;
     cursor: pointer;
     margin: 10px;
 }
 
-@media screen and (max-width: 510px) {
+.modal-exit{
+    text-decoration: none;
+    color: rgb(43, 177, 255);
+    font-size: 35px;
+    text-align: right;
+    margin-right: 10px;
+    font-family: 'Capriola', sans-serif;
+
+}
+
+@media screen and (max-width: 690px) {
     .auth-div{
         height: -webkit-fill-available;
         width: -webkit-fill-available;
         margin: 0;
         top: 0;
         border-radius: 0;
-
+        justify-content: normal;
     
     }
 
     .auth-form h1{
         padding: 20px 0;
+    }
+
+    .modal-exit{
+        margin: 5%;
     }
   }
