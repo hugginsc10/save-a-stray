@@ -24,7 +24,6 @@ class NewApplication extends Component {
       <Mutation
         mutation={CREATE_APPLICATION}
         onCompleted={data => {
-          debugger
           console.log(data)
           const { newApplication } = data.newApplication;
           localStorage.setItem("Application", newApplication);

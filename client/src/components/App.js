@@ -6,6 +6,8 @@ import Register from "./Register";
 import Animal from "./Animal";
 import Application from "./Application";
 import Shelter from "./Shelter";
+import ShelterLanding from "./ShelterLanding";
+import UserLanding from "./UserLanding";
 import AuthRoute from '../util/route_util'
 import Nav from "./Nav";
 import Slug from './slug'
@@ -17,6 +19,8 @@ const App = () => {
         <Slug/>
         <Nav id='navbar' />
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
+          <Route exact path="/Shelter" component={ShelterLanding} routeType=""  />
+          <Route exact path="/User" component={UserLanding} routeType=""  />
           <Route exact path="/newApplication" component={Application}  routeType="" />
 
         <Switch>

@@ -51,7 +51,7 @@ if (token) {
     .then(({ data }) => {
       cache.writeData({
         data: {
-          isLoggedIn: data.verifyUser.loggedIn
+           isLoggedIn: data.login.loggedIn.is, userRole: data.login.loggedIn.userRole
         }
       });
     });

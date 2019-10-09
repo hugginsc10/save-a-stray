@@ -28,6 +28,9 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  fbookId: {
+    type: String,
   }
 });
 

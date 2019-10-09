@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Mutation } from "react-apollo";
+import { Mutation,ApolloConsumer } from "react-apollo";
+import FacebookLogin from "./FacebookLogin";
 import Mutations from "../graphql/mutations"
 import './auth.css'
 import { Link } from 'react-router-dom';
 const { REGISTER_USER } = Mutations
+
 
 class Register extends Component {
   constructor(props) {
@@ -24,23 +26,30 @@ class Register extends Component {
   updateCache(client, { data }) {
     console.log(data);
     client.writeData({
-      data: { isLoggedIn: data.register.loggedIn }
+      data: {  isLoggedIn: data.register.loggedIn,userRole: data.register.userRole }
     });
   }
 
   render() {
     return (
 
-      <Mutation
-        mutation={REGISTER_USER}
-        onCompleted={data => {
-          const { token } = data.register;
-          localStorage.setItem("auth-token", token);
-          this.props.history.push("/");
-        }}
-        update={(client, data) => this.updateCache(client, data)}
-      >
-        {registerUser => (
+      <ApolloConsumer>
+        {client => (
+          <Mutation
+            mutation={REGISTER_USER}
+            onCompleted={data => {
+              const { token } = data.register;
+              localStorage.setItem("auth-token", token);
+              if (client.cache.data.data.ROOT_QUERY.userRole === "admin") {
+                this.props.history.push("/Shelter");
+              } else {
+                this.props.history.push("/User")
+                
+              }
+            }}
+            update={(client, data) => this.updateCache(client, data)}
+          >
+            {registerUser => (
 
           <div className='auth-modal'>
             <div className='auth-div'>
@@ -89,7 +98,9 @@ class Register extends Component {
           </div>
        
         )}
-      </Mutation>
+        </Mutation>
+        )}
+      </ApolloConsumer>
     );
   }
 }
