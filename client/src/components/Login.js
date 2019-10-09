@@ -76,6 +76,7 @@ class Login extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Log In</button>
+                <FacebookLogin />
               </form>
               
             </div>
