@@ -11,6 +11,7 @@ const FacebookStrategy = require("passport-facebook");
 const Keys = require("../config/keys");
 const User = require("./models/User");
 const passport = require("passport");
+const facebookRegister = require("./services/auth")
 
 
 
@@ -28,8 +29,8 @@ passport.use(
     },
     (accessToken, refreshToken, profile, cb) => {
       console.log(profile);
-      console.log(Keys.fbookClient);
-      cb(null, profile);
+      // console.log(Keys.fbookClient);
+      cb(facebookRegister, profile);
     },
   ),
 );
