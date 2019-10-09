@@ -12,6 +12,7 @@ const UserType = new GraphQLObjectType({
     token: { type: GraphQLString },
     loggedIn: { type: GraphQLBoolean },
     userRole: {type: GraphQLString}
+    // fbookId: { type: GraphQLString } do not think that we need  from oauth merge rfq
   })
 });
 

@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import {
-  Mutation,
-  ApolloConsumer
-} from "react-apollo";
-import Mutations from "../graphql/mutations"
-import './auth.css'
+import { Mutation } from "react-apollo";
+import FacebookLogin from "./FacebookLogin";
+import Mutations from "../graphql/mutations";
+import './auth.css';
 const { LOGIN_USER } = Mutations
-
 class Login extends Component {
   constructor(props) {
     super(props);
