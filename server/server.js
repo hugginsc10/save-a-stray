@@ -17,10 +17,18 @@ const AmazonStrategy = require("passport-amazon");
 
 const chalk = require("chalk");
 
-// app.use(passport.initialize());
-// if (!db) {
-//   throw new Error("You must provide a string to connect to MongoDB Atlas");
-// }
+app.use(passport.initialize());
+if (!db) {
+  throw new Error("You must provide a string to connect to MongoDB Atlas");
+}
+
+mongoose
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("Connected to MongoDB successfully"))
+  .catch(err => console.log(err));
 
 passport.serializeUser((user, cb ) => {
   cb(null, user);
@@ -33,7 +41,7 @@ passport.deserializeUser((user, cb) => {
 const app = express();
 
 app.use(cors());
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
 // FACEBOOK OAUTH
 
@@ -138,13 +146,7 @@ app.get("/auth/twitter/callback",
 
 
 
-mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log("Connected to MongoDB successfully"))
-  .catch(err => console.log(err));
+
 
 app.use(
   "/graphql",
