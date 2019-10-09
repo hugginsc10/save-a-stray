@@ -8,6 +8,7 @@
     "apollo-link": "^1.2.13",
     "apollo-link-error": "^1.1.12",
     "apollo-link-http": "^1.5.16",
+    "firebase-admin": "^8.6.0",
     "gql": "^1.1.2",
     "graphql-tag": "^2.10.1",
     "querystring": "^0.2.0",
