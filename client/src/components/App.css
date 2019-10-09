@@ -1,72 +1,68 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
-}
-
-#root{
-  background: white;
+#root-div1{
+  
   color: white;
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 10% 70% 20%;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-rows: 1% 70% 29%;
   height: -webkit-fill-available;
 }
 
-#root-div1 {
-  background: rgb(43, 177, 255);
-  grid-column-start: 1;
-  grid-column-end: 6;
-  display: flex;
-  justify-content: space-between
+#navbar {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 50%;
 }
 
-#logo{
+
+
+#nav-right{
+  align-self: center
+}
+
+.auth-links{
+  
+}
+
+.auth-links a{
   font-family: 'Capriola', sans-serif;
-    font-size: 55px;
+    font-size: 3vw;
     margin: 5px 20px;
-}
-
-
-#auth-links{
-  align-self: center;
-}
-
-#auth-links a{
-  font-family: 'Capriola', sans-serif;
-    font-size: 34px;
-    margin: 5px 20px;
-    color: white  ;
+    color: rgb(43, 177, 255)  ;
     text-decoration: none;
 }
 
-#auth-links a:hover{
+.auth-links a:hover{
   text-decoration: underline;
 }
 
-@media screen and (max-width: 510px) {
+.auth-links button{
+  font-family: 'Capriola', sans-serif;
+    font-size: 34px;
+    margin: 5px 20px;
+    color: rgb(43, 177, 255)   ;
+    text-decoration: none;
+    background:none;
+    border:none;
+}
+
+@media screen and (max-width: 690px) {
   #root-div1 {
     
   }
 
-  #auth-links{
+  .auth-links{
     display: none
+  }
+}
+
+@media screen and (max-width: 340px) {
+  #logo{
+    font-size: 34px;
   }
 }

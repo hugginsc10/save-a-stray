@@ -51,53 +51,54 @@ class Register extends Component {
           >
             {registerUser => (
 
-              <div className='auth-modal'>
-                <div className='auth-div'>
-                  <form className='auth-form'
-                    onSubmit={e => {
-                      e.preventDefault();
-                      registerUser({
-                        variables: {
-                          name: this.state.name,
-                          userRole: this.state.userRole,
-                          email: this.state.email,
-                          password: this.state.password
-                        }
-                      });
-                    }}
-                  >
-                    <h1>Signup</h1>
-                    <input
-                      value={this.state.name}
-                      onChange={this.update("name")}
-                      placeholder="name"
-                    />
-                    <input
-                      value={this.state.email}
-                      onChange={this.update("email")}
-                      placeholder="Email"
-                    />
-                    <select onChange={this.update("userRole")}>
-                      <option value="admin">Admin</option>
-                      <option value="endUser">Adopt</option>
-                      <option value="volunteer">Volunteer</option>
-                    </select>
-                    <input
-                      value={this.state.password}
-                      onChange={this.update("password")}
-                      type="password"
-                      placeholder="Password"
-                    />
-                    <button className='modal-button' type="submit">Register Account</button>
-                  </form>
-                </div>
+          <div className='auth-modal'>
+            <div className='auth-div'>
+            <Link className='modal-exit' to="/">X</Link>   
+              <form className='auth-form'
+                onSubmit={e => {
+                  e.preventDefault();
+                  registerUser({
+                    variables: {
+                      name: this.state.name,
+                      userRole: this.state.userRole,
+                      email: this.state.email,
+                      password: this.state.password
+                    }
+                  });
+                }}
+              >
+                <h1>Signup</h1>
+                <input
+                  value={this.state.name}
+                  onChange={this.update("name")}
+                  placeholder="name"
+                />
+                <input
+                  value={this.state.email}
+                  onChange={this.update("email")}
+                  placeholder="Email"
+                />
+                <select onChange={this.update("userRole")}>
+                  <option value="admin">Admin</option>
+                  <option value="endUser">Adopt</option>
+                  <option value="volunteer">Volunteer</option>
+                </select>
+                <input
+                  value={this.state.password}
+                  onChange={this.update("password")}
+                  type="password"
+                  placeholder="Password"
+                />
+                <button className='modal-button' type="submit">Register Account</button>
+              </form>
+            </div>
             
-                <Link to="/newShelter">New Shelter</Link>
-                <br />
-              </div>
-          
-            )}
-          </Mutation>
+            <Link to="/newShelter">New Shelter</Link>
+            <br />
+          </div>
+       
+        )}
+        </Mutation>
         )}
       </ApolloConsumer>
     );

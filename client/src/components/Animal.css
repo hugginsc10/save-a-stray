@@ -1,0 +1,34 @@
+#new-animal-form{
+    grid-column-start: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 15% 70% 15%;
+}
+
+#new-animal-header{
+    background: rgb(43, 177, 255);
+    padding: 6px;
+    grid-column-start: 2;
+    border-radius: 5px;
+}
+
+#new-animal-form-form{
+    grid-column-start: 2;
+    grid-row-start: 2;
+    background: rgb(43, 177, 255);
+    padding: 6px;
+    border-radius: 5px;
+    height: calc(100% + 1%)
+}
+
+.new-animal-form-input{
+    margin: 7.5px;
+    padding: 10px;
+    color: black;
+    font-size: 16px;
+    border:none;
+    border-radius: 6px;
+    width: 80%;
+}

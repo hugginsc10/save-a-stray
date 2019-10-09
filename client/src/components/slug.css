@@ -1,0 +1,30 @@
+#slug{
+  z-index: 4;
+  position: fixed;
+  width: 20%
+}
+
+#logo{
+    color: rgb(43, 177, 255);
+    font-family: 'Capriola', sans-serif;
+      font-size: 55px;
+      grid-column-start: 1;
+  }
+  
+#logo-h1{
+  margin: 0 3vw;
+  font-size: 6vw;
+}
+
+#lorem{
+  color: rgb(43, 177, 255);
+  margin: 10px;
+  margin-left: 3vw;
+  font-size: 2vw;
+}
+
+@media screen and (max-width: 690px) {
+  #lorem{
+    display:none;
+  } 
+}
