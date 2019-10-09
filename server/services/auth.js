@@ -77,7 +77,37 @@ const facebookRegister = async data => {
     const existingEmail = await User.findOne({ email:id });
 
     if (existingEmail) {
-      throw new Error("This User is already ");
+
+        // Log the user in 
+          try {
+            // use our other validator we wrote to validate this data
+
+            const user = await User.findOne({
+              email
+            })
+            if (!user) {
+              throw new Error("This user does not exist");
+            }
+
+            const correctPassword = await bcrypt.compareSync(email, user.password);
+            if (!correctPassword) {
+              throw new Error("Invalid credentials");
+            }
+
+            const token = jwt.sign({
+              id: user._id
+            }, keys.secretOrKey);
+
+            return {
+              token,
+              loggedIn: true,
+              ...user._doc,
+              password: null
+            };
+          } catch (err) {
+            throw err;
+          }
+      
     }
 
     // hash our password
