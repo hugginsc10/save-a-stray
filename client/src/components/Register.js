@@ -24,7 +24,6 @@ class Register extends Component {
   }
 
   updateCache(client, { data }) {
-    console.log(data);
     client.writeData({
       data: {  isLoggedIn: data.register.loggedIn,userRole: data.register.userRole }
     });
@@ -57,6 +56,7 @@ class Register extends Component {
               <form className='auth-form'
                 onSubmit={e => {
                   e.preventDefault();
+                  console.log(this.state.name)
                   registerUser({
                     variables: {
                       name: this.state.name,

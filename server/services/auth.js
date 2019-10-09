@@ -8,7 +8,6 @@ const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
 const register = async data => {
-  console.log(data)
   try {
     const { message, isValid } = validateRegisterInput(data);
 
@@ -66,7 +65,6 @@ const register = async data => {
 };
 
 const facebookRegister = async data => {
-  console.log(data)
   try {
 
     const { id, displayName } = data

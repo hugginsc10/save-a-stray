@@ -28,8 +28,6 @@ passport.use(
       callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
-      console.log(profile);
-      // console.log(Keys.fbookClient);
       cb(facebookRegister, profile);
     },
   ),
