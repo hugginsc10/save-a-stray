@@ -3,6 +3,6 @@ module.exports = {
   secretOrKey: "saveastray",
   fbookKey: "af0fd18b3f4c012557b57108d1455d8e",
   fbookClient: "515957642529597",
-  googleClient: "635738163475-uoqtpq3sv1or3frlr5p4ou5b09hbkq3j.apps.googleusercontent.com",
-  googleSecret: "zLG9tWSLUazV7KhYmJJnr32u"
+  googleClient: "635738163475-79im11rc4hc9h1b0139thbg23fnipqss.apps.googleusercontent.com",
+  googleSecret: "vhmt_Jo9WGlz4syMuafZzfgy"
 };
