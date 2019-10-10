@@ -5,7 +5,7 @@ import Mutations from "../graphql/mutations"
 import './auth.css'
 import { Link } from 'react-router-dom';
 const { REGISTER_USER } = Mutations
-
+import GoogleLogin from "./GoogleLogin";
 
 class Register extends Component {
   constructor(props) {
@@ -84,9 +84,11 @@ class Register extends Component {
                   type="password"
                   placeholder="Password"
                 />
-                <FacebookLogin />
+               
                 <button className='modal-button' type="submit">Register Account</button>
-              </form>
+                    <FacebookLogin />
+                    <GoogleLogin />
+            </form>
             </div>
             
             <Link to="/newShelter">New Shelter</Link>

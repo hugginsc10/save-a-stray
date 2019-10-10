@@ -11,7 +11,7 @@ class GoogleSignIn extends React.Component {
     super(props);
     this.onGoogleLogin = this.onGoogleLogin.bind(this);
     this.appId = "635738163475-o9l4j887ciaq0ieaml6h8tiqn8hmk5ce.apps.googleusercontent.com";
-    this.redirectUrl = `${document.location.protocol}//${document.location.host}/auth/google/callback`;
+    this.redirectUrl = `/auth/google/callback`;
 
 
     if (document.location.pathname === '/') {
@@ -60,7 +60,7 @@ class GoogleSignIn extends React.Component {
 
   onGoogleLogin(event) {
     event.preventDefault();
-    window.location = `https://save-a-stray.herokuapp.com/auth/google`;
+    window.location = `https://localhost:3000/auth/google`;
 
   }
 

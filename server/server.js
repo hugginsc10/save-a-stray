@@ -7,11 +7,11 @@ const schema = require("./schema/schema");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const facebookStrategy = require("passport-facebook");
+const FacebookStrategy = require("passport-facebook");
 const Keys = require("../config/keys");
 const User = require("./models/User");
 const passport = require("passport");
-const facebookRegister = require("./services/auth")
+const facebookRegister = require("./services/auth");
 
 
 
@@ -20,12 +20,24 @@ if (!db) {
   throw new Error("You must provide a string to connect to MongoDB Atlas");
 }
 
+app.get('/success', (req, res) => res.send("You have successfully logged in"));
+app.get('/error', (req, res) => res.send("error logging in"));
+passport.serializeUser(function (user, cb) {
+  cb(null, user);
+});
+passport.deserializeUser(function (obj, cb) {
+  cb(null, obj);
+});
+
+
+
+
 
 passport.use(
   new FacebookStrategy({
       clientID: Keys.fbookClient,
       clientSecret: Keys.fbookKey,
-      callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback',
+      callbackURL: '/auth/facebook/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
       console.log(profile);
@@ -44,10 +56,10 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get(
   '/auth/facebook/callback',
   passport.authenticate('facebook', {
-    session: false
+    failureRedirect: '/error'
   }),
   (req, res) => {
-    res.send(Keys.fbookClient);
+    res.redirect('/success');
   },
 );
 app.get('/auth/google', passport.authenticate('google', {scope: ["profile"]}));
@@ -55,10 +67,10 @@ app.get('/auth/google', passport.authenticate('google', {scope: ["profile"]}));
 app.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    session: false
-  }),
+    failureRedirect: '/error'}),
+  
   (req, res) => {
-    res.send(Keys.googClient);
+    res.redirect('/success');
   },
 );
 mongoose
