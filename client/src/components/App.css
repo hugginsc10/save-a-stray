@@ -41,7 +41,7 @@
     text-decoration: none;
 }
 
-.auth-links a:hover{
+.auth-links a:hover, .auth-links button:hover{
   text-decoration: underline;
   color: lightsalmon
 }

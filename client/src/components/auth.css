@@ -45,6 +45,7 @@
 
 .auth-form input {
     margin-top: 7.5px;
+    background: rgb(232, 240, 254);
     padding: 10px;
     color: black;
     font-size: 16px;
