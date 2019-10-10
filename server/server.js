@@ -40,7 +40,7 @@ passport.deserializeUser((user, cb) => {
 
 
 app.use(cors());
-// app.use(passport.initialize());
+
 
 // FACEBOOK OAUTH
 
@@ -60,7 +60,6 @@ passport.use(
     },
   ),
 );
-
 app.get("/auth/facebook", passport.authenticate("facebook"));
 
 app.get("/auth/facebook/callback",
@@ -143,10 +142,6 @@ app.get("/auth/twitter/callback",
       res.redirect("/profile");
     }));
 
-
-
-
-
 app.use(
   "/graphql",
   expressGraphQL({
@@ -154,7 +149,16 @@ app.use(
     graphiql: true
   })
 );
+app.get("/user", (req, res) => {
+  console.log("getitng user data!");
+  res.send(user);
+});
 
+app.get("/auth/logout", (req, res) => {
+  console.log("logging out !");
+  user = {};
+  res.redirect("/");
+});
 // remember we use bodyParser to parse requests into json
 app.use(bodyParser.json());
 

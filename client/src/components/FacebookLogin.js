@@ -10,7 +10,8 @@ class FacebookSignIn extends Component {
     super(props);
     this.onFacebookLogin = this.onFacebookLogin.bind(this);
     this.appId = '515957642529597';
-    this.redirectUrl = `${document.location.protocol}//${document.location.host}/facebook-callback`;
+    this.redirectUrl = `${document.location.protocol}//${document.location.host}/auth/facebook/callback`;
+    // this.redirectUrl = `${document.location.protocol}//save-a-stray.herokuapp.com/auth/facebook/callback`;
 
     if (document.location.pathname === '/') {
       this.code = querystring.parse(document.location.search)['?code'];
@@ -54,7 +55,8 @@ class FacebookSignIn extends Component {
 
     onFacebookLogin(event) {
       event.preventDefault();
-      window.location = `https://save-a-stray.herokuapp.com/auth/facebook`;
+      // window.location = `https://save-a-stray.herokuapp.com/auth/facebook`;
+      window.location = `https://localhost:3000/auth/facebook/callback`;
     }
 
     render() {
@@ -63,9 +65,9 @@ class FacebookSignIn extends Component {
       } = this.state;
       const icon = 'fa ' + (loading ? 'fa-refresh fa-spin' : 'fa-facebook');
 
-      return (<a href = '/facebooklogin'
+      return ( <a href = '/auth/facebook'
         onClick = {this.onFacebookLogin}> 
-        <i className = {icon} > 
+        <i className = {icon}> 
         </i> Facebook </a >
       );
     }

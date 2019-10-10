@@ -12,6 +12,7 @@ import AuthRoute from '../util/route_util'
 import Nav from "./Nav";
 import Slug from './slug'
 import './App.css'
+import UserProvider from "../context/UserProvider";
 import Privacy from "./Privacy";
 import TermsOfService from "./TermsOfService";
 const App = () => {
@@ -20,16 +21,21 @@ const App = () => {
       <div id='root-div1'>
         <Slug/>
         <Nav id='navbar' />
-          <Route exact path="/newAnimal" component={Animal} routeType=""  />
-          <Route exact path="/Shelter" component={ShelterLanding} routeType=""  />
-          <Route exact path="/User" component={UserLanding} routeType=""  />
+          <Route exact path="/newAnimal" component={Animal} routeType="" />
+          <Route exact path="/Shelter" component={ShelterLanding} routeType=""/>
+          <UserProvider>
+            <Route exact path="/User" component={UserLanding} routeType="" />
+          </UserProvider>
+
           <Route exact path="/newApplication" component={Application}  routeType="" />
 
         <Switch>
-          <Route exact path='/' component={Splash} />
-          <Route exact path="/newShelter" component={Shelter} routeType="auth" />
-          <AuthRoute exact path="/register" component={Register} routeType="auth" />
-          <AuthRoute exact path="/login" component={Login} routeType="auth" />
+          <UserProvider>
+            <Route exact path='/' component={Splash} />
+            <Route exact path="/newShelter" component={Shelter} routeType="auth" />
+            <AuthRoute exact path="/register" component={Register}  routeType="auth" />
+            <AuthRoute exact path="/login" component={Login} routeType="auth" />
+          </UserProvider>
           <Route exact path="/privacy" component ={Privacy} />
           <Route exact path="/tos" component={TermsOfService} />
         </Switch>
