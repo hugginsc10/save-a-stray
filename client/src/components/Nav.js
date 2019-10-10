@@ -37,9 +37,9 @@ const Nav = props => {
                       <br />
                       <Link to="/register">Register</Link>
                       <br/>
-                      <Link>Shelters</Link>
+                      <Link to="/shelter">Shelters</Link>
                       <br/>
-                      <Link>Donate</Link>
+                      <Link to="/donate">Donate</Link>
 
                     </div>
                   );
