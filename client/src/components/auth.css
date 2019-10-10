@@ -1,6 +1,6 @@
 .auth-modal{
     position: fixed;
-    background: rgba(43, 177, 255, 0.2);
+    background: rgba(43, 177, 255, 0.8);
     width: -webkit-fill-available;
     height: -webkit-fill-available;
     transition: all .25s ease-in-out;
@@ -16,9 +16,10 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-   
-    border-radius: 7px;
-    grid-column-start: 3;
+    height: 100%;
+    min-height: fit-content;
+    border-radius: 20px;
+    grid-column-start: 2;
     grid-column-end: 5;
     grid-row-start: 2;
 }
@@ -40,7 +41,7 @@
     text-decoration: underline;
     line-height: 69px;
     padding: 15px;
-    margin-bottom: 0px;
+    margin-bottom: 15px;
 }
 
 .auth-form input {
@@ -53,6 +54,7 @@
     border-radius: 6px;
     width: 25%;
     align-self: center;
+    min-width: 255px;
 }
 
 .auth-form input:focus{
@@ -72,14 +74,13 @@
     font-size: 24px;
     background: lightsalmon;
     font-family: 'Nunito', sans-serif;
-    width: 20%;
     align-self: center;
     cursor: pointer;
     margin: 10px;
-}
-
-.modal-button{
     outline: 0ch;
+    display: flex;
+    justify-content: center;
+    min-width: 255px
 }
 
 .modal-exit{
@@ -96,10 +97,31 @@
     color: lightsalmon;
     cursor: pointer;
 }
+#legal{
+    color: lightsalmon;
+    text-align: center;
+    font-size: 16px;
+    margin: 2% 0px;
+}
+#legal pre{
+    margin: 0;
+    height: 0;
+}
+
+#facebook-button{
+    background: rgb(66,103,178);
+    text-decoration: none;
+    margin-top: 30px;
+    transition: all .25s ease-in-out
+}
+
+#facebook-button:hover{
+    background: rgb(124, 152, 207)
+}
 
 @media screen and (max-width: 690px) {
     .auth-div{
-        height: -webkit-fill-available;
+        height: inherit;
         width: -webkit-fill-available;
         margin: 0;
         top: 0;
@@ -118,5 +140,39 @@
     .modal-exit{
         margin: 5%;
         font-size: 12vw
+    }
+
+    .modal-button{
+        width: 80%;
+    }
+
+    .auth-form input{
+        margin: 3%;
+        width: 80%;
+    }
+    #legal{
+        font-size: 12px;
+    }
+
+    
+
+    .auth-modal{
+        background: rgba(43, 177, 255, 1);
+        animation: .5s ease-in-out 0s 1 slideInFromRight;
+    }
+
+    .auth-div{
+        
+        animation: .5s ease-in-out 0s 1 slideInFromRight;
+    }
+    
+  }
+
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
     }
   }

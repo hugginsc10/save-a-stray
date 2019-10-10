@@ -6,7 +6,7 @@ class Privacy extends React.Component {
 
 render() {
     return(
-        <div>
+        <div id='pp-top'>
             <br/>
             <h1>Privacy Policy</h1>
 

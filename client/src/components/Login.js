@@ -83,7 +83,7 @@ class Login extends Component {
                 />
                 <button className='modal-button' type="submit">Log In</button>
                 <FacebookLogin />
-                <button class="g-signin2" data-onsuccess="onSignIn"></button>
+                
               </form>
               
             </div>
