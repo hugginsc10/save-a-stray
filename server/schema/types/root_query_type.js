@@ -3,12 +3,14 @@ const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
 
 const UserType = require("./user_type");
-const User = mongoose.model("user");
-const Application = mongoose.model("application");
-
 const AnimalType = require("./animal_type");
-const Animal = mongoose.model("animal");
 const ApplicationType = require("./application_type")
+const ShelterType = require("./shelter_type")
+
+const Application = mongoose.model("application");
+const Animal = mongoose.model("animal");
+const User = mongoose.model("user");
+const Shelter = mongoose.model("shelter");
 
 
 
@@ -46,7 +48,20 @@ const RootQueryType = new GraphQLObjectType({
       resolve(_, args) {
         return Animal.findById(args._id);
       }
-    }
+    },
+    shelters: {
+      type: new GraphQLList(ShelterType),
+      resolve(){
+        return Shelter.find({})
+      }
+    },
+    shelter: {
+      type: ShelterType,
+      args: {_id, GraphQLID},
+      resolve(_,{_id}){
+        return Shelter.findById(_id)
+      }
+    } 
    
   })
 });
