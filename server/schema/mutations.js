@@ -76,6 +76,53 @@ const mutation = new GraphQLObjectType({
         return newAn
       }
     }, 
+    deleteAnimal: {
+      type: AnimalType,
+      args: {
+        _id: {type: GraphQLID}
+      },
+      resolve(_, _id){
+        return Animal.deleteOne({_id})
+      }
+    },
+    updateAnimal: {
+      type: AnimalType,
+      args: {
+        _id: {type: GraphQLID},
+        name: {type: GraphQLString},
+        type: {type: GraphQLString},
+        age: {type: GraphQLInt},
+        sex: {type: GraphQLString},
+        color: {type: GraphQLString},
+        description: {type: GraphQLString},
+        image: {type: GraphQLString},
+        video: {type: GraphQLString},
+        applications: {type: GraphQLID}},
+      resolve(_, {
+        _id,
+        name,
+        type,
+        age,
+        sex,
+        color,
+        description,
+        image,
+        video
+      }){
+        return Animal.findById(_id).then(animal => {
+          animal.name = name 
+          animal.type = type 
+          animal.age = age 
+          animal.sex = sex 
+          animal.color = color 
+          animal.description = description 
+          animal.image = image 
+          animal.video = video 
+          animal.save()
+          return animal
+        })
+      }
+    },
     newApplication: {
       type: ApplicationType,
       args:{
