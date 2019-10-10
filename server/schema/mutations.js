@@ -81,8 +81,8 @@ const mutation = new GraphQLObjectType({
       args: {
         _id: {type: GraphQLID}
       },
-      resolve(_, _id){
-        return Animal.deleteOne({_id})
+      resolve(_, {_id}){
+        return Animal.deleteOne(_id)
       }
     },
     updateAnimal: {
@@ -149,6 +149,28 @@ const mutation = new GraphQLObjectType({
         })
       }
     },
+    deleteApplication: {
+      type: ApplicationType,
+      args: {_id: {type: GraphQLID}},
+      resolve(_, {_id }){
+        return Application.deleteOne(_id)
+      }
+    },
+    editApplication: {
+      type: Application,
+      args: {
+        _id: {type: GraphQLID},
+        animalId: {type: GraphQLString},
+        applicationData: {type: GraphQLString}
+      },
+      resolve(_,{_id,animalid,applicationData}){
+        return Application.findById(_id).then(application => {
+          application.applicationData = applicationData
+          application.save()
+          return application
+        })
+      }
+    },
     newShelter: {
       type: ShelterType,
       args:{
@@ -176,6 +198,35 @@ const mutation = new GraphQLObjectType({
         })
         newShelter.save()
         return newShelter
+      }
+    },
+    deleteShelter:{
+      type: ShelterType,
+      args: {_id: {type: GraphQLID}},
+      resolve(_, {_id}){
+        return Shelter.deleteOne(_id)
+      } 
+    },
+    editShelter:{
+      type: ShelterType,
+      args: {
+        _id: {type: GraphQLID},
+        name: {type: GraphQLString},
+        location: {type: GraphQLString},
+        users: {type: GraphQLString},
+        paymentEmail: {type: GraphQLString},
+        animals: {type: GraphQLString}
+      },
+      resolve(_,{_id, name, location, users, paymentEmail, animals }){
+        return Shelter.findById(_id).then(shelter => {
+          shelter.name = name, 
+          shelter.location = location, 
+          shelter.users = users, 
+          shelter.paymentEmail = paymentEmail, 
+          shelter.animals = animals
+          shelter.save() 
+          return shelter 
+        })
       }
     }
   }
