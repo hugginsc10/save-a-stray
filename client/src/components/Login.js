@@ -17,7 +17,13 @@ class Login extends Component {
       password: ""
     };
   }
-
+  onSignIn(googleUser) {
+    const profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  };
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
@@ -76,7 +82,8 @@ class Login extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Log In</button>
-                <FacebookLogin/>
+                <FacebookLogin />
+                <button class="g-signin2" data-onsuccess="onSignIn"></button>
               </form>
               
             </div>

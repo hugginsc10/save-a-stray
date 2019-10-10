@@ -1,16 +1,51 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Capriola&display=swap" rel="stylesheet">
+
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBTXc-_p25EzUmXdd2yrGl9HvRJtOZ_ERM",
+        authDomain: "save-a-stray.firebaseapp.com",
+        databaseURL: "https://save-a-stray.firebaseio.com",
+        projectId: "save-a-stray",
+        storageBucket: "",
+        messagingSenderId: "635738163475",
+        appId: "1:635738163475:web:7b057370cbdf266af732e6",
+        measurementId: "G-MPSRDQFHBN"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="google-site-verification" content="h7CQyucIVltfE8MRlIobR1GYO9kpIcv5W1t5zmz4-Cc" />
+
     <meta name="theme-color" content="#000000" />
+
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+   
+    <meta name="google-signin-client_id"
+    content="635738163475-uoqtpq3sv1or3frlr5p4ou5b09hbkq3j.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
+   
     <link rel="apple-touch-icon" href="logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -26,7 +61,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Save A Stray</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

@@ -84,6 +84,7 @@ class Register extends Component {
                   type="password"
                   placeholder="Password"
                 />
+                <FacebookLogin />
                 <button className='modal-button' type="submit">Register Account</button>
               </form>
             </div>
