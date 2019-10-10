@@ -4,6 +4,7 @@ import {
   ApolloConsumer
 } from "react-apollo";
 import FacebookLogin from "./FacebookLogin";
+import GoogleLogin from "./GoogleLogin";
 import Mutations from "../graphql/mutations";
 import './auth.css';
 import { Link, withRouter } from 'react-router-dom';
@@ -83,7 +84,7 @@ class Login extends Component {
                 />
                 <button className='modal-button' type="submit">Log In</button>
                 <FacebookLogin />
-                <button class="g-signin2" data-onsuccess="onSignIn"></button>
+                <GoogleLogin />
               </form>
               
             </div>

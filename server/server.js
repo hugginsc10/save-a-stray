@@ -7,7 +7,7 @@ const schema = require("./schema/schema");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const FacebookStrategy = require("passport-facebook");
+const facebookStrategy = require("passport-facebook");
 const Keys = require("../config/keys");
 const User = require("./models/User");
 const passport = require("passport");
@@ -39,7 +39,7 @@ passport.use(
 
 app.use(passport.initialize());
 
-app.get('/facebooklogin', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get(
   '/auth/facebook/callback',
@@ -50,7 +50,17 @@ app.get(
     res.send(Keys.fbookClient);
   },
 );
+app.get('/auth/google', passport.authenticate('google', {scope: ["profile"]}));
 
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', {
+    session: false
+  }),
+  (req, res) => {
+    res.send(Keys.googClient);
+  },
+);
 mongoose
   .connect(db, {
     useNewUrlParser: true,
