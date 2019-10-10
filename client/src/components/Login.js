@@ -6,8 +6,15 @@ import {
 import FacebookLogin from "./FacebookLogin";
 import Mutations from "../graphql/mutations";
 import './auth.css';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Link, withRouter } from 'react-router-dom';
+import SocialButtons from './Buttons';
 const { LOGIN_USER } = Mutations
+
+
+let baseUrl = "";
+
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -17,21 +24,15 @@ class Login extends Component {
       password: ""
     };
   }
-  onSignIn(googleUser) {
-    const profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  };
+  
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
   
   updateCache(client, {data}) {
-
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn,userRole: data.login.userRole }
+      // data: { isLoggedIn: data.login.loggedIn,userRole: data.login.userRole }
+      data: { ...data.login }
     });
   }  
   
@@ -42,13 +43,12 @@ class Login extends Component {
           <Mutation
             mutation={LOGIN_USER}
             onCompleted={data => {
-              const { token } = data.login;
+              const { token, _id } = data.login;
               localStorage.setItem("auth-token", token);
               if (client.cache.data.data.ROOT_QUERY.userRole === "admin") {
                 this.props.history.push("/Shelter");
               } else {
                 this.props.history.push("/User")
-
               }
             }}
             update={(client, data) => this.updateCache(client, data)}
@@ -57,7 +57,7 @@ class Login extends Component {
 
           <div className='auth-modal'>
             <div className='auth-div'>
-            <Link className='modal-exit' to="/">X</Link> 
+            <Link to="/" className='modal-exit' >X</Link> 
               <form className='auth-form'
                 onSubmit={e => {
                   e.preventDefault();
@@ -82,8 +82,9 @@ class Login extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Log In</button>
-                <FacebookLogin />
-                <button class="g-signin2" data-onsuccess="onSignIn"></button>
+                <SocialButtons />
+              
+  
               </form>
               
             </div>
@@ -95,4 +96,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default withRouter(Login);

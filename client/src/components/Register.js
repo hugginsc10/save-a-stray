@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Mutation,ApolloConsumer } from "react-apollo";
-import FacebookLogin from "./FacebookLogin";
 import Mutations from "../graphql/mutations"
 import './auth.css'
+import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
 const { REGISTER_USER } = Mutations
 
 
+let baseUrl = '';
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +19,7 @@ class Register extends Component {
       password: ""
     };
   }
-
+  
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
@@ -26,10 +27,12 @@ class Register extends Component {
   updateCache(client, { data }) {
     console.log(data);
     client.writeData({
-      data: {  isLoggedIn: data.register.loggedIn,userRole: data.register.userRole }
+      data: {  isLoggedIn: data.register.loggedIn,
+        userRole: data.register.userRole }
     });
   }
-
+  
+  
   render() {
     return (
 
@@ -53,7 +56,7 @@ class Register extends Component {
 
           <div className='auth-modal'>
             <div className='auth-div'>
-            <Link className='modal-exit' to="/">X</Link>   
+            <Link to="/" className='modal-exit'>X</Link>   
               <form className='auth-form'
                 onSubmit={e => {
                   e.preventDefault();
@@ -89,7 +92,42 @@ class Register extends Component {
                   type="password"
                   placeholder="Password"
                 />
-                <FacebookLogin />
+                <div className="modal-twitter-button">
+                <RaisedButton
+                  href={`${baseUrl}/auth/twitter`}
+                  backgroundColor="#1da1f2"
+                  labelColor="#ffffff"
+                  label="Log in with Twitter"
+                />
+              </div>
+
+              <div className="modal-amazon-button">
+                <RaisedButton
+                  href={`${baseUrl}/auth/amazon`}
+                  backgroundColor="#1da1f2"
+                  labelColor="#ffffff"
+                  label="Log in with Amazon"
+                />
+              </div>
+
+              <div className="modal-google-button">
+                <RaisedButton
+                  href={`${baseUrl}/auth/google`}
+                  backgroundColor="#1da1f2"
+                  labelColor="#ffffff"
+                  label="Log in with Google"
+                />
+              </div>
+
+              <div className="modal-facebook-button">
+                <RaisedButton
+                  href={`${baseUrl}/auth/facebook`}
+                  backgroundColor="#1da1f2"
+                  labelColor="#ffffff"
+                  label="Log in with Facebook"
+                />
+              </div>
+  
                 <button className='modal-button' type="submit">Register Account</button>
               </form>
             </div>

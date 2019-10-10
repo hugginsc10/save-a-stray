@@ -14,13 +14,29 @@ const passport = require("passport");
 const facebookRegister = require("./services/auth");
 const GoogleStrategy = require("passport-google").Strategy;
 const AmazonStrategy = require("passport-amazon").Strategy;
-
 const chalk = require("chalk");
 
+const router = express.Router();
+
+let baseUrl = "";
+
+
+app.use(cors());
+
+app.use(
+  "/graphql",
+  expressGraphQL( req => {
+    return {
+    schema,
+    context: {
+      token: req.headers.authorization
+    },
+    graphiql: true
+    };
+  })
+  );
+
 app.use(passport.initialize());
-if (!db) {
-  throw new Error("You must provide a string to connect to MongoDB Atlas");
-}
 
 mongoose
   .connect(db, {
@@ -30,135 +46,136 @@ mongoose
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
-passport.serializeUser((user, cb ) => {
-  cb(null, user);
-});
 
-passport.deserializeUser((user, cb) => {
-  cb(null, user);
-});
+app.use(bodyParser.json());
 
+passport.serializeUser((user, cb ) => {cb(null, user);});
 
-app.use(cors());
+passport.deserializeUser((obj, cb) => {cb(null, obj);});
 
 
-// FACEBOOK OAUTH
+
+
+
+// Social Auth
 
 passport.use(
   new FacebookStrategy({
       clientID: Keys.fbookClient,
       clientSecret: Keys.fbookKey,
-      callbackURL: '/auth/facebook/callback',
+      callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
       console.log(chalk.blue(JSON.stringify(profile)));
-      User = { ...profile };
-      return cb(null, profile);
-      // User.findOrCreate({facebookId: profile.id }, (err, user) => {
-        // return cb(err, user);
-      // })
+      User.findOrCreate({ facebookId: profile.id}, (err,user) => {
+        return cb(err, user);
+      });
+     
     },
   ),
 );
-app.get("/auth/facebook", passport.authenticate("facebook"));
-
-app.get("/auth/facebook/callback",
-  passport.authenticate(("facebook"),
-    (req, res) => {
-      res.redirect("/profile");
-    }));
-
-// GOOGLE OAUTH
-
 passport.use(
   new GoogleStrategy({
       clientID: Keys.GOOGLE.clientId,
       clientSecret: Keys.GOOGLE.clientSecret,
-      callbackURL: '/auth/google/callback',
+      callbackURL: 'https://save-a-stray.herokuapp.com/auth/google/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
       console.log(chalk.blue(JSON.stringify(profile)));
-      User = {...profile};
-      return cb(null, profile);
+      User.findOrCreate({googleId: profile.id}, (err, user) => {
+        return cb(err, user);
+      })
     },
   ),
 );
-app.get("/auth/google", passport.authenticate("google", 
-{scope: ["profile", "email"]}));
 
-app.get("/auth/google/callback",
-  passport.authenticate(("google"),
-    (req, res) => {
-      res.redirect("/profile");
-    }));
-
-
-// AMAZON OAUTH
-passport.use(
-  new AmazonStrategy({
-      clientID: Keys.AMAZON.clientId,
-      clientSecret: Keys.AMAZON.clientSecret,
-      callbackURL: '/auth/amazon/callback',
-    },
-    (accessToken, refreshToken, profile, cb) => {
-      console.log(chalk.blue(JSON.stringify(profile)));
-      User = {...profile};
-      return cb(null, profile);
-    },
-  ),
-);
-app.get("/auth/amazon", passport.authenticate("amazon", 
-{scope: ["profile"]}));
-
-app.get("/auth/amazon/callback",
-  passport.authenticate(("amazon"),
-    (req, res) => {
-      res.redirect("/profile");
-    }));
-
-// TWITTER OAUTH
 passport.use(
   new TwitterStrategy({
       clientID: Keys.TWITTER.clientId,
       clientSecret: Keys.TWITTER.clientSecret,
-      callbackURL: '/auth/twitter/callback',
+      callbackURL: 'https://save-a-stray.herokuapp.com/auth/twitter/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
       console.log(chalk.blue(JSON.stringify(profile)));
-      User = {
-        ...profile
-      };
-      return cb(null, profile);
+      User.findOrCreate({twitterId: profile.id }, (err, user) => {
+        return cb(err, user);
+      })
     },
   ),
 );
-app.get("/auth/twitter", passport.authenticate("twitter", {
+
+passport.use(
+  new AmazonStrategy({
+      clientID: Keys.AMAZON.clientId,
+      clientSecret: Keys.AMAZON.clientSecret,
+      callbackURL: 'https://save-a-stray.herokuapp.com/auth/amazon/callback',
+    },
+    (accessToken, refreshToken, profile, cb) => {
+      console.log(chalk.blue(JSON.stringify(profile)));
+      User.findOrCreate({ amazonId: profile.id }, (err,user) => {
+        return cb(err, user);
+      })
+    },
+  ),
+);
+
+// AMZN routes
+router.get("/auth/amazon", passport.authenticate("amazon", 
+{scope: ["profile"]}));
+
+router.get("/auth/amazon/callback",
+  passport.authenticate("amazon", {failureRedirect: '/login' }), 
+    (req, res) => {
+      res.redirect("/");
+    });
+
+
+// GOOG routes
+router.get("/auth/google", passport.authenticate("google", 
+{scope: ["profile, email"]}));
+
+router.get("/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: '/login'}), 
+  (req, res) => {
+  res.redirect("/");
+});
+
+// TWTR routes
+router.get("/auth/twitter", passport.authenticate("twitter", {
   scope: ["profile"]
 }));
 
-app.get("/auth/twitter/callback",
-  passport.authenticate(("twitter"),
+router.get("/auth/twitter/callback",
+  passport.authenticate("twitter", {failureRedirect: '/login'}),
     (req, res) => {
-      res.redirect("/profile");
-    }));
+      res.redirect("/");
+    });
 
-app.use(
-  "/graphql",
-  expressGraphQL({
-    schema,
-    graphiql: true
-  })
+// FBOOK routes
+
+router.get("/auth/facebook", passport.authenticate("facebook", 
+{scope: ['profile']})
 );
-app.get("/user", (req, res) => {
+
+router.get("/auth/facebook/callback",
+  passport.authenticate(("facebook"),{ failureRedirect: '/login' }), 
+  (req, res) => {
+      res.redirect("/");
+    });
+
+router.get("/auth/success", (req, res) => {
   console.log("getitng user data!");
   res.send(user);
 });
 
-app.get("/auth/logout", (req, res) => {
+router.get("/auth/logout", (req, res) => {
   console.log("logging out !");
+  req.logout();
   user = {};
   res.redirect("/");
 });
+
+
 // remember we use bodyParser to parse requests into json
 app.use(bodyParser.json());
 

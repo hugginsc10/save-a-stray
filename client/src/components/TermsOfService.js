@@ -2,14 +2,13 @@ import React from 'react';
 
 
 class TermsOfService extends React.Component {
-
-
 render() {
     return(
-        <div>
+      
+<div>
 
 
-<h2>Welcome to Save A Stray</h2>
+<h2 color="blue">Welcome to Save A Stray</h2>
 	<p>These terms and conditions outline the rules and regulations for the use of Save A Stray's Website.</p> <br /> 
 	<span> Save A Stray</span> is located at:<br /> 
 	<address><br />

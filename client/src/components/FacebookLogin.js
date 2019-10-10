@@ -65,10 +65,11 @@ class FacebookSignIn extends Component {
       } = this.state;
       const icon = 'fa ' + (loading ? 'fa-refresh fa-spin' : 'fa-facebook');
 
-      return ( <a href = '/auth/facebook'
-        onClick = {this.onFacebookLogin}> 
-        <i className = {icon}> 
-        </i> Facebook </a >
+      return ( 
+      <a href = '/auth/facebook' onClick={this.onFacebookLogin}> 
+        <i className = {icon}> </i> 
+        Facebook 
+      </a>
       );
     }
   }

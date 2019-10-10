@@ -1,13 +1,17 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql;
+const { 
+  GraphQLObjectType, 
+  GraphQLString,
+  GraphQLInt, 
+  GraphQLID,
+  GraphQLNonNull 
+} = graphql;
 const mongoose = require("mongoose");
 const UserType = require("./types/user_type");
 const User = mongoose.model("user");
 const Animal = mongoose.model("animal");
 const Application = mongoose.model("application");
 const Shelter = mongoose.model("shelter");
-
-
 const AuthService = require("../services/auth")
 const AnimalType = require("./types/animal_type")
 const ShelterType = require("./types/shelter_type")
@@ -30,8 +34,8 @@ const mutation = new GraphQLObjectType({
     login: {
       type: UserType,
       args: {
-        email: { type: GraphQLString },
-        password: { type: GraphQLString }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve(_, args) {
         return AuthService.login(args);
@@ -52,8 +56,8 @@ const mutation = new GraphQLObjectType({
       args: {
         token: { type: GraphQLString }
       },
-      resolve(_, args) {
-        return AuthService.verifyUser(args);
+      async resolve(_, {token}, ctx ) {
+        return await AuthService.verifyUser({ token: ctx.token || token});
       }
     },
     newAnimal: {
