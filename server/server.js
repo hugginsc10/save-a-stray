@@ -63,12 +63,12 @@ passport.use(
   new FacebookStrategy({
       clientID: Keys.fbookClient,
       clientSecret: Keys.fbookKey,
-      callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback',
+      callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback'
     },
     (accessToken, refreshToken, profile, cb) => {
-      console.log(chalk.blue(JSON.stringify(profile)));
-      User.findOrCreate({ facebookId: profile.id}, (err,user) => {
-        return cb(err, user);
+      User.findOrCreate(...(err, user) => {
+        if (err) { return cb(err);}
+        cb(null, user);
       });
      
     },
@@ -76,48 +76,49 @@ passport.use(
 );
 passport.use(
   new GoogleStrategy({
-      clientID: Keys.GOOGLE.clientId,
-      clientSecret: Keys.GOOGLE.clientSecret,
+      clientID: Keys.googClient,
+      clientSecret: Keys.googKey,
       callbackURL: 'https://save-a-stray.herokuapp.com/auth/google/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
       console.log(chalk.blue(JSON.stringify(profile)));
-      User.findOrCreate({googleId: profile.id}, (err, user) => {
-        return cb(err, user);
-      })
+      User.findOrCreate(...(err, user) => {
+        if (err) { return cb(err);}
+        cb(null, user);
+      });
     },
   ),
 );
 
-passport.use(
-  new TwitterStrategy({
-      clientID: Keys.TWITTER.clientId,
-      clientSecret: Keys.TWITTER.clientSecret,
-      callbackURL: 'https://save-a-stray.herokuapp.com/auth/twitter/callback',
-    },
-    (accessToken, refreshToken, profile, cb) => {
-      console.log(chalk.blue(JSON.stringify(profile)));
-      User.findOrCreate({twitterId: profile.id }, (err, user) => {
-        return cb(err, user);
-      })
-    },
-  ),
-);
+// passport.use(
+//   new TwitterStrategy({
+//       clientID: Keys.TWITTER.clientId,
+//       clientSecret: Keys.TWITTER.clientSecret,
+//       callbackURL: 'https://save-a-stray.herokuapp.com/auth/twitter/callback',
+//     },
+//     (accessToken, refreshToken, profile, cb) => {
+//       console.log(chalk.blue(JSON.stringify(profile)));
+//       User.findOrCreate({twitterId: profile.id }, (err, user) => {
+//         return cb(err, user);
+//       })
+//     },
+//   ),
+// );
 
-passport.use(
-  new AmazonStrategy({
-      clientID: Keys.AMAZON.clientId,
-      clientSecret: Keys.AMAZON.clientSecret,
-      callbackURL: 'https://save-a-stray.herokuapp.com/auth/amazon/callback',
-    },
-    (accessToken, refreshToken, profile, cb) => {
-      console.log(chalk.blue(JSON.stringify(profile)));
-      User.findOrCreate({ amazonId: profile.id }, (err,user) => {
-        return cb(err, user);
-      })
-    },
-  ),
-);
+// passport.use(
+//   new AmazonStrategy({
+//       clientID: Keys.AMAZON.clientId,
+//       clientSecret: Keys.AMAZON.clientSecret,
+//       callbackURL: 'https://save-a-stray.herokuapp.com/auth/amazon/callback',
+//     },
+//     (accessToken, refreshToken, profile, cb) => {
+//       console.log(chalk.blue(JSON.stringify(profile)));
+//       User.findOrCreate({ amazonId: profile.id }, (err,user) => {
+//         return cb(err, user);
+//       })
+//     },
+//   ),
+// );
 
 // AMZN routes
 router.get("/auth/amazon", passport.authenticate("amazon", 
