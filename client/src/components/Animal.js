@@ -115,7 +115,7 @@ class NewAnimal extends Component {
                 placeholder="application"
               />
               <br/>
-              <button type="submit">Add Animal</button>
+              <button id='new-animal-submit' type="submit">Add Animal</button>
             </form>
           </div>
         )}

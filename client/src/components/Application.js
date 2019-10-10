@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../graphql/mutations"
+import './application.css'
 const { CREATE_APPLICATION } = Mutations
 
 class NewApplication extends Component {
@@ -32,8 +33,8 @@ class NewApplication extends Component {
 
       >
         {loginUser => (
-          <div>
-            <form
+          <div id='application-form'>
+            <form id='application-form-form'
               onSubmit={e => {
                 e.preventDefault();
                 loginUser({
@@ -45,22 +46,22 @@ class NewApplication extends Component {
                 });
               }}
             >
-              <input
+              <input className='application-form-input' 
                 value={this.state.animalId}
                 onChange={this.update("animalId")}
                 placeholder="animalId"
               />
-              <input
+              <input className='application-form-input'
                 value={this.state.userId}
                 onChange={this.update("userId")}
                 placeholder="userId"
               />
-              <input
+              <input className='application-form-input'
                 value={this.state.applicationData}
                 onChange={this.update("applicationData")}
                 placeholder="applicationData"
               />
-              <button type="submit">Submit Application</button>
+              <button id='application-submit' type="submit">Submit Application</button>
             </form>
           </div>
         )}

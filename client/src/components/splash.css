@@ -1,11 +1,12 @@
 #splash{
-    grid-column-start: 2;
-    grid-column-end: 3;
+    grid-column-start: 3;
+    grid-column-end: 5;
     grid-row-start: 2;
     grid-row-end: 3;
     background-size: cover;
     display: grid;
     grid-template-columns: 15% 70% 15%;
+
 }
 
 #best-friend{
@@ -17,17 +18,27 @@
     z-index: 3;
 }
 
-.splash-button{
+#splash-button{
     border: none;
     padding: 8px;
-    border-radius: 15px;
+    
     color: white;
     font-size: 21px;
-    background: rgb(43, 177, 255);
+   
     font-family: 'Capriola', sans-serif;
     cursor: pointer;
-    grid-row-start: 2;
-    grid-column-start: 2;
+    grid-column-start: 1;
+    
+    grid-column-end: 4;
+    transition: all .25s ease-in-out;
+}
+
+#splash-button:hover{
+    background: lightsalmon;
+}
+
+#splash-button:focus {
+    outline: none;
 }
 
 #splash-top{
@@ -36,16 +47,31 @@
     border-radius: 20px;
     background: url(/static/media/adorable-animal-black-and-white-207903.86177150.jpg) no-repeat;
     background-size: cover;
-    background-position: bottom;
+    background-position: center;
     display: grid;
     grid-template-rows: 75% 10% 15%;
     grid-template-columns: 35% 30% 35%;
 }
 
+.closed{
+    height: 100px;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    background: rgb(43, 177, 255);
+    border-radius: 15px 15px 0px 0px;
+}
+
+.open{
+    height: 300%;
+    background: lightsalmon;
+    margin-bottom: 15px;
+    border-radius: 15px;
+}
+
 @media screen and (max-width: 690px) {
     #splash{
         grid-column-start: 1;
-        grid-column-end: 4;
+        grid-column-end: 6;
         grid-row-start: 1;
         grid-row-end: 4;
     }    
@@ -53,8 +79,10 @@
         border-radius: 0;
         background-position: center;
     }
-    .splash-button{
+    #splash-button{
         display: none;
+        margin-bottom: 15px;
+       
     }
 }
 
