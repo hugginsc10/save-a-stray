@@ -2,48 +2,57 @@
 #root-div1{
   
   color: white;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  grid-template-rows: 1% 70% 29%;
-  height: -webkit-fill-available;
+    display: grid;
+    grid-template-columns: 10% 20% 40% 20% 10%;
+    grid-template-rows: 10% 70% 20%;
+    height: -webkit-fill-available;
 }
 
 #navbar {
   grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
   z-index: 1;
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 50%;
+  grid-template-rows: 15% 70% 15%;
+  position: relative;
 }
 
 
 
 #nav-right{
-  align-self: center
+  grid-row-start: 2;
+  display: flex;
+  justify-self: flex-end;
+
 }
 
 .auth-links{
-  
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .auth-links a{
   font-family: 'Capriola', sans-serif;
-    font-size: 3vw;
+    font-size: 2.7vw;
     margin: 5px 20px;
     color: rgb(43, 177, 255)  ;
     text-decoration: none;
 }
 
-.auth-links a:hover{
+.auth-links a:hover, .auth-links button:hover{
   text-decoration: underline;
+  color: lightsalmon
+}
+
+.auth-links button:focus{
+  outline: 0;
 }
 
 .auth-links button{
   font-family: 'Capriola', sans-serif;
-    font-size: 34px;
+    font-size: 3vw;
     margin: 5px 20px;
     color: rgb(43, 177, 255)   ;
     text-decoration: none;
@@ -52,12 +61,29 @@
 }
 
 @media screen and (max-width: 690px) {
-  #root-div1 {
-    
+  #nav-right{
+    position: fixed;
+    /* width: 100%; */
+    bottom: 0;
+    right: 0;
+  }
+  .auth-links{
+    display: block;
+    background: lightsalmon;
+    border-radius: 30px 0px 0px 0px;
+    height: -webkit-fill-available;
+    text-align: end;
   }
 
-  .auth-links{
-    display: none
+  .auth-links a{
+    font-size: 3em;
+    color: white
+  }
+
+ 
+
+  .auth-links a:last-of-type{
+    border-bottom: none;
   }
 }
 
