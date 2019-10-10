@@ -1,18 +1,18 @@
-#new-animal-form{
+#application-form{
     grid-column-start: 3;
     grid-column-end: 5;
     grid-row-start: 2;
     grid-row-end: 4;
     display: grid;
     grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 30% 70% ;
+    grid-template-rows: 30% 70%;
     background: lightsalmon;
     border-radius: 25px;
     width: 95%;
-    height:  95%;
+    height: 95%;
 }
 
-#new-animal-header{
+#application-header{
     color: rgb(43, 177, 255);
     padding: 6px;
     grid-column-start: 2;
@@ -22,7 +22,7 @@
     font-size: 4vw;
 }
 
-#new-animal-form-form{
+#application-form-form{
     grid-column-start: 2;
     grid-row-start: 2;
     padding: 6px;
@@ -31,7 +31,7 @@
     text-align: center;
 }
 
-.new-animal-form-input{
+.application-form-input{
     margin: 7.5px;
     padding: 10px;
     color: black;
@@ -42,11 +42,11 @@
     background: rgba(43, 177, 255);
 }
 
-.new-animal-form-input::placeholder{
+.application-form-input::placeholder{
     color:white;
 }
 
-#new-animal-submit{
+#application-submit{
     margin: 7.5px;
     padding: 10px;
     color: white;

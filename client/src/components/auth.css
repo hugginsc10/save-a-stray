@@ -1,26 +1,26 @@
 .auth-modal{
     position: fixed;
-    background: rgba(43, 177, 255, 0.6);
+    background: rgba(43, 177, 255, 0.2);
     width: -webkit-fill-available;
     height: -webkit-fill-available;
     transition: all .25s ease-in-out;
-    display: flex;
     justify-content: center;
     top: 0;
-    z-index: 0;
+    z-index: 4;
+    display: grid;
+    grid: inherit;
 }
 
 .auth-div{
-    margin: 20px;
     background: white;
-    height: fit-content;
     display: flex;
     flex-direction: column;
-    width: fit-content;
-    position: absolute;
-    top: 15%;
-    justify-content: space-around;
-    border-radius: 7px;  
+    width: 100%;
+   
+    border-radius: 7px;
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 2;
 }
 
 .auth-form{
@@ -28,10 +28,7 @@
     flex-direction: column;
 }
 
-.auth-form input{
-    margin: 10px;
-    background: aliceblue;
-}
+
 
 .auth-form h1 {
     font-size: 85px;
@@ -51,8 +48,14 @@
     padding: 10px;
     color: black;
     font-size: 16px;
-    border:none;
+    border: none;
     border-radius: 6px;
+    width: 25%;
+    align-self: center;
+}
+
+.auth-form input:focus{
+    outline: 0;
 }
 
 .auth-form select{
@@ -62,26 +65,35 @@
 
 .modal-button {
     border: none;
-    padding: 4%;
+    padding: 1%;
     border-radius: 15px;
     color: white;
-    font-size: 16px;
-    background: rgb(43, 177, 255);
-    font-family: 'Capriola', sans-serif;
-    width: 75%;
+    font-size: 24px;
+    background: lightsalmon;
+    font-family: 'Nunito', sans-serif;
+    width: 20%;
     align-self: center;
     cursor: pointer;
     margin: 10px;
 }
 
+.modal-button{
+    outline: 0ch;
+}
+
 .modal-exit{
     text-decoration: none;
     color: rgb(43, 177, 255);
-    font-size: 35px;
+    font-size: 4em;
     text-align: right;
-    margin-right: 10px;
+    margin-right: 3%;
     font-family: 'Capriola', sans-serif;
 
+}
+
+.modal-exit:hover{
+    color: lightsalmon;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 690px) {
@@ -92,6 +104,9 @@
         top: 0;
         border-radius: 0;
         justify-content: normal;
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 1;
     
     }
 
@@ -101,5 +116,6 @@
 
     .modal-exit{
         margin: 5%;
+        font-size: 12vw
     }
   }

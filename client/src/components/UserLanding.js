@@ -12,7 +12,7 @@ class UserLanding extends Component {
 
     return (
       <div>
-        <h1>User Landing Page </h1>
+        <h1 id='user-nav' >User Landing Page </h1>
         <Link to="/newApplication">New Application</Link>
       </div>
     )
