@@ -86,7 +86,7 @@ class Register extends Component {
                 />
                
                 <button className='modal-button' type="submit">Register Account</button>
-                    <FacebookLogin />
+                    <Link to="/auth/facebook">Facebook Sign On</Link>
                     <GoogleLogin />
             </form>
             </div>

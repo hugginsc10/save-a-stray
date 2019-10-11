@@ -32,15 +32,30 @@ passport.use(
       clientID: Keys.fbookClient,
       clientSecret: Keys.fbookKey,
       callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback',
-      profileFields: ['id', 'displayname', 'email']
-    },
+      profileFields: ['id', 'displayname', 'emails']},
     (accessToken, refreshToken, profile, cb) => {
       console.log(profile);
-      // console.log(Keys.fbookClient);
-      cb(facebookRegister, profile);
-    },
-  ),
-);
+      const me = new User({
+        email: profile.emails[0].value,
+        name: profile.displayName
+      });
+      User.findOne({email: me.email}, (err, u) => {
+        if (!u) {
+          me.save( (err, me) => {
+            if (err) return done(err);
+            done(null, me);
+          });
+        } else {
+          console.log(u);
+          done(null, u);
+        }
+
+      
+      // cb(facebookRegister, profile);
+    });
+    }
+  ));
+
 
 
 

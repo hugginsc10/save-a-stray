@@ -83,7 +83,7 @@ class Login extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Log In</button>
-                <FacebookLogin />
+                <Link to="/auth/facebook">Facebook Login</Link>
                 <GoogleLogin />
               </form>
               
