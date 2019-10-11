@@ -14,12 +14,14 @@ const register = async data => {
     if (!isValid) {
       throw new Error(message);
     }
+
     // deconstruct our data
     const {
       name,
       email,
       password,
-      userRole
+      userRole,
+      shelterId
     } = data;
 
     // we want to wait until our model can tell us whether a user exists with that email
@@ -44,7 +46,8 @@ const register = async data => {
         name,
         email,
         password: hashedPassword,
-        userRole
+        userRole, 
+        shelterId
       },
       err => {
         if (err) throw err;
@@ -192,7 +195,7 @@ const verifyUser = async data => {
     // then we try to use the User with the id we just decoded
     // making sure we await the response
     const loggedIn = await User.findById(id).then(user => {
-      return user ? {is:true,userRole: user.userRole} : {is:false};
+      return user ? {is:true,userId: user._id} : {is:false};
     });
 
     return { loggedIn };

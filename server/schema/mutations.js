@@ -21,7 +21,8 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLString },
         email: { type: GraphQLString },
         password: { type: GraphQLString },
-        userRole:{type: GraphQLString}
+        userRole:{type: GraphQLString},
+        shelterId: {type: GraphQLString}
       },
       resolve(_, args) {
         return AuthService.register(args);

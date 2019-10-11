@@ -57,7 +57,7 @@ const RootQueryType = new GraphQLObjectType({
     },
     shelter: {
       type: ShelterType,
-      args: {_id, GraphQLID},
+      args: {_id: {type: GraphQLID}},
       resolve(_,{_id}){
         return Shelter.findById(_id)
       }

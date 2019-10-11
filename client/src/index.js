@@ -49,9 +49,10 @@ if (token) {
     // user is loggedIn
     .mutate({ mutation: VERIFY_USER, variables: { token } })
     .then(({ data }) => {
+      debugger 
       cache.writeData({
         data: {
-           isLoggedIn: data.login.loggedIn.is, userRole: data.login.loggedIn.userRole
+           isLoggedIn: data.login.loggedIn.is, userId: data.login.loggedIn.userId
         }
       });
     });

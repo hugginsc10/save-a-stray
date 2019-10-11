@@ -11,7 +11,15 @@ const UserType = new GraphQLObjectType({
     email: { type: GraphQLString },
     token: { type: GraphQLString },
     loggedIn: { type: GraphQLBoolean },
-    userRole: {type: GraphQLString}
+    userRole: {type: GraphQLString},
+    shelter:{
+      type: require("./shelter_type"),
+      resolve(parentValue) {
+        return Shelter.findById(parentValue.shelterId).then(shelter => {
+          return shelter
+        })
+      }
+    }
     // fbookId: { type: GraphQLString } do not think that we need  from oauth merge rfq
   })
 });

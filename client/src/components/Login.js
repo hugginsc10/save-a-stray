@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import {
   Mutation,
-  ApolloConsumer
+  ApolloConsumer,
+  Query
 } from "react-apollo";
 import FacebookLogin from "./FacebookLogin";
 import Mutations from "../graphql/mutations";
+import Querys from "../graphql/queries";
 import './auth.css';
 import { Link, withRouter } from 'react-router-dom';
 const { LOGIN_USER } = Mutations
+const { FETCH_USER,USER_ID} = Querys
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +19,7 @@ class Login extends Component {
       email: "",
       password: ""
     };
+    this.user = "";
   }
   onSignIn(googleUser) {
     const profile = googleUser.getBasicProfile();
@@ -29,22 +33,38 @@ class Login extends Component {
   }
   
   updateCache(client, {data}) {
-
+    let userid = client.readQuery({ USER_ID});
+    <Query
+            query={FETCH_USER}
+            variables={{_id:   userid}}
+            onCompleted={data => {
+              return this.user = data ;
+            }}
+            >                        
+                {({ loading, error, data }) => {
+                    if (loading) return <p>Loading...</p>;
+                    if (error) return <p>Error</p>;
+                    return (
+                        <div>
+                        </div>
+                    )
+                }
+            }                      
+    </Query>
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn,userRole: data.login.userRole }
+      data: { isLoggedIn: data.login.loggedIn,userId: data.login._id }
     });
   }  
   
-  render() {
+  render() { 
     return (
-      <ApolloConsumer>
-        {client => (
-          <Mutation
+         <Mutation
             mutation={LOGIN_USER}
             onCompleted={data => {
               const { token } = data.login;
               localStorage.setItem("auth-token", token);
-              if (client.cache.data.data.ROOT_QUERY.userRole === "admin") {
+                debugger 
+              if (this.user.userRole === "admin") {
                 this.props.history.push("/Shelter");
               } else {
                 this.props.history.push("/User")
@@ -90,8 +110,6 @@ class Login extends Component {
           </div>
         )}
         </Mutation>
-        )}
-      </ApolloConsumer>
     );
   }
 }
