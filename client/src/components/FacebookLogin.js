@@ -54,7 +54,7 @@ class FacebookSignIn extends Component {
 
     onFacebookLogin(event) {
       event.preventDefault();
-      window.location = `https://save-a-stray.herokuapp.com/auth/facebook`;
+      window.location = `/auth/facebook`;
     }
 
     render() {

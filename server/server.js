@@ -22,13 +22,6 @@ if (!db) {
 
 app.get('/success', (req, res) => res.send("You have successfully logged in"));
 app.get('/error', (req, res) => res.send("error logging in"));
-passport.serializeUser(function (user, cb) {
-  cb(null, user);
-});
-passport.deserializeUser(function (obj, cb) {
-  cb(null, obj);
-});
-
 
 
 
@@ -37,7 +30,7 @@ passport.use(
   new FacebookStrategy({
       clientID: Keys.fbookClient,
       clientSecret: Keys.fbookKey,
-      callbackURL: '/auth/facebook/callback',
+      callbackURL: 'https://localhost:3000/auth/facebook/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
       console.log(profile);
@@ -51,15 +44,15 @@ passport.use(
 
 app.use(passport.initialize());
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: "email"}));
 
 app.get(
   '/auth/facebook/callback',
   passport.authenticate('facebook', {
-    failureRedirect: '/error'
+    failureRedirect: '/login'
   }),
   (req, res) => {
-    res.redirect('/success');
+    res.redirect('/');
   },
 );
 app.get('/auth/google', passport.authenticate('google', {scope: ["profile"]}));
@@ -80,6 +73,15 @@ mongoose
   })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
+
+passport.serializeUser(function (user, cb) {
+  cb(null, user);
+});
+passport.deserializeUser(function (obj, cb) {
+  cb(null, obj);
+});
+
+
 app.use(cors());
 
 app.use(
