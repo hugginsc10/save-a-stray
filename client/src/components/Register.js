@@ -4,8 +4,8 @@ import FacebookLogin from "./FacebookLogin";
 import Mutations from "../graphql/mutations"
 import './auth.css'
 import { Link } from 'react-router-dom';
-const { REGISTER_USER } = Mutations
 import GoogleLogin from "./GoogleLogin";
+const { REGISTER_USER } = Mutations
 
 class Register extends Component {
   constructor(props) {
