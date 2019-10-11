@@ -32,7 +32,7 @@ class Login extends Component {
   updateCache(client, {data}) {
 
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn,userRole: data.login.userRole }
+      data: { isLoggedIn: data.login.loggedIn}
     });
   }  
   
@@ -96,4 +96,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default withRouter(Login);

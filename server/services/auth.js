@@ -148,7 +148,7 @@ const login = async data => {
       throw new Error(message);
     }
     const { email, password } = data
-    const user = await User.findOne({email})
+    const user = await User.findOne({email: email})
     if (!user) {
       throw new Error("This user does not exist");
     }
@@ -158,9 +158,9 @@ const login = async data => {
       throw new Error("Invalid credentials");
     }
 
-    const token = jwt.sign({ id: user._id }, keys.secretOrKey);
+    const token = jwt.sign({ id: user._id, email: user.email }, keys.secretOrKey);
 
-    return { token, loggedIn: true, ...user._doc, password: null };
+    return { token: token, loggedIn: true, ...user._doc, password: null };
   } catch (err) {
     throw err;
   }

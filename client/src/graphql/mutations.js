@@ -13,8 +13,9 @@ export default {
   LOGIN_USER: gql`
     mutation LoginUser($email: String!, $password: String!) {
       login(email: $email, password: $password) {
+        _id
         token
-        loggedIn,
+        loggedIn
         userRole
       }
     }

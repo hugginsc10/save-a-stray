@@ -13,7 +13,7 @@ const User = require("./models/User");
 const passport = require("passport");
 const facebookRegister = require("./services/auth");
 
-
+app.use(bodyParser.json());
 
 app.use(passport.initialize());
 if (!db) {
@@ -91,6 +91,6 @@ app.use(
 );
 
 // remember we use bodyParser to parse requests into json
-app.use(bodyParser.json());
+
 
 module.exports = app;
