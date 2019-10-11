@@ -10,7 +10,7 @@ class FacebookSignIn extends Component {
     super(props);
     this.onFacebookLogin = this.onFacebookLogin.bind(this);
     this.appId = '515957642529597';
-    this.redirectUrl = `${document.location.protocol}//${document.location.host}/auth/facebook/callback`;
+    this.redirectUrl = `/auth/facebook/callback`;
 
     if (document.location.pathname === '/') {
       this.code = querystring.parse(document.location.search)['?code'];

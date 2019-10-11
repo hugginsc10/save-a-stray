@@ -31,7 +31,7 @@ passport.use(
   new FacebookStrategy({
       clientID: Keys.fbookClient,
       clientSecret: Keys.fbookKey,
-      callbackURL: 'https://localhost:3000/auth/facebook/callback',
+      callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
       console.log(profile);
