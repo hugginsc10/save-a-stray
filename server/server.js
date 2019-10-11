@@ -16,6 +16,7 @@ const facebookRegister = require("./services/auth");
 app.use(bodyParser.json());
 
 app.use(passport.initialize());
+app.use(passport.session());
 if (!db) {
   throw new Error("You must provide a string to connect to MongoDB Atlas");
 }
