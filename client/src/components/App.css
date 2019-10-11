@@ -24,26 +24,27 @@
 #nav-right{
   grid-row-start: 2;
   display: flex;
-  justify-self: flex-end;
-
+  justify-self: center;
 }
 
 .auth-links{
   display: flex;
   flex-direction: row-reverse;
+  justify-content: center;
 }
 
 .auth-links a{
   font-family: 'Capriola', sans-serif;
-    font-size: 2.7vw;
-    margin: 5px 20px;
-    color: rgb(43, 177, 255)  ;
-    text-decoration: none;
+  font-size: calc(2vw + 1vh);
+  margin: 0 1vw;
+  color: rgb(43, 177, 255);
+  text-decoration: none;
+  align-self: center;
 }
 
 .auth-links a:hover, .auth-links button:hover{
   text-decoration: underline;
-  color: lightsalmon
+  text-decoration-color: lightsalmon
 }
 
 .auth-links button:focus{
@@ -69,7 +70,7 @@
   }
   .auth-links{
     display: flex;
-    background: lightsalmon;
+    background: rgb(43, 177, 255);
     border-radius: 15px 15px 0px 0px;
     text-align: end;
     justify-content: space-around;

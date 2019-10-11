@@ -13,8 +13,6 @@
 
 .auth-div{
     background: white;
-    display: flex;
-    flex-direction: column;
     width: 100%;
     height: 100%;
     min-height: fit-content;
@@ -22,11 +20,14 @@
     grid-column-start: 2;
     grid-column-end: 5;
     grid-row-start: 2;
-}
+    display: grid;
+    grid: inherit;
+  }
 
 .auth-form{
     display: flex;
     flex-direction: column;
+    grid-column-start: 3;
 }
 
 
@@ -87,10 +88,9 @@
     text-decoration: none;
     color: rgb(43, 177, 255);
     font-size: 4em;
-    text-align: right;
     margin-right: 3%;
     font-family: 'Capriola', sans-serif;
-
+    grid-column-start: 5;
 }
 
 .modal-exit:hover{
@@ -132,7 +132,12 @@
         grid-row-start: 1;
     
     }
-
+    .auth-form{
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 2;
+    grid-column-end: 5; 
+    }
     .auth-form h1{
         padding: 20px 0;
     }

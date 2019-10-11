@@ -61,6 +61,7 @@ class NewAnimal extends Component {
               }}
             >
               <h1 id='new-animal-header'>Put up an animal for adoption</h1>
+              <div id='seperator'></div>
               <input id='animal-name'
               className='new-animal-form-input'
                 value={this.state.name}
@@ -81,25 +82,28 @@ class NewAnimal extends Component {
                   placeholder="age"
                 />
                 <div id='radio-buttons'>
-                  M
-                  <input
-                  id='male'
-                  className='new-animal-form-input'
-                    type='radio'
-                    value={this.state.sex}
-                    onChange={this.update("sex")}
-                    name='gender'
-                  />
-                  <br/>
-                  F
-                  <input
-                  id='female'
-                  className='new-animal-form-input'
-                    type='radio'
-                    value={this.state.sex}
-                    onChange={this.update("sex")}
-                    name='gender'
-                  />
+                  <div>  
+                    <p>M:</p>
+                    <input
+                    id='male'
+                    className='new-animal-form-input'
+                      type='radio'
+                      value={this.state.sex}
+                      onChange={this.update("sex")}
+                      name='gender'
+                    />
+                  </div>
+                  <div>
+                    <p>F:</p>
+                    <input
+                    id='female'
+                    className='new-animal-form-input'
+                      type='radio'
+                      value={this.state.sex}
+                      onChange={this.update("sex")}
+                      name='gender'
+                    />
+                  </div>
                 </div>
               </div>
               <input id='animal-color'
@@ -115,14 +119,9 @@ class NewAnimal extends Component {
                 placeholder="description"
               />
               <div id='image-preview'>
-                  image-preview
+                  
               </div>
-              <input id='animal-image'
-              className='new-animal-form-input'
-                value={this.state.image}
-                onChange={this.update("image")}
-                placeholder="image"
-              />
+              
               <input id='animal-video'
               className='new-animal-form-input'
                 value={this.state.video}
