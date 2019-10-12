@@ -1,10 +1,13 @@
 import React, {
   Component
 } from 'react';
+import {ApolloConsumer, Mutation} from 'react-apollo';
 import querystring from 'querystring';
 import { graphql } from 'react-apollo';
 import gql from "graphql-tag";
-
+import {withRouter} from "react-router-dom";
+import Mutations from '../graphql/mutations';
+const {FACEBOOK_LOGIN} = Mutations;
 class FacebookSignIn extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +23,14 @@ class FacebookSignIn extends Component {
       loading: false,
     };
   }
-
+  update(field) {
+    return e => this.setState({ [field]: e.target.value })
+  }
+  updateCache(client, {data}) {
+    client.writeData({
+      data: {...data.login}
+    });
+  }
   componentDidMount() {
     if (!this.code) {
       return;
@@ -42,6 +52,7 @@ class FacebookSignIn extends Component {
         alert('sign in error: ', error);
       } else {
         alert('sign in success, your token: ', session.token);
+
       }
     }).catch(e => {
         alert('backend error:', e.toString(), 
@@ -54,7 +65,8 @@ class FacebookSignIn extends Component {
 
     onFacebookLogin(event) {
       event.preventDefault();
-      window.location = `/auth/facebook`;
+      window.location = `htttps://localhost:3000/auth/facebook`;
+
     }
 
     render() {
@@ -71,17 +83,4 @@ class FacebookSignIn extends Component {
     }
   }
 
-  export default graphql(gql `
-  mutation facebookSignIn($code: String!) {
-    facebookSignIn(code: $code) {
-      user {
-        id
-        email
-        name
-      }
-      session {
-        token
-      }
-    }
-  } 
-`)(FacebookSignIn);
+export default withRouter(FacebookSignIn);

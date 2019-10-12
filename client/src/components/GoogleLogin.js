@@ -60,7 +60,7 @@ class GoogleSignIn extends React.Component {
 
   onGoogleLogin(event) {
     event.preventDefault();
-    window.location = `https://localhost:3000/auth/google`;
+    window.location = `https://https://save-a-stray.herokuapp.com/auth/google`;
 
   }
 
@@ -71,6 +71,7 @@ class GoogleSignIn extends React.Component {
     const icon = 'fa ' + (loading ? 'fa-refresh fa-spin' : 'fa-facebook');
 
     return (<a href='/auth/google' onClick={this.onGoogleLogin}>
+      
       <i className={icon}>
       </i> Google </a>
 

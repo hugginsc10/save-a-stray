@@ -5,7 +5,7 @@ config/keys_dev.js
 /.pnp
 .pnp.js
 
-
+/cert
 # testing
 /coverage
 

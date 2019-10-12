@@ -2,11 +2,12 @@ import gql from "graphql-tag";
 
 export default {
   REGISTER_USER: gql`
-    mutation RegisterUser($userRole: String!,$name: String!, $email: String!, $password: String!) {
-      register(userRole: $userRole,name: $name, email: $email, password: $password) {
+    mutation RegisterUser($name: String!, $email: String!, $password: String!) {
+      register(name: $name, email: $email, password: $password) {
+        _id
         token
-        loggedIn,
-        userRole
+        loggedIn
+      
       }
     }
   `,
@@ -16,7 +17,8 @@ export default {
         _id
         token
         loggedIn
-        userRole
+        name
+        email
       }
     }
   `,
@@ -24,6 +26,9 @@ export default {
     mutation VerifyUser($token: String!) {
       verifyUser(token: $token) {
         loggedIn
+        _id
+        email
+        name
       }
     }
   `,
@@ -61,6 +66,18 @@ export default {
         paymentEmail
         }
     }
-  `
+  `,
+  FACEBOOK_LOGIN: gql`
+  mutation facebookSignIn($code: String!) {
+    facebookSignIn(code: $code) {
+      user {
+        _id
+        email
+        name
+        token
+        loggedIn
+      }
+    }
+  } `
 
 }

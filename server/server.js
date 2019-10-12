@@ -16,7 +16,7 @@ const facebookRegister = require("./services/auth");
 app.use(bodyParser.json());
 
 app.use(passport.initialize());
-app.use(passport.session());
+
 if (!db) {
   throw new Error("You must provide a string to connect to MongoDB Atlas");
 }
@@ -31,29 +31,12 @@ passport.use(
   new FacebookStrategy({
       clientID: Keys.fbookClient,
       clientSecret: Keys.fbookKey,
-      callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback',
-      profileFields: ['id', 'displayname', 'emails']},
+      callbackURL: 'https://localhost:3000/auth/facebook/callback'},
     (accessToken, refreshToken, profile, cb) => {
       console.log(profile);
-      const me = new User({
-        email: profile.emails[0].value,
-        name: profile.displayName
-      });
-      User.findOne({email: me.email}, (err, u) => {
-        if (!u) {
-          me.save( (err, me) => {
-            if (err) return done(err);
-            done(null, me);
-          });
-        } else {
-          console.log(u);
-          done(null, u);
-        }
-
-      
-      // cb(facebookRegister, profile);
-    });
+      cb(null, profile)
     }
+    
   ));
 
 
@@ -61,13 +44,11 @@ passport.use(
 
 app.use(passport.initialize());
 
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: "email"}));
+app.get('/flogin', passport.authenticate('facebook', {scope: ["email", "name"]}));
 
 app.get(
   '/auth/facebook/callback',
-  passport.authenticate('facebook', {
-    failureRedirect: '/login'
-  }),
+  passport.authenticate('facebook', { session: false}),
   (req, res) => {
     res.redirect('/');
   },

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Mutation,ApolloConsumer } from "react-apollo";
-import FacebookLogin from "./FacebookLogin";
+import Facebook from "./FBButton";
 import Mutations from "../graphql/mutations"
 import './auth.css'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import GoogleLogin from "./GoogleLogin";
 const { REGISTER_USER } = Mutations
 
@@ -12,7 +12,6 @@ class Register extends Component {
     super(props);
 
     this.state = {
-      userRole: "",
       name: "",
       email: "",
       password: ""
@@ -26,7 +25,7 @@ class Register extends Component {
   updateCache(client, { data }) {
     console.log(data);
     client.writeData({
-      data: {  isLoggedIn: data.register.loggedIn,userRole: data.register.userRole }
+      data: {  isLoggedIn: data.register.loggedIn}
     });
   }
 
@@ -38,14 +37,10 @@ class Register extends Component {
           <Mutation
             mutation={REGISTER_USER}
             onCompleted={data => {
-              const { token } = data.register;
+              const { token, _id } = data.register;
               localStorage.setItem("auth-token", token);
-              if (client.cache.data.data.ROOT_QUERY.userRole === "admin") {
-                this.props.history.push("/Shelter");
-              } else {
-                this.props.history.push("/User")
-                
-              }
+              localStorage.setItem("user-id", _id);
+              this.props.history.push("/")
             }}
             update={(client, data) => this.updateCache(client, data)}
           >
@@ -60,11 +55,16 @@ class Register extends Component {
                   registerUser({
                     variables: {
                       name: this.state.name,
-                      userRole: this.state.userRole,
                       email: this.state.email,
                       password: this.state.password
                     }
-                  });
+                  }).catch(e => {
+                    const login = document.getElementById("login-errors");
+    
+                    const div = document.getElementById("errors");
+                    let m = e.message.toString().slice(15);
+                    console.log(m);
+                  })
                 }}
               >
                 <h1>Signup</h1>
@@ -86,7 +86,7 @@ class Register extends Component {
                 />
                
                 <button className='modal-button' type="submit">Register Account</button>
-                    <Link to="/auth/facebook">Facebook Sign On</Link>
+                    <Facebook/>
                     <GoogleLogin />
             </form>
             </div>
@@ -102,4 +102,4 @@ class Register extends Component {
     );
   }
 }
-export default Register;
+export default withRouter(Register);

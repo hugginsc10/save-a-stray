@@ -20,7 +20,10 @@ const cache = new InMemoryCache({
 });
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/graphql"
+  uri: "http://localhost:5000/graphql",
+  headers: {
+    authorization: localStorage.getItem("auth-token")
+  }
 });
 
 const errorLink = onError(({ graphQLErrors }) => {
@@ -51,7 +54,7 @@ if (token) {
     .then(({ data }) => {
       cache.writeData({
         data: {
-           isLoggedIn: data.login.loggedIn.is, userRole: data.login.loggedIn.userRole
+           ...data.verifyUser
         }
       });
     });

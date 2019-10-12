@@ -3,7 +3,7 @@ import {
   Mutation,
   ApolloConsumer
 } from "react-apollo";
-import FacebookLogin from "./FacebookLogin";
+import Facebook from "./FBButton";
 import GoogleLogin from "./GoogleLogin";
 import Mutations from "../graphql/mutations";
 import './auth.css';
@@ -18,13 +18,7 @@ class Login extends Component {
       password: ""
     };
   }
-  onSignIn(googleUser) {
-    const profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  };
+  
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
@@ -32,25 +26,22 @@ class Login extends Component {
   updateCache(client, {data}) {
 
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn}
+      data: { ...data.login}
     });
   }  
   
   render() {
+    
     return (
       <ApolloConsumer>
-        {client => (
+         {client => (
           <Mutation
             mutation={LOGIN_USER}
             onCompleted={data => {
-              const { token } = data.login;
-              localStorage.setItem("auth-token", token);
-              if (client.cache.data.data.ROOT_QUERY.userRole === "admin") {
-                this.props.history.push("/Shelter");
-              } else {
-                this.props.history.push("/User")
-
-              }
+              const { token, _id } = data.login;
+              localStorage.setItem("auth-token", token)
+              localStorage.setItem("user-id", _id);
+              this.props.history.push("/")
             }}
             update={(client, data) => this.updateCache(client, data)}
           >
@@ -67,8 +58,14 @@ class Login extends Component {
                       email: this.state.email,
                       password: this.state.password
                     }
-                  });
-                }}
+                  }).catch(e => {
+                    const login = document.getElementById("login-errors");
+                    login.innterHTML = "";
+                    const div = document.getElementById("errors");
+                    let m = e.message.toString().slice(15);
+                    console.log(m)
+                })
+              }}
               >
                 <h1>Login</h1>
                 <input
@@ -83,7 +80,8 @@ class Login extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Log In</button>
-                <Link to="/auth/facebook">Facebook Login</Link>
+                
+                <Facebook/>
                 <GoogleLogin />
               </form>
               
@@ -92,8 +90,8 @@ class Login extends Component {
         )}
         </Mutation>
         )}
-      </ApolloConsumer>
-    );
+       </ApolloConsumer>
+     );
   }
-}
+ }
 export default withRouter(Login);
