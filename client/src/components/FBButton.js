@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
-export default class Facebook extends Component {
-  state = {
+import {Redirect, withRouter} from 'react-router-dom'
+class Facebook extends Component {
+  constructor(props) {
+    super(props);
+  
+    this.state = {
     isLoggedIn: false,
     userID: "",
     name: "",
     email: "",
-    picture: ""
+    picture: "",
+
   };
+} 
   responseFacebook = response => {
     // console.log(response);
     this.setState({
@@ -44,9 +50,20 @@ export default class Facebook extends Component {
           fields="name,email,picture"
           onClick={this.componentClicked}
           callback={this.responseFacebook}
+          redirectUri={"/"}
+          returnScopes={true}
+          cookie={true}
         />
+       
+
       );
     }
-    return <div>{fbContent}</div>;
+    return (
+    
+       fbContent
+    
+    )
+    
   }
 }
+export default withRouter(Facebook);

@@ -20,7 +20,7 @@ app.use(passport.initialize());
 if (!db) {
   throw new Error("You must provide a string to connect to MongoDB Atlas");
 }
-
+app.use(cors());
 app.get('/success', (req, res) => res.send("You have successfully logged in"));
 app.get('/error', (req, res) => res.send("error logging in"));
 
@@ -43,6 +43,15 @@ passport.use(
 
 
 app.use(passport.initialize());
+
+passport.serializeUser(function (user, cb) {
+  cb(null, user);
+});
+passport.deserializeUser(function (obj, cb) {
+  cb(null, obj);
+});
+
+
 
 app.get('/flogin', passport.authenticate('facebook', {scope: ["email", "name"]}));
 
@@ -71,16 +80,6 @@ mongoose
   })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
-
-passport.serializeUser(function (user, cb) {
-  cb(null, user);
-});
-passport.deserializeUser(function (obj, cb) {
-  cb(null, obj);
-});
-
-
-app.use(cors());
 
 app.use(
   "/graphql",
