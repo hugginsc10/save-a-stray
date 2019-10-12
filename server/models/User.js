@@ -13,8 +13,7 @@ const UserSchema = new Schema({
     required: true
   },
   userRole: {
-    type: String,
-    required: true
+    type: String
   },
   paymentEmail: {
     type: String
@@ -29,9 +28,14 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  fbookId: {
+  fbId: {
     type: String,
-  }
+  },
+  indexes: [
+    {
+      fields: ['fbId'],
+    }
+  ]
 });
 
 
