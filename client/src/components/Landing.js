@@ -32,7 +32,7 @@ render(){
             console.log("stop")      
             console.log("stop")      
             debugger              
-            if (data.userRole === "admin") {
+            if (data.user.userRole === "admin") {
 
                 this.props.history.push("/Shelter");
             } else {
