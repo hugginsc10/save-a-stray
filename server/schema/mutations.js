@@ -158,7 +158,7 @@ const mutation = new GraphQLObjectType({
       }
     },
     editApplication: {
-      type: Application,
+      type: ApplicationType,
       args: {
         _id: {type: GraphQLID},
         animalId: {type: GraphQLString},

@@ -38,7 +38,7 @@ const client = new ApolloClient({
 
 cache.writeData({
   data: {
-    isLoggedIn: Boolean(token)
+    isLoggedIn: Boolean(token),
   }
 });
 
@@ -52,7 +52,7 @@ if (token) {
       debugger 
       cache.writeData({
         data: {
-           isLoggedIn: data.login.loggedIn.is, userId: data.login.loggedIn.userId
+           isLoggedIn: data.verifyUser.loggedIn, userId: data.verifyUser._Id
         }
       });
     });

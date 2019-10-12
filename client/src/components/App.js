@@ -7,6 +7,7 @@ import Animal from "./Animal";
 import Application from "./Application";
 import Shelter from "./Shelter";
 import ShelterLanding from "./ShelterLanding";
+import Landing from "./Landing";
 import UserLanding from "./UserLanding";
 import AuthRoute from '../util/route_util'
 import Nav from "./Nav";
@@ -21,7 +22,7 @@ const App = () => {
         <Slug/>
         <Nav id='navbar' />
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
-          <Route exact path="/Shelter" component={ShelterLanding} routeType=""  />
+          <Route exact path="/Shelter" component={Landing} routeType=""  />
           <Route exact path="/User" component={UserLanding} routeType=""  />
           <Route exact path="/newApplication" component={Application}  routeType="" />
 

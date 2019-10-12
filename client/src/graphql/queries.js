@@ -9,7 +9,7 @@ export default {
     }
   `,
   USER_ID: gql`
-    {
+    query IsUserLoggedIn {
       userId @client
     }
     `,
