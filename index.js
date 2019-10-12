@@ -13,13 +13,15 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   })
 };
-
-const options = {
-  key: fs.readFileSync('./key.pem'),
-  cert: fs.readFileSync('./cert.pem'),
-  passphrase: 'saveastray'
-};
-const server = https.createServer(options, app);
-  server.listen(port, () => {
-  console.log(`Server listening on port ${server.address().port}`)
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`)
 });
+// const options = {
+  // key: fs.readFileSync('./key.pem'),
+  // cert: fs.readFileSync('./cert.pem'),
+  // passphrase: 'saveastray'
+// };
+// const server = https.createServer(options, app);
+  // server.listen(port, () => {
+  // console.log(`Server listening on port ${server.address().port}`)
+// });
