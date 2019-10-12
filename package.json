@@ -37,6 +37,7 @@
     "passport-facebook": "^3.0.0",
     "passport-google": "^0.3.0",
     "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.0.5",
     "uuid": "^3.3.3",
     "validator": "^11.1.0"
   }
