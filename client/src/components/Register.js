@@ -83,8 +83,14 @@ class Register extends Component {
                   type="password"
                   placeholder="Password"
                 />
-                <FacebookLogin />
                 <button className='modal-button' type="submit">Register Account</button>
+                <FacebookLogin />
+                <pre id='legal'>By clicking "Sign Up" I agree to the Save A Stray  
+                  <br/> 
+                   <a href='#/tos'>Terms of Service</a>
+                   <pre> </pre>
+                   <a href='#/privacy'>Privacy Policy</a>
+                </pre>
               </form>
             </div>
             
