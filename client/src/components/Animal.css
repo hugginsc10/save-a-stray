@@ -117,7 +117,12 @@
 
 #radio-buttons{
     color: black;
-    font-size: 1em;
+        font-size: 1em;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        margin: auto;
+        margin-right: 2vw;
 }
 
 #animal-image{
@@ -129,6 +134,7 @@
     grid-row-start: 5;
     grid-column-start: 3;
     display: flex;
+    
 }
 
 #image-preview{
@@ -140,6 +146,16 @@
     /* box-shadow: 1px 1px 3px darkgrey; */
     width: 100%;
     padding-bottom: 100%;
+}
+
+.radio-div{
+    display: flex;
+    align-items: center;
+}
+
+.radio-div p{
+    margin: 0 5px;
+    font-family: 'Overpass Mono', monospace;
 }
 
 #male, #female{
@@ -177,8 +193,14 @@
     }
 
     #radio-buttons{
+        color: black;
+        font-size: 1em;
         display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
         margin: auto;
+        margin-right: 2vw;
+    
     }
 
     #radio-buttons input{
@@ -221,5 +243,9 @@
 
     .new-animal-form-input::placeholder{
         color: black;
+    }
+
+    .radio-div{
+
     }
 }

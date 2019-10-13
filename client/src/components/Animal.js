@@ -82,7 +82,7 @@ class NewAnimal extends Component {
                   placeholder="age"
                 />
                 <div id='radio-buttons'>
-                  <div>  
+                  <div className='radio-div'>  
                     <p>M:</p>
                     <input
                     id='male'
@@ -93,7 +93,7 @@ class NewAnimal extends Component {
                       name='gender'
                     />
                   </div>
-                  <div>
+                  <div className='radio-div'>
                     <p>F:</p>
                     <input
                     id='female'
