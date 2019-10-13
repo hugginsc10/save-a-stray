@@ -4,21 +4,20 @@ export default {
   REGISTER_USER: gql`
     mutation RegisterUser($name: String!, $email: String!, $password: String!) {
       register(name: $name, email: $email, password: $password) {
-        _id
         token
         loggedIn
-      
-      }
+        _id
+        fbId
     }
+  }
   `,
   LOGIN_USER: gql`
     mutation LoginUser($email: String!, $password: String!) {
       login(email: $email, password: $password) {
-        _id
         token
         loggedIn
-        name
-        email
+        fbId
+        
       }
     }
   `,
@@ -26,9 +25,6 @@ export default {
     mutation VerifyUser($token: String!) {
       verifyUser(token: $token) {
         loggedIn
-        _id
-        email
-        name
       }
     }
   `,
@@ -66,18 +62,6 @@ export default {
         paymentEmail
         }
     }
-  `,
-  FACEBOOK_LOGIN: gql`
-  mutation facebookSignIn($code: String!) {
-    facebookSignIn(code: $code) {
-      user {
-        _id
-        email
-        name
-        token
-        loggedIn
-      }
-    }
-  } `
+  `
 
 }

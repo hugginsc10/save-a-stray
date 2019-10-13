@@ -12,7 +12,7 @@ const UserType = new GraphQLObjectType({
     token: { type: GraphQLString },
     loggedIn: { type: GraphQLBoolean },
     userRole: {type: GraphQLString},
-    fbkId: { type: GraphQLString } 
+    fbId: { type: GraphQLString } 
   })
 });
 

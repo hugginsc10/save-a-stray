@@ -3,8 +3,7 @@ import {
   Mutation,
   ApolloConsumer
 } from "react-apollo";
-import Facebook from "./FBButton";
-import Google from "./GoogleLogin";
+
 import Mutations from "../graphql/mutations";
 import './auth.css';
 import { Link, withRouter } from 'react-router-dom';
@@ -18,80 +17,84 @@ class Login extends Component {
       password: ""
     };
   }
-  
+  facebookLogin = () => {
+    window.location = "https://localhost:3000/loginfb"
+    console.log("successful login")
+  }
+  onSignIn(googleUser) {
+    const profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  };
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
-  
-  updateCache(client, {data}) {
 
+  updateCache(client, { data }) {
+    console.log(data);
     client.writeData({
-      data: { ...data.login}
+      data: { isLoggedIn: data.login.loggedIn }
     });
-  }  
-  
+  }
+
   render() {
-    
     return (
       <ApolloConsumer>
-         {client => (
+        {client => (
           <Mutation
             mutation={LOGIN_USER}
             onCompleted={data => {
-              const { token, _id } = data.login;
+              const { token } = data.login;
               localStorage.setItem("auth-token", token)
-              localStorage.setItem("user-id", _id);
-              this.props.history.push("/")
-            }}
+              this.props.history.push("/User")
+
+            }
+            }
             update={(client, data) => this.updateCache(client, data)}
           >
             {loginUser => (
 
-          <div className='auth-modal'>
-            <div className='auth-div'>
-            <Link to="/" className='modal-exit'>X</Link> 
-              <form className='auth-form'
-                onSubmit={e => {
-                  e.preventDefault();
-                  loginUser({
-                    variables: {
-                      email: this.state.email,
-                      password: this.state.password
-                    }
-                  }).catch(e => {
-                    const login = document.getElementById("login-errors");
-                    login.innterHTML = "";
-                    const div = document.getElementById("errors");
-                    let m = e.message.toString().slice(15);
-                    console.log(m)
-                })
-              }}
-              >
-                <h1>Login</h1>
-                <input
-                  value={this.state.email}
-                  onChange={this.update("email")}
-                  placeholder="Email"
-                />
-                <input
-                  value={this.state.password}
-                  onChange={this.update("password")}
-                  type="password"
-                  placeholder="Password"
-                />
-                <button className='modal-button' type="submit">Log In</button>
-                
-                <Facebook/>
-                <Google />
-              </form>
-              
-            </div>
-          </div>
+              <div className='auth-modal'>
+                <div className='auth-div'>
+                  <Link to="/" className='modal-exit'>X</Link>
+                  <form className='auth-form'
+                    onSubmit={e => {
+                      e.preventDefault();
+                      loginUser({
+                        variables: {
+                          email: this.state.email,
+                          password: this.state.password
+                        }
+                      });
+                    }}
+                  >
+                    <h1>Login</h1>
+                    <input
+                      value={this.state.email}
+                      onChange={this.update("email")}
+                      placeholder="Email"
+                    />
+                    <input
+                      value={this.state.password}
+                      onChange={this.update("password")}
+                      type="password"
+                      placeholder="Password"
+                    />
+                    <button className='modal-button' type="submit">Log In</button>
+                    <button onClick={this.facebookLogin}
+                      className='modal-button' type="primary">Register with Facebook</button>
+
+                  </form>
+
+                </div>
+              </div>
+            )}
+          </Mutation>
         )}
-        </Mutation>
-        )}
-       </ApolloConsumer>
-     );
+      </ApolloConsumer>
+    );
   }
- }
-export default withRouter(Login);
+}
+export default Login;

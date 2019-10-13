@@ -24,15 +24,9 @@ const RootQueryType = new GraphQLObjectType({
     user: {
       type: UserType,
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
-      async resolve(_, {_id}) {
-        return await User.findById(_id).populate({
-          path: "shelters",
-          populate: {
-            path: "animals"
-          }
-
-        });
-      }
+      resolve(_, args) {
+        return User.findById(args._id)
+        }
     },
     animals: {
       type: new GraphQLList(AnimalType),

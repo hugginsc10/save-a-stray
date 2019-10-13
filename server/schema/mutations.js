@@ -29,8 +29,8 @@ const mutation = new GraphQLObjectType({
     login: {
       type: UserType,
       args: {
-        email: { type: new GraphQLNonNull(GraphQLString) },
-        password: { type: new GraphQLNonNull(GraphQLString) }
+        email: { type: GraphQLString },
+        password: { type: GraphQLString}
       },
       resolve(_, args) {
         return AuthService.login(args);
@@ -51,8 +51,8 @@ const mutation = new GraphQLObjectType({
       args: {
         token: { type: GraphQLString }
       },
-      async resolve(_, {token}, ctx) {
-        return await AuthService.verifyUser({ token: ctx.token || token} );
+      resolve(_, args) {
+        return AuthService.verifyUser(args);
       }
     },
     newAnimal: {

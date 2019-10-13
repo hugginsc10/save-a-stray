@@ -21,11 +21,10 @@ const App = () => {
         <Slug/>
         <Nav id='navbar' />
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
+          <Route exact path="/newApplication" component={Application}  routeType="" />
+        <Switch>
           <Route exact path="/Shelter" component={ShelterLanding} routeType=""  />
           <Route exact path="/user" component={UserLanding} routeType=""  />
-          <Route exact path="/newApplication" component={Application}  routeType="" />
-
-        <Switch>
           <Route exact path='/' component={Splash} />
           <Route exact path="/newShelter" component={Shelter} routeType="auth" />
           <AuthRoute exact path="/register" component={Register} routeType="auth" />

@@ -7,23 +7,6 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
-const createTokens = async (user, keys) => {
-  const createToken = jwt.sign(
-    { user: user._id },
-     keys.secretOrKey,
-     {expiresIn: '1m',},
-  );
-  const createRefreshToken = jwt.sign(
-    {user: user._id},
-    keys.secretOrKey,
-    {expiresIn: '7d',},
-  );
-  return Promise.all([createToken, createRefreshToken]);
-  };
-
-
-
-
 const register = async data => {
   console.log(data)
   try {
@@ -36,8 +19,8 @@ const register = async data => {
     const {
       name,
       email,
-      password,
-      userRole
+      password
+
     } = data;
 
     // we want to wait until our model can tell us whether a user exists with that email
@@ -62,7 +45,7 @@ const register = async data => {
         name,
         email,
         password: hashedPassword
-        
+
       },
       err => {
         if (err) throw err;
@@ -82,79 +65,79 @@ const register = async data => {
   }
 };
 
-// const facebookRegister = async data => {
-//   console.log(data)
-//   try {
+const facebookRegister = async data => {
+  console.log(data)
+  try {
 
-//     const { id, displayName } = data
-//     const email = id
-//     const name = displayName
-//     const userRole = "endUser"
-//     // we want to wait until our model can tell us whether a user exists with that email
-//     const existingEmail = await User.findOne({ email:id });
+    const { id, displayName } = data
+    const email = id
+    const name = displayName
+    const userRole = "endUser"
+    // we want to wait until our model can tell us whether a user exists with that email
+    const existingEmail = await User.findOne({ email: id });
 
-//     if (existingEmail) {
+    if (existingEmail) {
 
-//         // Log the user in 
-//           try {
-//             // use our other validator we wrote to validate this data
+      // Log the user in 
+      try {
+        // use our other validator we wrote to validate this data
 
-//             const user = await User.findOne({
-//               email
-//             })
-//             if (!user) {
-//               throw new Error("This user does not exist");
-//             }
+        const user = await User.findOne({
+          email
+        })
+        if (!user) {
+          throw new Error("This user does not exist");
+        }
 
-//             const correctPassword = await bcrypt.compareSync(email, user.password);
-//             if (!correctPassword) {
-//               throw new Error("Invalid credentials");
-//             }
+        const correctPassword = await bcrypt.compareSync(email, user.password);
+        if (!correctPassword) {
+          throw new Error("Invalid credentials");
+        }
 
-//             const token = jwt.sign({
-//               id: user._id
-//             }, keys.secretOrKey);
+        const token = jwt.sign({
+          id: user._id
+        }, keys.secretOrKey);
 
-//             return {
-//               token,
-//               loggedIn: true,
-//               ...user._doc,
-//               password: null
-//             };
-//           } catch (err) {
-//             throw err;
-//           }
-      
-//     }
+        return {
+          token,
+          loggedIn: true,
+          ...user._doc,
+          password: null
+        };
+      } catch (err) {
+        throw err;
+      }
 
-//     // hash our password
-//     const hashedPassword = await bcrypt.hash(email, 10);
+    }
 
-//     // create a new user with all our arguments
-//     const user = new User(
-//       {
-//         name,
-//         email,
-//         password: hashedPassword,
-//         userRole
-//       },
-//       err => {
-//         if (err) throw err;
-//       }
-//     );
+    // hash our password
+    const hashedPassword = await bcrypt.hash(email, 10);
 
-//     // save our user
-//     user.save();
-//     // we'll create a token for the user
-//     const token = jwt.sign({ id: user._id }, keys.secretOrKey);
+    // create a new user with all our arguments
+    const user = new User(
+      {
+        name,
+        email,
+        password: hashedPassword,
+        userRole
+      },
+      err => {
+        if (err) throw err;
+      }
+    );
 
-//     // then return our created token, set loggedIn to be true, null their password, and send the rest of the user
-//     return { token, loggedIn: true, ...user._doc, password: null };
+    // save our user
+    user.save();
+    // we'll create a token for the user
+    const token = jwt.sign({ id: user._id }, keys.secretOrKey);
 
-//   } catch (err) {
-//     throw err;
-//   }
-// };
+    // then return our created token, set loggedIn to be true, null their password, and send the rest of the user
+    return { token, loggedIn: true, ...user._doc, password: null };
+
+  } catch (err) {
+    throw err;
+  }
+};
 
 const login = async data => {
   try {
@@ -165,7 +148,7 @@ const login = async data => {
       throw new Error(message);
     }
     const { email, password } = data
-    const user = await User.findOne({email: email})
+    const user = await User.findOne({ email })
     if (!user) {
       throw new Error("This user does not exist");
     }
@@ -175,9 +158,9 @@ const login = async data => {
       throw new Error("Invalid credentials");
     }
 
-    const token = jwt.sign({ id: user._id, email: user.email }, keys.secretOrKey);
+    const token = jwt.sign({ id: user._id }, keys.secretOrKey);
 
-    return { token: token, loggedIn: true, ...user._doc, password: null };
+    return { token, loggedIn: true, ...user._doc, password: null };
   } catch (err) {
     throw err;
   }
@@ -193,7 +176,7 @@ const logout = async data => {
     }
 
     const token = "";
-    return { token, loggedIn: false, ...user._doc, password: null}
+    return { token, loggedIn: false, ...user._doc, password: null }
   } catch (err) {
     throw err;
   }
@@ -211,7 +194,7 @@ const verifyUser = async data => {
     // then we try to use the User with the id we just decoded
     // making sure we await the response
     const loggedIn = await User.findById(id).then(user => {
-      return user ? {is:true,userRole: user.userRole} : {is:false};
+      return user ? { is: true, userRole: user.userRole } : { is: false };
     });
 
     return { loggedIn };
@@ -225,6 +208,5 @@ module.exports = {
   login,
   logout,
   verifyUser,
-  createTokens
-
+  facebookRegister
 };
