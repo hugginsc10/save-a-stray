@@ -1,4 +1,6 @@
 const models = require("./models");
+const cookieParser = require("cookie-parser")
+const session = require('express-session');
 const express = require("express");
 const app = express();
 const db = require("../config/keys.js").MONGO_URI;
@@ -14,31 +16,36 @@ const passport = require("passport");
 const facebookRegister = require("./services/auth")
 
 
-app.use(bodyParser.json());
-
-app.use(passport.initialize());
-if (!db) {
-  throw new Error("You must provide a string to connect to MongoDB Atlas");
-}
 
 
-passport.use(
-  new FacebookStrategy({
-    clientID: Keys.fbookClient,
-    clientSecret: Keys.fbookKey,
-    callbackURL: 'https://localhost:3000/auth/facebook/callback',
-    scope: ['email'],
-    profileFields: ['id', 'emails']
-  },
+  app.use(bodyParser.json());
+
+  app.use(passport.initialize());
+  
+  
+  if (!db) {
+    throw new Error("You must provide a string to connect to MongoDB Atlas");
+  }
+  
+  
+  passport.use(
+    new FacebookStrategy({
+      clientID: Keys.fbookClient,
+      clientSecret: Keys.fbookKey,
+      callbackURL: 'https://localhost:3000/auth/facebook/callback',
+      scope: ['email'],
+      profileFields: ['id', 'emails']
+    },
     (accessToken, refreshToken, profile, cb) => {
       cb(facebookRegister, profile);
     },
-  ),
-);
+    ),
+    );
+    
+    
+    
+    app.use(passport.session());
 
-
-
-app.use(passport.initialize());
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 
@@ -83,6 +90,6 @@ app.use(
 );
 
 // remember we use bodyParser to parse requests into json
-app.use(bodyParser.json());
+
 
 module.exports = app;

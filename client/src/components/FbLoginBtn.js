@@ -31,9 +31,9 @@ class FbLoginBtn extends Component {
     document.body.appendChild(scriptTag);
   }
   onStatusChange(response) {
+
     if (response.status === 'connected') {
       const { accessToken } = response.authResponse;
-      
       this.onSuccess(accessToken, this.props.afterLogin);
   
     } else {
@@ -48,7 +48,7 @@ class FbLoginBtn extends Component {
         data-max-rows="1"
         data-size="large"
         data-button-type="login_with"
-        data-show-faces="false"
+        data-show-faces="true"
         data-auto-logout-link="true"
         data-use-continue-as="true"
         data-scope={this.props.dataScope}

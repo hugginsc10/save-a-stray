@@ -83,7 +83,8 @@ class Register extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Register Account</button>
-                  <FBLoginBtn/>
+                  <FBLoginBtn />
+                  <a href="http://save-a-stray.herokuapp.com/auth/google">Login With Google</a>
                 <pre id='legal'>By clicking "Sign Up" I agree to the Save A Stray  
                   <br/> 
                    <a href='#/tos'>Terms of Service</a>

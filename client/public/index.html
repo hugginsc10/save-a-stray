@@ -12,7 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <meta name="google-site-verification" content="h7CQyucIVltfE8MRlIobR1GYO9kpIcv5W1t5zmz4-Cc" />
-   
+    <script async defer crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=515957642529597&autoLogAppEvents=1"></script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
 
     <meta name="theme-color" content="#000000" />
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
@@ -47,10 +49,38 @@
   <body>
     
    
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=515957642529597&autoLogAppEvents=1"></script>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="fb-root">
+    
+      
+      <script>
+        window.onload = () => {
+          window.fbAsyncInit = () => {
+            FB.init({
+              appId: '515957642529597',
+              xfbml: true,
+              cookie: true,
+              version: 'v4.0'
+            });
+            let fbInitEvent = new Event('FBObjectReady');
+            document.dispatchEvent(fbInitEvent);
+
+            window.FB.getLoginStatus((response) => {
+              console.log(response);
+            })
+          };
+
+          (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+        }
+      </script>
+      
+    </div>
+   
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -62,31 +92,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script>
-    window.fbAsyncInit = () => {
-    FB.init({
-      appId      : '515957642529597',
-      xfbml      : true,
-      cookie     : true,
-      version    : 'v4.0'
-    });
-    let fbInitEvent = new Event('FBObjectReady');
-    document.dispatchEvent(fbInitEvent);
-
-    window.FB.getLoginStatus( (response) => {
-      debugger
-      console.log(response);
-    })
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+    
 
 
 
