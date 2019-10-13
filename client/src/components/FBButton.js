@@ -1,69 +1,68 @@
-import React, { Component } from "react";
-import FacebookLogin from "react-facebook-login";
-import {Redirect, withRouter} from 'react-router-dom'
-class Facebook extends Component {
-  constructor(props) {
-    super(props);
-  
-    this.state = {
-    isLoggedIn: false,
-    userID: "",
-    name: "",
-    email: "",
-    picture: "",
+import React, { Component } from 'react';
 
-  };
-} 
-  responseFacebook = response => {
-    // console.log(response);
-    this.setState({
-      isLoggedIn: true,
-      userID: response.userID,
-      name: response.name,
-      email: response.email,
-      picture: response.picture.data.url
+export default class FacebookLogin extends Component {
+
+  componentDidMount() {
+    document.addEventListener('FBObjectReady', this.initializeFacebookLogin);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('FBObjectReady', this.initializeFacebookLogin);
+  }
+
+  /**
+   * Init FB object and check Facebook Login status
+   */
+  initializeFacebookLogin = () => {
+    this.FB = window.FB;
+    this.checkLoginStatus();
+  }
+
+  /**
+   * Check login status
+   */
+  checkLoginStatus = () => {
+    this.FB.getLoginStatus(this.facebookLoginHandler);
+  }
+
+  /**
+   * Check login status and call login api is user is not logged in
+   */
+  facebookLogin = () => {
+    if (!this.FB) return;
+
+    this.FB.getLoginStatus(response => {
+      if (response.status === 'connected') {
+        this.facebookLoginHandler(response);
+      } else {
+        this.FB.login(this.facebookLoginHandler, { scope: 'public_profile' });
+      }
     });
-  };
-  componentClicked = () => console.log("clicked");
-  render() {
-    let fbContent;
-    if (this.state.isLoggedIn) {
-      fbContent = (
-        <div
-          style={{
-            width: "400px",
-            margin: "auto",
-            background: "#f4f4f4",
-            padding: "20px"
-          }}
-        >
-          <img src={this.state.picture} alt={this.state.name} />
-          <h2>Welcome {this.state.name}</h2>
-          Email: {this.state.email}
-        </div>
-      );
-    } else {
-      fbContent = (
-        <FacebookLogin
-          appId="515957642529597"
-          autoLoad={true}
-          fields="name,email,picture"
-          onClick={this.componentClicked}
-          callback={this.responseFacebook}
-          redirectUri={"/"}
-          returnScopes={true}
-          cookie={true}
-        />
-       
+  }
 
-      );
+  /**
+   * Handle login response
+   */
+  facebookLoginHandler = response => {
+    if (response.status === 'connected') {
+      this.FB.api('/me', userData => {
+        let result = {
+          ...response,
+          user: userData
+        };
+        this.props.onLogin(true, result);
+      });
+    } else {
+      this.props.onLogin(false);
     }
+  }
+
+  render() {
+    let { children } = this.props;
     return (
-    
-       fbContent
-    
-    )
-    
+      <div onClick={this.facebookLogin}>
+        {children}
+      </div>
+    );
   }
 }
-export default withRouter(Facebook);

@@ -4,7 +4,7 @@ import {
   ApolloConsumer,
   Query
 } from "react-apollo";
-
+import FBLoginBtn from "./FbLoginBtn";
 import Mutations from "../graphql/mutations";
 import Querys from "../graphql/queries";
 import './auth.css';
@@ -22,7 +22,7 @@ class Login extends Component {
     };
   }
   facebookLogin = () => {
-    window.location = "https://localhost:3000/loginfb"
+    window.location = "https://localhost:3000/auth/facebook"
     console.log("successful login")
   }
   onSignIn(googleUser) {
@@ -44,12 +44,13 @@ class Login extends Component {
   
   render() { 
     return (
+      
         <Mutation
             mutation={LOGIN_USER}
             onCompleted={data => {
               const { token } = data.login;
               localStorage.setItem("auth-token", token);
-              this.props.history.push("/Landing");
+              this.props.history.push("/User");
             }}
             update={(client, data) => this.updateCache(client, data)}
           >
@@ -85,11 +86,9 @@ class Login extends Component {
                       placeholder="Password"
                     />
                     <button className='modal-button' type="submit">Log In</button>
-                    <button onClick={this.facebookLogin}
-                      className='modal-button' type="primary">Register with Facebook</button>
-
+                    
+                   <FBLoginBtn/>
                   </form>
-
                 </div>
               </div>
                 )}}

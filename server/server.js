@@ -14,6 +14,7 @@ const passport = require("passport");
 const facebookRegister = require("./services/auth")
 
 
+app.use(bodyParser.json());
 
 app.use(passport.initialize());
 if (!db) {
@@ -39,7 +40,7 @@ passport.use(
 
 app.use(passport.initialize());
 
-app.get('/loginfb', passport.authenticate('facebook', { scope: ['email'] }));
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 
 app.get(
   '/auth/facebook/callback',

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Mutation, ApolloConsumer } from "react-apollo";
-
+import FBLoginBtn from "./FbLoginBtn";
 import Mutations from "../graphql/mutations"
 import './auth.css'
 import { Link } from 'react-router-dom';
@@ -26,10 +26,11 @@ class Register extends Component {
     debugger
     client.writeData({
       data: {  isLoggedIn: data.register.loggedIn,userId: data.register._id }
+    
     });
   }
   facebookLogin = () => {
-    window.location = "https://localhost:3000/loginfb"
+    window.location = "https://localhost:3000/auth/facebook"
     console.log("successful login")
   }
   render() {
@@ -42,7 +43,7 @@ class Register extends Component {
             onCompleted={data => {
               const { token } = data.register;
               localStorage.setItem("auth-token", token);
-              this.props.history.push("/Landing");
+              this.props.history.push("/User");
             }}
             update={(client, data) => this.updateCache(client, data)}
           >
@@ -82,7 +83,7 @@ class Register extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Register Account</button>
-                <FacebookLogin />
+                  <FBLoginBtn/>
                 <pre id='legal'>By clicking "Sign Up" I agree to the Save A Stray  
                   <br/> 
                    <a href='#/tos'>Terms of Service</a>
