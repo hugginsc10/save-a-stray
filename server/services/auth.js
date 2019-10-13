@@ -8,19 +8,20 @@ const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
 const register = async data => {
-  console.log(data)
   try {
     const { message, isValid } = validateRegisterInput(data);
 
     if (!isValid) {
       throw new Error(message);
     }
+
     // deconstruct our data
     const {
       name,
       email,
       password,
-      userRole
+      userRole,
+      shelterId
     } = data;
 
     // we want to wait until our model can tell us whether a user exists with that email
@@ -45,7 +46,8 @@ const register = async data => {
         name,
         email,
         password: hashedPassword,
-        userRole
+        userRole, 
+        shelterId
       },
       err => {
         if (err) throw err;
@@ -66,7 +68,6 @@ const register = async data => {
 };
 
 const facebookRegister = async data => {
-  console.log(data)
   try {
 
     const { id, displayName } = data
@@ -191,10 +192,15 @@ const verifyUser = async data => {
     const decoded = jwt.verify(token, keys.secretOrKey);
     const { id } = decoded;
 
+
     // then we try to use the User with the id we just decoded
     // making sure we await the response
     const loggedIn = await User.findById(id).then(user => {
-      return user ? {is:true,userRole: user.userRole} : {is:false};
+      if (user){      
+      user.varId =  id
+      user.save()
+    }
+      return user ? true:false;
     });
 
     return { loggedIn };

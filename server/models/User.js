@@ -31,6 +31,13 @@ const UserSchema = new Schema({
   },
   fbookId: {
     type: String,
+  },
+  shelterId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'shelter'
+  },
+  varId: {
+      type: mongoose.Schema.Types.ObjectId
   }
 });
 

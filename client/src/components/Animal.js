@@ -31,10 +31,8 @@ class NewAnimal extends Component {
       <Mutation
         mutation={CREATE_ANIMAL}
         onCompleted={data => {
-          console.log(data)
           const { newAnimal } = data.newAnimal;
           localStorage.setItem("Animal", newAnimal);
-          // console.log(client)
           this.props.history.push("/");
         }}
 

@@ -17,9 +17,7 @@ const ApplicationType = new GraphQLObjectType({
     animal:{
       type: require("./animal_type"),
         resolve(parentValue) {
-          console.log(parentValue)
           return Animal.findById(parentValue.animalId).then(animal => {
-            console.log(animal)
             return animal
           })
         }
