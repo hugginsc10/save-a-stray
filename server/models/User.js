@@ -35,6 +35,9 @@ const UserSchema = new Schema({
   shelterId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'shelter'
+  },
+  varId: {
+      type: mongoose.Schema.Types.ObjectId
   }
 });
 

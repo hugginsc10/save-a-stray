@@ -52,7 +52,7 @@ if (token) {
       debugger 
       cache.writeData({
         data: {
-           isLoggedIn: data.verifyUser.loggedIn, userId: data.verifyUser._Id
+           isLoggedIn: data.verifyUser.loggedIn, userId: data.verifyUser.id
         }
       });
     });

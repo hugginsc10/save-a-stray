@@ -7,6 +7,7 @@ const UserType = new GraphQLObjectType({
   // remember we wrap the fields in a thunk to avoid circular dependency issues
   fields: () => ({
     _id: { type: GraphQLID },
+    varId: { type: GraphQLID },
     name: { type: GraphQLString },
     email: { type: GraphQLString },
     token: { type: GraphQLString },

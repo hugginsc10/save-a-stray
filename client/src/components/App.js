@@ -22,8 +22,9 @@ const App = () => {
         <Slug/>
         <Nav id='navbar' />
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
-          <Route exact path="/Shelter" component={Landing} routeType=""  />
+          <Route exact path="/Landing" component={Landing} routeType=""  />
           <Route exact path="/User" component={UserLanding} routeType=""  />
+          <Route exact path="/Shelter" component={ShelterLanding} routeType=""  />
           <Route exact path="/newApplication" component={Application}  routeType="" />
 
         <Switch>

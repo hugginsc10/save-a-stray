@@ -6,7 +6,7 @@ export default {
       register(userRole: $userRole,name: $name, email: $email, password: $password) {
         token
         loggedIn,
-        userRole
+        _id
       }
     }
   `,
@@ -23,7 +23,7 @@ export default {
     mutation VerifyUser($token: String!) {
       verifyUser(token: $token) {
         loggedIn,
-        _id
+        varId
       }
     }
   `,

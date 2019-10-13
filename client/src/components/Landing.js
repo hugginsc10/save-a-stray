@@ -43,7 +43,6 @@ render(){
 
         >                        
             {({ loading, error, data }) => {
-                debugger
                 return (
                     <div></div>
                 );

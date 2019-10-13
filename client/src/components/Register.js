@@ -26,7 +26,7 @@ class Register extends Component {
   updateCache(client, { data }) {
     debugger
     client.writeData({
-      data: {  isLoggedIn: data.register.loggedIn,userId: data.register.user }
+      data: {  isLoggedIn: data.register.loggedIn,userId: data.register._id }
     });
   }
 
@@ -40,11 +40,7 @@ class Register extends Component {
             onCompleted={data => {
               const { token } = data.register;
               localStorage.setItem("auth-token", token);
-              if (client.cache.data.data.ROOT_QUERY.userRole === "admin") {
-                this.props.history.push("/Shelter");
-              } else {
-                this.props.history.push("/User")
-              }
+              this.props.history.push("/Landing");
             }}
             update={(client, data) => this.updateCache(client, data)}
           >

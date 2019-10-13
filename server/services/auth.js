@@ -192,10 +192,15 @@ const verifyUser = async data => {
     const decoded = jwt.verify(token, keys.secretOrKey);
     const { id } = decoded;
 
+
     // then we try to use the User with the id we just decoded
     // making sure we await the response
     const loggedIn = await User.findById(id).then(user => {
-      return user ? {is:true,userId: user._id} : {is:false};
+      if (user){      
+      user.varId =  id
+      user.save()
+    }
+      return user ? true:false;
     });
 
     return { loggedIn };

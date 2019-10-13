@@ -33,7 +33,6 @@ class Login extends Component {
   }
   
   updateCache(client, {data}) {
-    debugger
     client.writeData({
       data: { isLoggedIn: data.login.loggedIn,userId: data.login._id }
     });
@@ -44,10 +43,9 @@ class Login extends Component {
         <Mutation
             mutation={LOGIN_USER}
             onCompleted={data => {
-              debugger
               const { token } = data.login;
               localStorage.setItem("auth-token", token);
-              this.props.history.push("/Shelter");
+              this.props.history.push("/Landing");
             }}
             update={(client, data) => this.updateCache(client, data)}
           >
@@ -96,23 +94,3 @@ class Login extends Component {
   }
 }
 export default Login;
-
-            // <Query
-            //   query={FETCH_USER}
-            //   variables={{_id: data.userId }}
-            //   onCompleted={data => {       
-            //     debugger              
-            //      if (data.userRole === "admin") {
-
-            //         this.props.history.push("/Shelter");
-            //      } else {
-            //         this.props.history.push("/User")
-            //      }
-            //   }}
-            // update={(client, data) => this.updateCache(client, data)}
-
-            //   >                        
-            //       { FetchUser  => (
-            //         <div></div>
-            //       )}
-            // </Query>
