@@ -21,7 +21,7 @@
 #splash-button{
     border: none;
     padding: 8px;
-    
+    width: 100%;
     color: white;
     font-size: 21px;
    
@@ -30,7 +30,7 @@
     grid-column-start: 1;
     
     grid-column-end: 4;
-    transition: all .25s ease-in-out;
+    transition: all .75s ease-in-out;
 }
 
 #splash-button:hover{

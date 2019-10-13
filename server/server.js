@@ -30,8 +30,6 @@ passport.use(
     profileFields: ['id', 'emails']
   },
     (accessToken, refreshToken, profile, cb) => {
-      console.log(profile);
-      // console.log(Keys.fbookClient);
       cb(facebookRegister, profile);
     },
   ),

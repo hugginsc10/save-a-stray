@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import {
   Mutation,
-  ApolloConsumer
+  ApolloConsumer,
+  Query
 } from "react-apollo";
 
 import Mutations from "../graphql/mutations";
+import Querys from "../graphql/queries";
 import './auth.css';
 import { Link, withRouter } from 'react-router-dom';
-const { LOGIN_USER } = Mutations
+import ShelterLanding from "./ShelterLanding" ;
+const { LOGIN_USER } = Mutations;
+const { FETCH_USER,USER_ID} = Querys;
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -31,30 +35,28 @@ class Login extends Component {
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
-
-  updateCache(client, { data }) {
-    console.log(data);
+  
+  updateCache(client, {data}) {
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn }
+      data: { isLoggedIn: data.login.loggedIn,userId: data.login._id }
     });
-  }
-
-  render() {
+  }  
+  
+  render() { 
     return (
-      <ApolloConsumer>
-        {client => (
-          <Mutation
+        <Mutation
             mutation={LOGIN_USER}
             onCompleted={data => {
               const { token } = data.login;
-              localStorage.setItem("auth-token", token)
-              this.props.history.push("/User")
-
-            }
-            }
+              localStorage.setItem("auth-token", token);
+              this.props.history.push("/Landing");
+            }}
             update={(client, data) => this.updateCache(client, data)}
           >
-            {loginUser => (
+            {( loginUser,{ loading, error, data }) => {
+                if (loading) return <p>Loading</p>;
+                if (error) return <p>Error</p>;
+                return (
 
               <div className='auth-modal'>
                 <div className='auth-div'>
@@ -90,10 +92,8 @@ class Login extends Component {
 
                 </div>
               </div>
-            )}
+                )}}
           </Mutation>
-        )}
-      </ApolloConsumer>
     );
   }
 }

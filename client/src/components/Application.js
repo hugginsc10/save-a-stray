@@ -25,7 +25,6 @@ class NewApplication extends Component {
       <Mutation
         mutation={CREATE_APPLICATION}
         onCompleted={data => {
-          console.log(data)
           const { newApplication } = data.newApplication;
           localStorage.setItem("Application", newApplication);
           this.props.history.push("/");
@@ -46,7 +45,7 @@ class NewApplication extends Component {
                 });
               }}
             >
-              <input className='application-form-input' 
+              {/* <input className='application-form-input' 
                 value={this.state.animalId}
                 onChange={this.update("animalId")}
                 placeholder="animalId"
@@ -60,7 +59,22 @@ class NewApplication extends Component {
                 value={this.state.applicationData}
                 onChange={this.update("applicationData")}
                 placeholder="applicationData"
-              />
+              /> */}
+              
+              <h1 id='application-header'>Application for adoption</h1>
+              <div id='seperator-2'></div>
+              <input type='text' id='application-first-name' placeholder='first name' ></input>
+              <input type='text' id='application-last-name' placeholder='last name' ></input>
+              <input type='text' id='application-street-address' placeholder='street address' ></input>
+              <input type='text' id='application-city' placeholder='city' ></input>
+              <input type='text' id='application-state' placeholder='state' ></input>
+              <input type='text' id='application-email'placeholder='email'></input>
+              <input type='text' id='application-phone-number'placeholder='phone number'></input>
+              <input type='text' id='application-housing'placeholder='housing'></input>
+              <input type='text' id='application-housing-type'placeholder='housing-type'></input>
+              <input type='textarea' id='application-noise-level' placeholder='what is your general noise and activity level?'></input>
+        
+
               <button id='application-submit' type="submit">Submit Application</button>
             </form>
           </div>

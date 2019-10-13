@@ -78,7 +78,7 @@ class FacebookSignIn extends Component {
       return (<a className='modal-button' id='facebook-button' href = '/auth/facebook'
         onClick = {this.onFacebookLogin}> 
         <i className = {icon} > 
-        </i> Facebook </a >
+        </i> Sign in with Facebook </a >
       );
     }
   }

@@ -28,7 +28,6 @@ const ShelterType = new GraphQLObjectType({
         animals: {
             type: require("./animal_type"),
             resolve(parentValue) {
-                console.log(parentValue)
                 return Shelter.findById(parentValue._Id).populate("animals").then(shelter => {
                     return shelter.animals
                 })
@@ -37,7 +36,6 @@ const ShelterType = new GraphQLObjectType({
         users: {
             type: require("./user_type"),
             resolve(parentValue) {
-                console.log(parentValue)
                 return Shelter.findById(parentValue._Id).populate("users").then(shelter => {
                     return shelter.users
                 })

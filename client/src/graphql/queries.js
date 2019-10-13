@@ -7,21 +7,28 @@ export default {
       isLoggedIn @client
     }
   `,
-  FETCH_USER: gql`
-    query FetchUser($_id: ID!) {
-      user(_id: $_id){
-        name
-        email
-        userRole
-        paymentEmail
-      }
+  USER_ID: gql`
+    query IsUserLoggedIn {
+      userId @client
     }
     `,
-    FETCH_USER_ID: gql`
-      query FetchUser($_id: ID!) {
-        user(_id: $_id) {
-          _id
+  FETCH_USER: gql`
+    query FetchUser($_id: ID!){
+      user(_id: $_id) {
+        userRole,
+        shelter{
+          name
+          location
+          paymentEmail
+          animals{
+            _id
+          }
+          users{
+            _id
+          }
         }
+
       }
-      `
+    }
+  `
 }

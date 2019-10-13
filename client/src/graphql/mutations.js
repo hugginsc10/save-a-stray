@@ -17,6 +17,7 @@ export default {
         token
         loggedIn
         fbId
+        _id
         
       }
     }
@@ -24,7 +25,8 @@ export default {
   VERIFY_USER: gql`
     mutation VerifyUser($token: String!) {
       verifyUser(token: $token) {
-        loggedIn
+        loggedIn,
+        varId
       }
     }
   `,

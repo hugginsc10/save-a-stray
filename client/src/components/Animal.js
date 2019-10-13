@@ -31,17 +31,15 @@ class NewAnimal extends Component {
       <Mutation
         mutation={CREATE_ANIMAL}
         onCompleted={data => {
-          console.log(data)
           const { newAnimal } = data.newAnimal;
           localStorage.setItem("Animal", newAnimal);
-          // console.log(client)
           this.props.history.push("/");
         }}
 
       >
         {loginUser => (
           <div id='new-animal-form'>
-            <h1 id='new-animal-header'>Put up an animal for adoption</h1>
+            
             <form id='new-animal-form-form'
               onSubmit={e => {
                 e.preventDefault();
@@ -60,59 +58,73 @@ class NewAnimal extends Component {
                 });
               }}
             >
-              <input
+              <h1 id='new-animal-header'>Put up an animal for adoption</h1>
+              <div id='seperator'></div>
+              <input id='animal-name'
               className='new-animal-form-input'
                 value={this.state.name}
                 onChange={this.update("name")}
                 placeholder="name"
               />
-              <input
+              <input id='animal-type'
               className='new-animal-form-input'
                 value={this.state.type}
                 onChange={this.update("type")}
                 placeholder="type"
               />
-              <input
-              className='new-animal-form-input'
-                value={this.state.age}
-                onChange={this.update("age")}
-                placeholder="age"
-              />
-              <input
-              className='new-animal-form-input'
-                value={this.state.sex}
-                onChange={this.update("sex")}
-                placeholder="sex"
-              />
-              <input
+              <div id='sex-and-age'>
+                <input id='animal-age'
+                className='new-animal-form-input'
+                  value={this.state.age}
+                  onChange={this.update("age")}
+                  placeholder="age"
+                />
+                <div id='radio-buttons'>
+                  <div>  
+                    <p>M:</p>
+                    <input
+                    id='male'
+                    className='new-animal-form-input'
+                      type='radio'
+                      value={this.state.sex}
+                      onChange={this.update("sex")}
+                      name='gender'
+                    />
+                  </div>
+                  <div>
+                    <p>F:</p>
+                    <input
+                    id='female'
+                    className='new-animal-form-input'
+                      type='radio'
+                      value={this.state.sex}
+                      onChange={this.update("sex")}
+                      name='gender'
+                    />
+                  </div>
+                </div>
+              </div>
+              <input id='animal-color'
               className='new-animal-form-input'
                 value={this.state.color}
                 onChange={this.update("color")}
                 placeholder="color"
               />
-              <input
+              <input id='animal-description'
               className='new-animal-form-input'
                 value={this.state.description}
                 onChange={this.update("description")}
                 placeholder="description"
               />
-              <input
-              className='new-animal-form-input'
-                value={this.state.image}
-                onChange={this.update("image")}
-                placeholder="image"
-              />
-              <input
+              <div id='image-preview'>
+                  
+              </div>
+              
+              <input id='animal-video'
               className='new-animal-form-input'
                 value={this.state.video}
                 onChange={this.update("video")}
-                placeholder="video"
-              />
-              <input
-              className='new-animal-form-input'
-                value={this.state.application}
-                onChange={this.update("application")}
-                placeholder="application"
+                placeholder="video-url"
               />
               <br/>
               <button id='new-animal-submit' type="submit">Add Animal</button>

@@ -23,9 +23,9 @@ class Register extends Component {
   }
 
   updateCache(client, { data }) {
-    console.log(data);
+    debugger
     client.writeData({
-      data: { isLoggedIn: data.register.loggedIn }
+      data: {  isLoggedIn: data.register.loggedIn,userId: data.register._id }
     });
   }
   facebookLogin = () => {
@@ -42,63 +42,62 @@ class Register extends Component {
             onCompleted={data => {
               const { token } = data.register;
               localStorage.setItem("auth-token", token);
-              this.props.history.push("/User")
-
-            }
-            }
+              this.props.history.push("/Landing");
+            }}
             update={(client, data) => this.updateCache(client, data)}
           >
             {registerUser => (
 
-              <div className='auth-modal'>
-                <div className='auth-div'>
-                  <Link to="/" className='modal-exit' >X</Link>
-                  <form className='auth-form'
-                    onSubmit={e => {
-                      e.preventDefault();
-                      registerUser({
-                        variables: {
-                          name: this.state.name,
-                          email: this.state.email,
-                          password: this.state.password
-                        }
-                      });
-                    }}
-                  >
-                    <h1>Signup</h1>
-                    <input
-                      value={this.state.name}
-                      onChange={this.update("name")}
-                      placeholder="name"
-                    />
-                    <input
-                      value={this.state.email}
-                      onChange={this.update("email")}
-                      placeholder="Email"
-                    />
-                    <input
-                      value={this.state.password}
-                      onChange={this.update("password")}
-                      type="password"
-                      placeholder="Password"
-                    />
-                    <button className='modal-button' type="submit">Register Account</button>
-                    <button onClick={this.facebookLogin} className='modal-button' type="primary">Register with Facebook</button>
-                    <pre id='legal'>By clicking "Sign Up" I agree to the Save A Stray
-                  <br />
-                      <a href='#/tos'>Terms of Service</a>
-                      <pre> </pre>
-                      <a href='#/privacy'>Privacy Policy</a>
-                    </pre>
-                  </form>
-                </div>
-
-                <Link to="/newShelter">New Shelter</Link>
-                <br />
-              </div>
-
-            )}
-          </Mutation>
+          <div className='auth-modal'>
+            <div className='auth-div'>
+            <Link to="/" className='modal-exit' >X</Link>
+              <form className='auth-form'
+                onSubmit={e => {
+                  e.preventDefault();
+                  registerUser({
+                    variables: {
+                      name: this.state.name,
+                      userRole: 'endUser',
+                      email: this.state.email,
+                      password: this.state.password
+                    }
+                  });
+                }}
+              >
+                <h1>Signup</h1>
+                <input
+                  value={this.state.name}
+                  onChange={this.update("name")}
+                  placeholder="name"
+                />
+                <input
+                  value={this.state.email}
+                  onChange={this.update("email")}
+                  placeholder="Email"
+                />
+                <input
+                  value={this.state.password}
+                  onChange={this.update("password")}
+                  type="password"
+                  placeholder="Password"
+                />
+                <button className='modal-button' type="submit">Register Account</button>
+                <FacebookLogin />
+                <pre id='legal'>By clicking "Sign Up" I agree to the Save A Stray  
+                  <br/> 
+                   <a href='#/tos'>Terms of Service</a>
+                   <pre> </pre>
+                   <a href='#/privacy'>Privacy Policy</a>
+                </pre>
+              </form>
+            </div>
+            
+            <Link to="/newShelter">New Shelter</Link>
+            <br />
+          </div>
+       
+        )}
+        </Mutation>
         )}
       </ApolloConsumer>
     );
