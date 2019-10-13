@@ -32,7 +32,7 @@ class UserLanding extends Component {
                 debugger
                 let allAn = data.findAnimals.map(name => {
                 debugger
-                return <li>{name}</li>})
+                return <li><h1 className="animalIndex">{name.name}</h1></li>})
                 return (<div>
                   <ul>
                     {allAn}
