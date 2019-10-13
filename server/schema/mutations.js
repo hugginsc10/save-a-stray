@@ -21,7 +21,8 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLString },
         email: { type: GraphQLString },
         password: { type: GraphQLString },
-        userRole:{type: GraphQLString}
+        userRole:{type: GraphQLString},
+        shelterId: {type: GraphQLString}
       },
       resolve(_, args) {
         return AuthService.register(args);
@@ -76,6 +77,53 @@ const mutation = new GraphQLObjectType({
         return newAn
       }
     }, 
+    deleteAnimal: {
+      type: AnimalType,
+      args: {
+        _id: {type: GraphQLID}
+      },
+      resolve(_, {_id}){
+        return Animal.deleteOne(_id)
+      }
+    },
+    updateAnimal: {
+      type: AnimalType,
+      args: {
+        _id: {type: GraphQLID},
+        name: {type: GraphQLString},
+        type: {type: GraphQLString},
+        age: {type: GraphQLInt},
+        sex: {type: GraphQLString},
+        color: {type: GraphQLString},
+        description: {type: GraphQLString},
+        image: {type: GraphQLString},
+        video: {type: GraphQLString},
+        applications: {type: GraphQLID}},
+      resolve(_, {
+        _id,
+        name,
+        type,
+        age,
+        sex,
+        color,
+        description,
+        image,
+        video
+      }){
+        return Animal.findById(_id).then(animal => {
+          animal.name = name 
+          animal.type = type 
+          animal.age = age 
+          animal.sex = sex 
+          animal.color = color 
+          animal.description = description 
+          animal.image = image 
+          animal.video = video 
+          animal.save()
+          return animal
+        })
+      }
+    },
     newApplication: {
       type: ApplicationType,
       args:{
@@ -99,6 +147,28 @@ const mutation = new GraphQLObjectType({
           animal.save()
           newApp.save()
           return newApp
+        })
+      }
+    },
+    deleteApplication: {
+      type: ApplicationType,
+      args: {_id: {type: GraphQLID}},
+      resolve(_, {_id }){
+        return Application.deleteOne(_id)
+      }
+    },
+    editApplication: {
+      type: ApplicationType,
+      args: {
+        _id: {type: GraphQLID},
+        animalId: {type: GraphQLString},
+        applicationData: {type: GraphQLString}
+      },
+      resolve(_,{_id,animalid,applicationData}){
+        return Application.findById(_id).then(application => {
+          application.applicationData = applicationData
+          application.save()
+          return application
         })
       }
     },
@@ -129,6 +199,35 @@ const mutation = new GraphQLObjectType({
         })
         newShelter.save()
         return newShelter
+      }
+    },
+    deleteShelter:{
+      type: ShelterType,
+      args: {_id: {type: GraphQLID}},
+      resolve(_, {_id}){
+        return Shelter.deleteOne(_id)
+      } 
+    },
+    editShelter:{
+      type: ShelterType,
+      args: {
+        _id: {type: GraphQLID},
+        name: {type: GraphQLString},
+        location: {type: GraphQLString},
+        users: {type: GraphQLString},
+        paymentEmail: {type: GraphQLString},
+        animals: {type: GraphQLString}
+      },
+      resolve(_,{_id, name, location, users, paymentEmail, animals }){
+        return Shelter.findById(_id).then(shelter => {
+          shelter.name = name, 
+          shelter.location = location, 
+          shelter.users = users, 
+          shelter.paymentEmail = paymentEmail, 
+          shelter.animals = animals
+          shelter.save() 
+          return shelter 
+        })
       }
     }
   }

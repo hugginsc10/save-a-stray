@@ -16,6 +16,10 @@
   margin: 0;
   margin-top: 3%;
   font-size: 6vw;
+  -webkit-font-smoothing: subpixel-antialiased;
+  letter-spacing: 0px;
+  
+
 }
 
 #lorem{

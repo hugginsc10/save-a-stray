@@ -26,7 +26,6 @@ class NewShelter extends Component {
       <Mutation
         mutation={CREATE_SHELTER}
         onCompleted={data => {
-          console.log(data)
           const { newShelter } = data.newShelter;
           localStorage.setItem("Shelter", newShelter);
           this.props.history.push("/");
