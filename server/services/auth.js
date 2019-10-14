@@ -84,6 +84,7 @@ const facebookRegister = async (data) => {
       console.log(email1)
       console.log("in existingEmail")
     });
+    console.log(existingEmail)
     
     console.log("console.log 2")
     
@@ -95,17 +96,17 @@ const facebookRegister = async (data) => {
         console.log("console.log 4")
         // use our other validator we wrote to validate this data
         
-        // const user = await User.findOne({
-          //   email
-          // })
-          // if (!user) {
-            //   throw new Error("This user does not exist");
-            // }
-            
-            // const correctPassword = await bcrypt.compareSync(email, user.password);
-            // if (!correctPassword) {
-              //   throw new Error("Invalid credentials");
-              // }
+        const user = await User.findOne({
+            email
+          })
+        if (!user) {
+          throw new Error("This user does not exist");
+        }
+        
+        // const correctPassword = await bcrypt.compareSync(email, user.password);
+        // if (!correctPassword) {
+        //     throw new Error("Invalid credentials");
+        // }
               
         const token = jwt.sign({
           id: user._id
@@ -158,7 +159,7 @@ const facebookRegister = async (data) => {
     return { token, loggedIn: true, ...user._doc, password: null,id: user._id  };
 
   } catch (err) {
-    console.log("console.log 3")
+    console.log("console.log 10")
     throw err;
   }
 };
@@ -185,6 +186,8 @@ const login = async data => {
     const token = jwt.sign({ id: user._id }, keys.secretOrKey);
 
     return { token, loggedIn: true, ...user._doc, password: null };
+
+
   } catch (err) {
     throw err;
   }
