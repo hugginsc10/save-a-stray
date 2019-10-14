@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import Mutations from "../graphql/mutations"
-
-class NewAnimal extends Component {
+import './AnimalFeedItem.css'
+class AnimalFeedItem extends Component {
   constructor(props) {
     super(props);
 
@@ -13,18 +13,16 @@ class NewAnimal extends Component {
   
   render() {
     return (
-        <div>
+        <div className='animal-feed-item-div'>
             <p>{this.props.animal.name}</p>
             <p>{this.props.animal.type}</p>
             <p>{this.props.animal.age}</p>
             <p>{this.props.animal.sex}</p>
-            <p>{this.props.animal.color}</p>
-            <p>{this.props.animal.description}</p>
-            <p>{this.props.animal.application}</p>
-            <img src={this.props.ianimal.image}/>
-            <button>Apply to adopt</button>
+            
+            {/* <img src={this.props.ianimal.image}/> */}
+            <button className='apply-button'>See Details</button>
         </div>
     );
   }
 }
-export default NewAnimal;
+export default AnimalFeedItem;

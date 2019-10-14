@@ -59,6 +59,7 @@
     text-decoration: none;
     background:none;
     border:none;
+    align-self: center;
 }
 
 @media screen and (max-width: 690px) {

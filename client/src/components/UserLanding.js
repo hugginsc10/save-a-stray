@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import {Query} from "react-apollo";
 import Queries from "../graphql/queries"
+import AnimalFeedItem from './AnimalFeedItem'
+import './userLanding.css'
 const {FIND_ANIMALS} = Queries
+
 class UserLanding extends Component {
   constructor(props) {
     super(props);
@@ -14,12 +17,17 @@ class UserLanding extends Component {
   }
   updateCurrentSelector(type){
     this.setState({currentSelector:type})
+    let button = document.getElementById('feed-buttons')
+    if (button){
+    button.classList.add('small')
+    button.classList.remove('big')
+    }
   }
 
   render() {
         let main; 
         if (this.state.currentSelector === null) {
-          main = <div>Pick a Animal plz...</div>
+          main = <div id='prompt'>"When we adopt a dog or any pet, we know it is going to end with us having to say goodbye, but we still do it. And we do it for a very good reason: They bring so much joy and optimism and happiness. They attack every moment of every day with that attitude."</div>
         } else {
 
           main = <Query
@@ -28,13 +36,13 @@ class UserLanding extends Component {
           >
             {({ loading, error, data }) => {
                 if (loading) return <p>Loading</p>;
-                if (error) return <p>Error</p>;
-                debugger
-                let allAn = data.findAnimals.map(name => {
-                debugger
-                return <li><h1 className="animalIndex">{name.name}</h1></li>})
-                return (<div>
-                  <ul>
+                if (error) return <p style='color: red;'>Error</p>;
+            
+                let allAn = data.findAnimals.map(animal => {
+            
+                return <li className='animal-feed-item'><AnimalFeedItem animal={animal}/></li>})
+                return (<div id='this-div'>
+                  <ul id='animal-feed'>
                     {allAn}
                   </ul>
                 </div>);
@@ -42,12 +50,13 @@ class UserLanding extends Component {
         </Query>
         }
     return (
-      <div>
-        <h1 id='user-nav' >User Landing Page </h1>
-        <div>
-          <button onClick={e => this.updateCurrentSelector("Dogs")}>Dogs</button>
-          <button onClick={e => this.updateCurrentSelector("Cats")}>Cats</button>
-          <button onClick={e => this.updateCurrentSelector("Outher")}>Outhers</button>
+      <div id='user-landing-top'>
+        <h1 id='user-nav' >Browse Animals</h1>
+        <div id='feed-buttons' className='big'>
+          <button className='feed-button' onClick={e => this.updateCurrentSelector("Dogs")}></button>
+          <button className='feed-button' onClick={e => this.updateCurrentSelector("Cats")}></button>
+          <button className='feed-button' onClick={e => this.updateCurrentSelector("Outher")}></button>
+
         </div>
         {main}
         {/* <Feed animals={data.animals}/> */}

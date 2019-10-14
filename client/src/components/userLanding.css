@@ -1,0 +1,140 @@
+#user-landing-top{
+    min-height: 45%;
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    display: grid;
+    grid-template-columns: 10% 26.66% 26.66% 26.66% 10%;
+    grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    border-radius: 25px;
+    background: rgb(232, 240, 254);
+    border: 7px solid black;
+    margin-bottom: 3%;
+}
+
+#user-nav{
+    color: lightsalmon;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    font-size: calc(2vh + 3vw);
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    align-self: center;
+    grid-row-end: 3;
+
+}
+
+#feed-buttons{
+    display: flex;
+    justify-content: space-around;
+    transition: all .5s ease-in-out;
+    height: fit-content;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 3;
+    grid-row-end: 6;
+}
+
+.big{
+   width: 100%;
+}
+
+.small{
+    width: 45%;
+    margin: auto;
+}
+
+#this-div{
+    list-style: none;
+    grid-row-start: 5;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    height: fit-content;
+    background: rgb(232, 240, 254);
+    border-radius: 0 0 25px 25px;
+    border: 7px solid black;
+    margin-bottom: 3%;
+    width: 100%;
+    justify-self: center;
+    border-top: none; 
+    animation: fadeIn 1.5s ease-in 0 1;
+}
+
+#prompt {
+    grid-column-start: 3;
+    grid-row-start: 6;
+    text-align: center;
+    color: lightsalmon;
+}
+
+#animal-feed{
+    list-style: none;
+
+}
+
+.feed-button{
+    background: url(./cat.svg) no-repeat;
+    width: 300px;
+    height: 300px;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    margin: 10px;
+}
+
+.feed-button:hover{
+    transform: rotate(10deg)
+}
+
+.feed-button:focus{
+    outline: none;
+}
+
+#prompt{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 7;
+    grid-row-end: 10;
+    text-align: center;
+    color: rgba(43, 177, 255);
+    font-family: 'Nunito', sans-serif;
+    font-size: calc(1vh + 1vw)
+}
+
+.apply-button{
+    width: 100%;
+    background: lightsalmon;
+    border: none;
+    border-top: 7px solid black;
+    border-radius: 0 0 6px 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: calc(1vh + 1vw)
+}
+
+@media screen and (max-width: 690px) {
+    #user-landing-top{
+        grid-column-start: 1;
+        grid-row-start: 1;
+        grid-column-end: 6;
+        border: none;
+        border-start-end-radius: none;
+    }
+
+    #prompt{
+        font-size: 24px;
+        grid-row-start: 6;
+    }
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
