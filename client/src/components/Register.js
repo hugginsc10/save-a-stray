@@ -31,7 +31,7 @@ class Register extends Component {
     });
   }
   facebookLogin = () => {
-    window.location = "https://localhost:3000/auth/facebook"
+    window.location = "https://save-a-stray.herokueapp.com/auth/facebook"
     console.log("successful login")
   }
   render() {

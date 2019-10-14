@@ -104,6 +104,7 @@ const facebookRegister = async data => {
 
         return {
           token,
+          id,
           loggedIn: true,
           ...user._doc,
           password: null

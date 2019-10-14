@@ -3,7 +3,7 @@ import { google } from 'googleapis';
 const googleConfig = {
   clientId: '635738163475-o9l4j887ciaq0ieaml6h8tiqn8hmk5ce.apps.googleusercontent.com', // e.g. asdfghjkljhgfdsghjk.apps.googleusercontent.com
   clientSecret: 'ABYdrUGfNfKBUYiXYujPddiv', // e.g. _ASDFA%DFASDFASDFASD#FAD-
-  redirect: 'http://localhost:3000/auth/google/callback' // this must match your google api settings
+  redirect: 'http://:3000/auth/google/callback' // this must match your google api settings
 };
 
 /**

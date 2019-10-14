@@ -162,7 +162,10 @@ passport.use(
       // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
         // return cb(err, user);
       let userData = facebookRegister(profile)
-      let userStuff = {userId: userData.user._id, token: userData.token}
+      console.log("inside of FacebookStrategy ")
+      console.log(userData)
+      console.log("inside of FacebookStrategy ")
+      let userStuff = {userId: userData.id, token: userData.token}
       cb(null, userStuff);
     },
   ),
