@@ -56,7 +56,7 @@ class Login extends Component {
 
                   <div className='auth-modal'>
                     <div className='auth-div'>
-                    <Link className='modal-exit' to="/">X</Link> 
+                    <Link to="/" className='modal-exit' >X</Link> 
                       <form className='auth-form'
                         onSubmit={e => {
                           e.preventDefault();
