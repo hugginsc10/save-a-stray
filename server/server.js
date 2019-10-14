@@ -230,7 +230,7 @@ app.use(bodyParser.json());
 app.get('/a',() => console.log(11111111111111));
 app.get('/facebooklogin', cors(), passport.authenticate('facebook'));
 app.get(
-  '/auth/facebook/callback',
+  '/auth/facebook/callback', cors(),
   passport.authenticate('facebook', {
     session: false
   }),
