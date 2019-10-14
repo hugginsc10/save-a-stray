@@ -29,9 +29,9 @@ class UserLanding extends Component {
             {({ loading, error, data }) => {
                 if (loading) return <p>Loading</p>;
                 if (error) return <p>Error</p>;
-               
+                debugger
                 let allAn = data.findAnimals.map(name => {
-               
+                debugger
                 return <li><h1 className="animalIndex">{name.name}</h1></li>})
                 return (<div>
                   <ul>

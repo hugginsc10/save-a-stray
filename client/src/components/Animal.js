@@ -12,12 +12,12 @@ class NewAnimal extends Component {
       name: "",
       type: "",
       age: "",
-      sex: "",
+      sex: "gyukgy",
       color: "",
       description: "",
-      image: "",
-      video: "",
-      application: ""
+      image: "efwefser",
+      video: "esrgserg",
+      application: "gsergsergse"
     };
   }
 

@@ -12,6 +12,8 @@ const Keys = require("../config/keys");
 const User = require("./models/User");
 const passport = require("passport");
 const facebookRegister = require("./services/auth")
+const seeds = require("./seeds");
+
 
 
 
@@ -37,7 +39,10 @@ passport.use(
 
 app.use(passport.initialize());
 
+
+
 app.get('/facebooklogin', passport.authenticate('facebook'));
+// app.get('/facebooklogin', seeds);
 
 app.get(
   '/auth/facebook/callback',

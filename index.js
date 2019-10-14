@@ -1,6 +1,7 @@
 
 
 const express = require("express");
+const seeds = require("./server/seeds");
 
 const app = require("./server/server");
 const path = require('path');
@@ -13,7 +14,8 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   })
 };
-
+app.use("/api/seeds", seeds);
+app.use(express.static('public'));
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
+const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull,GraphQLString } = graphql;
 
 const UserType = require("./user_type");
 const AnimalType = require("./animal_type");
@@ -34,6 +34,13 @@ const RootQueryType = new GraphQLObjectType({
       type: new GraphQLList(AnimalType),
       resolve() {
         return Animal.find({});
+      }
+    },
+    findAnimals: {
+      type: new GraphQLList(AnimalType),
+      args: {type: {type: GraphQLString}},
+      resolve(_, {type}) {
+        return Animal.find({type});
       }
     },
     applications: {
