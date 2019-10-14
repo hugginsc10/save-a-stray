@@ -79,11 +79,7 @@ const facebookRegister = async (data) => {
     const name = displayName
     const userRole = "endUser"
     // we want to wait until our model can tell us whether a user exists with that email
-    const existingEmail =  User.findOne({ email: id }).then(email1 => {
-      console.log("in existingEmail")
-      console.log(email1)
-      console.log("in existingEmail")
-    });
+    const existingEmail = await User.findOne({ email: id })
     console.log(existingEmail)
     
     console.log("console.log 2")
