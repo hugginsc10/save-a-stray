@@ -1,0 +1,42 @@
+#animal-show-top{
+    justify-self: center;
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    color: lightsalmon;
+    background: aliceblue;
+    border-radius: 25px;
+    font-family: 'Nunito', sans-serif;
+    flex-direction: column;
+    height: fit-content ;
+    margin-bottom: 3%;
+}
+
+#animal-show-top p{
+    font-size: calc(1vh + 1vw);
+    text-align: center;
+}
+
+#adopt-button{
+    border: none;
+    padding: 1%;
+    border-radius: 15px;
+    color: white;
+    font-size: 24px;
+    background: lightsalmon;
+    font-family: 'Nunito', sans-serif;
+    align-self: center;
+    cursor: pointer;
+    margin: 10px;
+    outline: 0ch;
+    display: flex;
+    justify-content: center;
+    min-width: 255px;
+    margin:  auto;
+    margin-bottom: 5px;
+}
+#show-image{
+    border-radius: 15px;
+    width: fit-content;
+    height: fit-content;
+}

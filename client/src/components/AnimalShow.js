@@ -1,8 +1,12 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import Mutations from "../graphql/mutations"
+import React from "react";
+import {Query,ApolloConsumer} from "react-apollo";
+import Querys from "../graphql/queries";
+import UserShow from "./UserLanding";
+import ShelterShow from "./Shelter";
+import './AnimalShow.css'
+const { FETCH_ANIMAL} = Querys;
 
-class NewAnimal extends Component {
+class NewAnimal extends React.Component {
   constructor(props) {
     super(props);
 
@@ -23,10 +27,38 @@ class NewAnimal extends Component {
   
   
   render() {
-    return (
-        <div>
-        </div>
-    );
+     
+        return(
+            <Query
+            query={FETCH_ANIMAL}
+            variables={{ id: this.props.match.params.id }}
+
+            >                        
+                {({ loading, error, data }) => {
+                    if (loading){
+                        return <h1>Loading</h1>
+                    }else{
+                       
+                      return (
+                        <div id='animal-show-top'>
+                            <img id='show-image' src={data.animal.image}/>
+                            <p>Hi my name is <span>{data.animal.name}</span></p>
+                            <p>I am a {data.animal.age} year old {data.animal.sex}</p>
+                            
+                            <p>My coat is {data.animal.color}</p>
+                            <p>People say: {data.animal.description}</p>
+                            <p>{data.animal.application}</p>
+                            <button id='adopt-button'>Apply to adopt {data.animal.name}</button>
+                        </div>
+                    );
+                    }
+            }}
+            </Query>
+        )
+    
+    
+    
+
   }
 }
 export default NewAnimal;

@@ -3,7 +3,9 @@
   margin-right: 3vw;
   grid-column-start: 2;
 }
-
+.animalIndex{
+  background: black
+}
 #logo{
     color: rgb(43, 177, 255);
     font-family: 'Capriola', sans-serif;
