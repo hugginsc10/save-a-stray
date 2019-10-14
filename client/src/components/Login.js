@@ -46,7 +46,7 @@ class Login extends Component {
   }
 
   faceBookLogin(){
-    return axios.get('/facebooklogin').then(user => {
+    return axios.get('https://save-a-stray.herokuapp.com/facebooklogin').then(user => {
       debugger
     })
   }
