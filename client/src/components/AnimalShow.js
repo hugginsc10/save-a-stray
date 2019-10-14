@@ -3,6 +3,7 @@ import {Query,ApolloConsumer} from "react-apollo";
 import Querys from "../graphql/queries";
 import UserShow from "./UserLanding";
 import ShelterShow from "./Shelter";
+import './AnimalShow.css'
 const { FETCH_ANIMAL} = Querys;
 
 class NewAnimal extends React.Component {
@@ -26,7 +27,7 @@ class NewAnimal extends React.Component {
   
   
   render() {
-    debugger
+     
         return(
             <Query
             query={FETCH_ANIMAL}
@@ -37,18 +38,17 @@ class NewAnimal extends React.Component {
                     if (loading){
                         return <h1>Loading</h1>
                     }else{
-                      debugger
+                       
                       return (
-                        <div>
-                          <p>{data.animal.name}</p>
-                            <p>{data.animal.type}</p>
-                            <p>{data.animal.age}</p>
-                            <p>{data.animal.sex}</p>
-                            <p>{data.animal.color}</p>
-                            <p>{data.animal.description}</p>
+                        <div id='animal-show-top'>
+                            <img id='show-image' src={data.animal.image}/>
+                            <p>Hi my name is <span>{data.animal.name}</span></p>
+                            <p>I am a {data.animal.age} year old {data.animal.sex}</p>
+                            
+                            <p>My coat is {data.animal.color}</p>
+                            <p>People say: {data.animal.description}</p>
                             <p>{data.animal.application}</p>
-                            <img src={data.animal.image}/>
-                            <button>Apply to adopt</button>
+                            <button id='adopt-button'>Apply to adopt {data.animal.name}</button>
                         </div>
                     );
                     }

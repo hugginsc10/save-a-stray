@@ -24,7 +24,7 @@ class Register extends Component {
   }
 
   updateCache(client, { data }) {
-    debugger
+     
     client.writeData({
       data: {  isLoggedIn: data.register.loggedIn,userId: data.register._id }
     });

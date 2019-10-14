@@ -10,7 +10,7 @@ class AnimalFeedItem extends Component {
   }
 
   handleClick(id){
-    debugger
+     
     this.props.history.push(`/AnimalShow/${id}`)
   }
 
