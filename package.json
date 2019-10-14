@@ -6,9 +6,9 @@
   "scripts": {
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"HTTP=true\" \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client-install": "npm install --prefix client",
-    "client": "HTTPS=true npm start --prefix client",
+    "client": "npm start --prefix client",
     "server": "nodemon index.js",
     "start": "node index.js"
   },
