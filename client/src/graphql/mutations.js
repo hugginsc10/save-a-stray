@@ -7,7 +7,6 @@ export default {
         token
         loggedIn
         _id
-        fbId
     }
   }
   `,
@@ -16,7 +15,6 @@ export default {
       login(email: $email, password: $password) {
         token
         loggedIn
-        fbId
         _id
         
       }
