@@ -228,7 +228,7 @@ app.use(bodyParser.json());
 
 
 app.get('/a',() => console.log(11111111111111));
-app.get('/facebooklogin', passport.authenticate('facebook'));
+app.get('/facebooklogin', cors(), passport.authenticate('facebook'));
 app.get(
   '/auth/facebook/callback',
   passport.authenticate('facebook', {
