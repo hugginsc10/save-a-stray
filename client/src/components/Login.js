@@ -4,7 +4,7 @@ import {
   ApolloConsumer,
   Query
 } from "react-apollo";
-import FBLoginBtn from "./FbLoginBtn";
+
 import Mutations from "../graphql/mutations";
 import Querys from "../graphql/queries";
 import './auth.css';
@@ -50,7 +50,7 @@ class Login extends Component {
             onCompleted={data => {
               const { token } = data.login;
               localStorage.setItem("auth-token", token);
-              this.props.history.push("/User");
+              this.props.history.push("/Landing");
             }}
             update={(client, data) => this.updateCache(client, data)}
           >
@@ -87,7 +87,7 @@ class Login extends Component {
                     />
                     <button className='modal-button' type="submit">Log In</button>
                     
-                   <FBLoginBtn/>
+                  
                   </form>
                 </div>
               </div>

@@ -13,7 +13,7 @@ class FacebookSignIn extends Component {
     super(props);
     this.onFacebookLogin = this.onFacebookLogin.bind(this);
     this.appId = '515957642529597';
-    this.redirectUrl = `/auth/facebook/callback`;
+    this.redirectUrl = `https://localhost:3000/auth/facebook/callback`;
 
     if (document.location.pathname === '/') {
       this.code = querystring.parse(document.location.search)['?code'];
@@ -64,7 +64,7 @@ class FacebookSignIn extends Component {
   }
 
     onFacebookLogin(event) {
-      event.preventDefault();
+      // event.preventDefault();
       window.location = `htttps://localhost:3000/auth/facebook`;
 
     }
@@ -76,7 +76,7 @@ class FacebookSignIn extends Component {
       const icon = 'fa ' + (loading ? 'fa-refresh fa-spin' : 'fa-facebook');
 
       return (<a className='modal-button' id='facebook-button' href = '/auth/facebook'
-        onClick = {this.onFacebookLogin}> 
+        onClick = {this.onFacebookLogin()}> 
         <i className = {icon} > 
         </i> Sign in with Facebook </a >
       );
