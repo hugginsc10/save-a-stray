@@ -67,7 +67,7 @@ const register = async data => {
   }
 };
 
-const facebookRegister = async data => {
+const facebookRegister = async (data) => {
   console.log(99999999999999999999)
   console.log(data)
   console.log(99999999999999999999)
