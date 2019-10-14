@@ -35,7 +35,14 @@ export default {
   FIND_ANIMALS:gql`
     query FindAnimals($type: String!){
       findAnimals(type: $type) {
-        name
+        name,
+        type
+        age
+        sex
+        color
+        description
+        image
+        video
       }
     }
   `

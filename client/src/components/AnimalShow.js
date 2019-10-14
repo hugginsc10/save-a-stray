@@ -25,6 +25,15 @@ class NewAnimal extends Component {
   render() {
     return (
         <div>
+          <p>{this.state.animal.name}</p>
+            <p>{this.state.animal.type}</p>
+            <p>{this.state.animal.age}</p>
+            <p>{this.state.animal.sex}</p>
+            <p>{this.state.animal.color}</p>
+            <p>{this.state.animal.description}</p>
+            <p>{this.state.animal.application}</p>
+            <img src={this.state.ianimal.image}/>
+            <button>Apply to adopt</button>
         </div>
     );
   }

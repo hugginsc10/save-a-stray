@@ -45,7 +45,7 @@
     grid-column-start: 1;
     grid-column-end: 4;
     border-radius: 20px;
-    background: url(/static/media/adorable-animal-black-and-white-207903.86177150.jpg) no-repeat;
+    background: url(./adorable-animal-black-and-white-207903.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     display: grid;

@@ -19,11 +19,11 @@ class Landing extends React.Component{
 render(){
     return (
     <ApolloConsumer>{client => {
-        debugger
+        
                 const user = client.readQuery({
                     query: USER_ID
                     })
-                    debugger
+                    
                     this.userId = user.userId
     return(
         <Query

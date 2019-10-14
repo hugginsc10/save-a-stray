@@ -5,9 +5,11 @@
     grid-row-end: 4;
     display: grid;
     grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 30% 70% ;
+    grid-template-rows: 30% 70%;
     border-radius: 25px;
     background: rgb(232, 240, 254);
+   
+    margin-bottom: 3%;
 }
 
 #new-animal-header{
@@ -30,6 +32,8 @@
     height: 20%;
     width: 100%;
     margin: 20px 0;
+   
+    justify-self: center;
 }
 
 #new-animal-form-form{
@@ -56,6 +60,7 @@
     border: none;
     border-radius: 6px;
     background: white;
+   
     
 }
 
@@ -79,6 +84,8 @@
     grid-column-start: 4;
     grid-column-end: 5;
     cursor: pointer;
+   
+    height: fit-content;
 }
 
 #animal-name{
@@ -117,7 +124,12 @@
 
 #radio-buttons{
     color: black;
-    font-size: 1em;
+        font-size: 1em;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        margin: auto;
+        margin-right: 2vw;
 }
 
 #animal-image{
@@ -129,6 +141,7 @@
     grid-row-start: 5;
     grid-column-start: 3;
     display: flex;
+    
 }
 
 #image-preview{
@@ -140,6 +153,17 @@
     /* box-shadow: 1px 1px 3px darkgrey; */
     width: 100%;
     padding-bottom: 100%;
+   
+}
+
+.radio-div{
+    display: flex;
+    align-items: center;
+}
+
+.radio-div p{
+    margin: 0 5px;
+    font-family: 'Overpass Mono', monospace;
 }
 
 #male, #female{
@@ -177,8 +201,14 @@
     }
 
     #radio-buttons{
+        color: black;
+        font-size: 1em;
         display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
         margin: auto;
+        margin-right: 2vw;
+    
     }
 
     #radio-buttons input{
@@ -190,7 +220,7 @@
     }
     .new-animal-form-input{
         width: 80%;
-        background: aliceblue;
+        background: rgb(232, 240, 254);
         margin: 7.5px 0 0 7.5%;
     }
 
@@ -221,5 +251,9 @@
 
     .new-animal-form-input::placeholder{
         color: black;
+    }
+
+    .radio-div{
+
     }
 }
