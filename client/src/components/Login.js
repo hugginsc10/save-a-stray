@@ -4,6 +4,7 @@ import {
   ApolloConsumer,
   Query
 } from "react-apollo";
+import axios from 'axios';//npm install axios if err
 
 import Mutations from "../graphql/mutations";
 import Querys from "../graphql/queries";
@@ -18,13 +19,15 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      loading:false
     };
+    this.faceBookLogin = this.faceBookLogin.bind(this)
   }
-  facebookLogin = () => {
-    window.location = "https://localhost:3000/auth/facebook"
-    console.log("successful login")
-  }
+  // facebookLogin = () => {
+  //   window.location = "https://localhost:3000/auth/facebook"
+  //   console.log("successful login")
+  // }
   onSignIn(googleUser) {
     const profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -40,9 +43,22 @@ class Login extends Component {
     client.writeData({
       data: { isLoggedIn: data.login.loggedIn,userId: data.login._id }
     });
-  }  
+  }
+
+  faceBookLogin(){
+    return axios.get('/facebooklogin').then(user => {
+      debugger
+    })
+  }
   
   render() { 
+    //  rfq after working 
+    const {
+      loading
+    } = this.state;
+    const icon = 'fa ' + (loading ? 'fa-refresh fa-spin' : 'fa-facebook');
+    //  rfq after working 
+
     return (
       
         <Mutation
@@ -89,6 +105,12 @@ class Login extends Component {
                     
                   
                   </form>
+                  {/* rfq after working  */}
+                      <a className='modal-button' id='facebook-button' 
+                        onClick={this.faceBookLogin}>
+                        <i className={icon} >
+                        </i> Sign in with Facebook </a >
+                  {/* rfq after working  */}
                 </div>
               </div>
                 )}}
