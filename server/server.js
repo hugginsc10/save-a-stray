@@ -158,14 +158,13 @@ passport.use(
     // callbackURL: 'http://localhost:5000/auth/facebook/callback',
     profileFields: ['id', 'displayName', 'photos', 'email']
   },
-    (accessToken, refreshToken, profile, cb) => {
+    async (accessToken, refreshToken, profile, cb) => {
       // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
         // return cb(err, user);
-      let userData = facebookRegister(profile)
+      let userData = await facebookRegister(profile)
+
       console.log("inside of FacebookStrategy ")
-      userData.then(user => {
-        console.log(user)
-      })
+      console.log(userData)
       console.log("inside of FacebookStrategy ")
       let userStuff = {userId: userData.id, token: userData.token}
       cb(null, userStuff);
