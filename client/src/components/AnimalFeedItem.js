@@ -12,14 +12,19 @@ class AnimalFeedItem extends Component {
   
   
   render() {
+    let picture = this.props.animal.image
     return (
         <div className='animal-feed-item-div'>
+          <div className='animal-feed-item-header'>
             <p>{this.props.animal.name}</p>
-            <p>{this.props.animal.type}</p>
             <p>{this.props.animal.age}</p>
             <p>{this.props.animal.sex}</p>
+          </div>
+          <div id='animal-feed-item-image-container' style={{'background': `url(${picture})`, 'background-size': 'cover'}}>
+
+            {/* <img className='animal-feed-image' src='https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/46201085/1/?bust=1570458597&width=560' alt='hello'/> */}
+          </div>
             
-            {/* <img src={this.props.ianimal.image}/> */}
             <button className='apply-button'>See Details</button>
         </div>
     );

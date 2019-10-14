@@ -59,7 +59,7 @@
     width: 100%;
     justify-self: center;
     border-top: none; 
-    animation: fadeIn 1.5s ease-in 0 1;
+    animation: 1.5s ease-in 0s 1 fadeIn;
 }
 
 #prompt {
@@ -71,7 +71,10 @@
 
 #animal-feed{
     list-style: none;
-
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 0;
 }
 
 .feed-button{
@@ -83,6 +86,7 @@
     cursor: pointer;
     transition: all .5s ease-in-out;
     margin: 10px;
+    z-index: 4;
 }
 
 .feed-button:hover{
@@ -93,26 +97,22 @@
     outline: none;
 }
 
+#dogs-button{
+    background: url(./SVG/dog.svg) no-repeat;
+}
+
 #prompt{
     grid-column-start: 2;
     grid-column-end: 5;
-    grid-row-start: 7;
+    grid-row-start: 8;
     grid-row-end: 10;
     text-align: center;
     color: rgba(43, 177, 255);
     font-family: 'Nunito', sans-serif;
-    font-size: calc(1vh + 1vw)
+    font-size: calc(1vh + 1vw);
 }
 
-.apply-button{
-    width: 100%;
-    background: lightsalmon;
-    border: none;
-    border-top: 7px solid black;
-    border-radius: 0 0 6px 6px;
-    font-family: 'Nunito', sans-serif;
-    font-size: calc(1vh + 1vw)
-}
+
 
 @media screen and (max-width: 690px) {
     #user-landing-top{

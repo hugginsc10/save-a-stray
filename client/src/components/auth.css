@@ -59,7 +59,7 @@
 }
 
 .auth-form input:focus{
-    outline: 0;
+    none: 0;
 }
 
 .auth-form select{
@@ -78,7 +78,7 @@
     align-self: center;
     cursor: pointer;
     margin: 10px;
-    outline: 0ch;
+    none: 0ch;
     display: flex;
     justify-content: center;
     min-width: 255px

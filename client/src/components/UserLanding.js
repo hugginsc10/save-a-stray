@@ -53,8 +53,8 @@ class UserLanding extends Component {
       <div id='user-landing-top'>
         <h1 id='user-nav' >Browse Animals</h1>
         <div id='feed-buttons' className='big'>
-          <button className='feed-button' onClick={e => this.updateCurrentSelector("Dogs")}></button>
-          <button className='feed-button' onClick={e => this.updateCurrentSelector("Cats")}></button>
+          <button id='dogs-button' className='feed-button' onClick={e => this.updateCurrentSelector("Dogs")}></button>
+          <button id='cats-button' className='feed-button' onClick={e => this.updateCurrentSelector("Cats")}></button>
           <button className='feed-button' onClick={e => this.updateCurrentSelector("Outher")}></button>
 
         </div>

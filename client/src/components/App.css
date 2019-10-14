@@ -48,7 +48,7 @@
 }
 
 .auth-links button:focus{
-  outline: 0;
+  none: 0;
 }
 
 .auth-links button{
