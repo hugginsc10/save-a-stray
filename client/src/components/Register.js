@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Mutation, ApolloConsumer } from "react-apollo";
 
-import FacebookLogin from "./FacebookLogin";
+
 import Mutations from "../graphql/mutations"
 import './auth.css'
 import { Link } from 'react-router-dom';

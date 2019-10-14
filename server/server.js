@@ -207,8 +207,9 @@ app.get(
   (req, res) => {
     // let user = User.findById(req.userId)
     // res.send('AUTH WAS GOOD!');
-    res.setHeader({"auth-token": req.userStuff.token})
-    res.redirect('/#/Landing')
+    // res.setHeader({"auth-token": req.userStuff.token})
+    // res.redirect('/#/Landing')
+    res.json({ my_token: req.userStuff.token  })
   },
 );
 
