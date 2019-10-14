@@ -179,7 +179,7 @@ passport.deserializeUser(function (obj, cb) {
 
 const app = express();
 
-
+app.use(cors());
 app.use(passport.initialize());
 if (!db) {
   throw new Error("You must provide a string to connect to MongoDB Atlas");
@@ -192,7 +192,6 @@ app.use(
     graphiql: true
   })
 );
-
 // remember we use bodyParser to parse requests into json
 app.use(bodyParser.json());
 
@@ -221,7 +220,7 @@ mongoose
   })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
-app.use(cors());
+
 
 
 
