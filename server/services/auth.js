@@ -72,35 +72,40 @@ const facebookRegister = async (data) => {
   console.log(data)
   // console.log(99999999999999999999)
   try {
-
+    
+    console.log("console.log 1")
     const { id, displayName } = data
     const email = id
     const name = displayName
     const userRole = "endUser"
     // we want to wait until our model can tell us whether a user exists with that email
     const existingEmail = await User.findOne({ email: id });
-
+    console.log("console.log 2")
+    
     if (existingEmail) {
-
+      console.log("console.log 3")
+      
       // Log the user in 
       try {
+        console.log("console.log 4")
         // use our other validator we wrote to validate this data
-
-        const user = await User.findOne({
-          email
-        })
-        if (!user) {
-          throw new Error("This user does not exist");
-        }
-
-        const correctPassword = await bcrypt.compareSync(email, user.password);
-        if (!correctPassword) {
-          throw new Error("Invalid credentials");
-        }
-
+        
+        // const user = await User.findOne({
+          //   email
+          // })
+          // if (!user) {
+            //   throw new Error("This user does not exist");
+            // }
+            
+            // const correctPassword = await bcrypt.compareSync(email, user.password);
+            // if (!correctPassword) {
+              //   throw new Error("Invalid credentials");
+              // }
+              
         const token = jwt.sign({
           id: user._id
         }, keys.secretOrKey);
+        console.log("console.log 5")
 
         return {
           token,
@@ -110,6 +115,8 @@ const facebookRegister = async (data) => {
           password: null
         };
       } catch (err) {
+        console.log("console.log 6")
+
         throw err;
       }
 
@@ -130,16 +137,23 @@ const facebookRegister = async (data) => {
         if (err) throw err;
       }
     );
+    console.log("console.log 7")
+
 
     // save our user
     user.save();
+    console.log("console.log 8")
+    console.log(user)
+    console.log("console.log 8")
+
     // we'll create a token for the user
     const token = jwt.sign({ id: user._id }, keys.secretOrKey);
 
     // then return our created token, set loggedIn to be true, null their password, and send the rest of the user
-    return { token, loggedIn: true, ...user._doc, password: null };
+    return { token, loggedIn: true, ...user._doc, password: null,id: user._id  };
 
   } catch (err) {
+    console.log("console.log 3")
     throw err;
   }
 };
