@@ -11,7 +11,8 @@ class UserLanding extends Component {
     super(props);
     this.updateCurrentSelector = this.updateCurrentSelector.bind(this)
     this.state = {
-      currentSelector: null
+      currentSelector: null,
+      animal: null
     }
 
   }
@@ -22,6 +23,11 @@ class UserLanding extends Component {
     button.classList.add('small')
     button.classList.remove('big')
     }
+  }
+  updateCurrentAnimal(animal) {
+    this.setState({
+      animal
+    })
   }
 
   render() {

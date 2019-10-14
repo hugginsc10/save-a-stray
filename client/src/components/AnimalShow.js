@@ -1,8 +1,11 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import Mutations from "../graphql/mutations"
+import React from "react";
+import {Query,ApolloConsumer} from "react-apollo";
+import Querys from "../graphql/queries";
+import UserShow from "./UserLanding";
+import ShelterShow from "./Shelter";
+const { FETCH_ANIMAL} = Querys;
 
-class NewAnimal extends Component {
+class NewAnimal extends React.Component {
   constructor(props) {
     super(props);
 
@@ -23,19 +26,39 @@ class NewAnimal extends Component {
   
   
   render() {
-    return (
-        <div>
-          <p>{this.state.animal.name}</p>
-            <p>{this.state.animal.type}</p>
-            <p>{this.state.animal.age}</p>
-            <p>{this.state.animal.sex}</p>
-            <p>{this.state.animal.color}</p>
-            <p>{this.state.animal.description}</p>
-            <p>{this.state.animal.application}</p>
-            <img src={this.state.ianimal.image}/>
-            <button>Apply to adopt</button>
-        </div>
-    );
+    debugger
+        return(
+            <Query
+            query={FETCH_ANIMAL}
+            variables={{ id: this.props.match.params.id }}
+
+            >                        
+                {({ loading, error, data }) => {
+                    if (loading){
+                        return <h1>Loading</h1>
+                    }else{
+                      debugger
+                      return (
+                        <div>
+                          <p>{data.animal.name}</p>
+                            <p>{data.animal.type}</p>
+                            <p>{data.animal.age}</p>
+                            <p>{data.animal.sex}</p>
+                            <p>{data.animal.color}</p>
+                            <p>{data.animal.description}</p>
+                            <p>{data.animal.application}</p>
+                            <img src={data.animal.image}/>
+                            <button>Apply to adopt</button>
+                        </div>
+                    );
+                    }
+            }}
+            </Query>
+        )
+    
+    
+    
+
   }
 }
 export default NewAnimal;

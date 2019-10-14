@@ -16,6 +16,8 @@ class Landing extends React.Component{
         this.userId = "";
     }
 
+
+
 render(){
     return (
     <ApolloConsumer>{client => {

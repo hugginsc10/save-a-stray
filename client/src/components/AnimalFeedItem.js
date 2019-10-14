@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import Mutations from "../graphql/mutations"
+import { withRouter } from "react-router";
 import './AnimalFeedItem.css'
 class AnimalFeedItem extends Component {
   constructor(props) {
     super(props);
-
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  
-  
-  
+  handleClick(id){
+    debugger
+    this.props.history.push(`/AnimalShow/${id}`)
+  }
+
   render() {
     let picture = this.props.animal.image
     return (
@@ -25,9 +28,9 @@ class AnimalFeedItem extends Component {
             {/* <img className='animal-feed-image' src='https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/46201085/1/?bust=1570458597&width=560' alt='hello'/> */}
           </div>
             
-            <button className='apply-button'>See Details</button>
+            <button onClick={() => this.handleClick(this.props.animal._id)} className='apply-button'>See Details</button>
         </div>
     );
   }
 }
-export default AnimalFeedItem;
+export default withRouter(AnimalFeedItem);
