@@ -48,7 +48,7 @@
 }
 
 .auth-links button:focus{
-  outline: 0;
+  none: 0;
 }
 
 .auth-links button{
@@ -59,6 +59,7 @@
     text-decoration: none;
     background:none;
     border:none;
+    align-self: center;
 }
 
 @media screen and (max-width: 690px) {

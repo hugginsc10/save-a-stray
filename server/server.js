@@ -1,6 +1,5 @@
 // const models = require("./models");
-// const cookieParser = require("cookie-parser")
-// const session = require('express-session');
+
 // const express = require("express");
 // const app = express();
 // const db = require("../config/keys.js").MONGO_URI;
@@ -11,68 +10,41 @@
 // const bodyParser = require("body-parser");
 // const FacebookStrategy = require("passport-facebook");
 // const Keys = require("../config/keys");
-// const user = require("./models/User");
+// const User = require("./models/User");
 // const passport = require("passport");
 // const facebookRegister = require("./services/auth")
+// const seeds = require("./seeds");
 
 
 
-// mongoose
-//   .connect(db, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-//   })
-//   .then(() => console.log("Connected to MongoDB successfully"))
-//   .catch(err => console.log(err));
 
-  
-//   app.use(bodyParser.json());
-
-//   app.use(passport.initialize());
-  
-//   app.use(passport.session());
-  
-//   passport.serializeUser(function(user, cb) {
-//     cb(null, user);
-//   });
-
-//   passport.deserializeUser(function(obj, cb) {
-//     cb(null, obj);
-//   });
+// app.use(passport.initialize());
+// if (!db) {
+//   throw new Error("You must provide a string to connect to MongoDB Atlas");
+// }
 
 
-//   if (!db) {
-//     throw new Error("You must provide a string to connect to MongoDB Atlas");
-//   }
-  
-  
-//   passport.use(
-//     new FacebookStrategy({
+// passport.use(
+//   new FacebookStrategy({
 //       clientID: Keys.fbookClient,
 //       clientSecret: Keys.fbookKey,
-//       callbackURL: 'https://localhost:3000/auth/facebook/callback',
-//       scope: ['email'],
-//       profileFields: ['id', 'emails']
+//       callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback',
 //     },
 //     (accessToken, refreshToken, profile, cb) => {
-//       console.log(1111111111111111111111)
-//       console.log(profile)
-//       console.log(2222222222222222222222)
-      
-//       console.log(refreshToken)
-//       console.log(3333333333333333333333)
-//       console.log(accessToken)
 //       cb(facebookRegister, profile);
 //     },
-//     ),
-//     );
-    
-    
+//   ),
+// );
 
 
-// app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-// // app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-// // app.use("/api/fb", app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] })));
+
+// app.use(passport.initialize());
+
+
+
+// app.get('/facebooklogin', passport.authenticate('facebook'));
+// // app.get('/facebooklogin', seeds);
+
 // app.get(
 //   '/auth/facebook/callback',
 //   passport.authenticate('facebook', {
@@ -108,30 +80,9 @@
 // );
 
 // // remember we use bodyParser to parse requests into json
-
+// app.use(bodyParser.json());
 
 // module.exports = app;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -150,6 +101,8 @@ const User = require("./models/User");
 const passport = require("passport");
 const {facebookRegister} = require("./services/auth")
 
+
+
 passport.use(
   new FacebookStrategy({
     clientID: Keys.fbookClient,
@@ -160,13 +113,15 @@ passport.use(
   },
     async (accessToken, refreshToken, profile, cb) => {
       // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-        // return cb(err, user);
+
       let userData = await facebookRegister(profile)
 
       console.log("inside of FacebookStrategy ")
       console.log(userData)
       console.log("inside of FacebookStrategy ")
-      let userStuff = {userId: userData.id, token: userData.token}
+
+      let userStuff = { userId: userData.id, token: userData.token }
+
       cb(null, userStuff);
     },
   ),
@@ -200,13 +155,6 @@ const app = express();
 //   // Request headers you wish to allow
 //   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,X-Access-Token,XKey,Authorization');
 
-//   //  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
-//   // Pass to next layer of middleware
-//   next();
-// });
-
-
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
@@ -230,8 +178,7 @@ app.use(
 // remember we use bodyParser to parse requests into json
 app.use(bodyParser.json());
 
-
-app.get('/a',() => console.log(11111111111111));
+app.get('/a', () => console.log(11111111111111));
 app.get('/facebooklogin', cors(), passport.authenticate('facebook'));
 app.get(
   '/auth/facebook/callback', cors(),
@@ -243,7 +190,9 @@ app.get(
     // res.send('AUTH WAS GOOD!');
     // res.setHeader({"auth-token": req.userStuff.token})
     // res.redirect('/#/Landing')
+
     res.json({ my_token: req.userStuff.token  })
+
   },
 );
 

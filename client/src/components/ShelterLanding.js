@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-
+import './ShelterLanding.css'
 
 class ShelterLanding extends Component {
   constructor(props) {
@@ -10,8 +10,8 @@ class ShelterLanding extends Component {
   render() {
 
     return (
-      <div>
-        <h1>Shelter Landing Page </h1>
+      <div id='shelter-landing-top'>
+        <h1>Let us help you find owners for your animals!</h1>
           <Link to="/newAnimal">New Animal</Link>
       </div>
     )

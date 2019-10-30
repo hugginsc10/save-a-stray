@@ -4,6 +4,7 @@ import Splash from './Splash'
 import Login from "./Login";
 import Register from "./Register";
 import Animal from "./Animal";
+import AnimalShow from "./AnimalShow";
 import Application from "./Application";
 import Shelter from "./Shelter";
 import ShelterLanding from "./ShelterLanding";
@@ -22,6 +23,7 @@ const App = () => {
         <Slug/>
         <Nav id='navbar' />
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
+          <Route exact path="/AnimalShow/:id" component={AnimalShow} routeType=""  />
           <Route exact path="/Landing" component={Landing} routeType=""  />
           <Route exact path="/User" component={UserLanding} routeType=""  />
           <Route exact path="/Shelter" component={ShelterLanding} routeType=""  />

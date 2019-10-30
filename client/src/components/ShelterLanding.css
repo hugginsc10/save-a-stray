@@ -1,0 +1,35 @@
+#shelter-landing-top{
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    background: aliceblue;
+    color: rgb(43, 177, 255);
+    border-radius:   15px;
+    font-family: 'Nunito', sans-serif;
+    font-size: calc(1vh + 2vw);
+    display: grid ;
+    grid-template-columns: 10% 80% 10%;
+
+}
+
+#shelter-landing-top h1{
+    grid-column-start: 2;
+}
+
+#shelter-landing-top a{
+    grid-column-start: 2;
+    border: none;
+    padding: 1%;
+    border-radius: 15px;
+    color: white;
+    font-size: 24px;
+    background: lightsalmon;
+    font-family: 'Nunito', sans-serif;
+    align-self: center;
+    cursor: pointer;
+    margin: 10px;
+    outline: 0ch;
+    display: flex;
+    justify-content: center;
+    min-width: 255px
+}

@@ -75,46 +75,42 @@ class Login extends Component {
                 if (error) return <p>Error</p>;
                 return (
 
-              <div className='auth-modal'>
-                <div className='auth-div'>
-                  <Link to="/" className='modal-exit'>X</Link>
-                  <form className='auth-form'
-                    onSubmit={e => {
-                      e.preventDefault();
-                      loginUser({
-                        variables: {
-                          email: this.state.email,
-                          password: this.state.password
-                        }
-                      });
-                    }}
-                  >
-                    <h1>Login</h1>
-                    <input
-                      value={this.state.email}
-                      onChange={this.update("email")}
-                      placeholder="Email"
-                    />
-                    <input
-                      value={this.state.password}
-                      onChange={this.update("password")}
-                      type="password"
-                      placeholder="Password"
-                    />
-                    <button className='modal-button' type="submit">Log In</button>
-                    
-                  
-                  </form>
-                  {/* rfq after working  */}
-                      <a className='modal-button' id='facebook-button' 
-                        onClick={this.faceBookLogin}>
-                        <i className={icon} >
-                        </i> Sign in with Facebook </a >
-                  {/* rfq after working  */}
-                </div>
-              </div>
-                )}}
-          </Mutation>
+                  <div className='auth-modal'>
+                    <div className='auth-div'>
+                    <Link to="/" className='modal-exit' >X</Link> 
+                      <form className='auth-form'
+                        onSubmit={e => {
+                          e.preventDefault();
+                          loginUser({
+                            variables: {
+                              email: this.state.email,
+                              password: this.state.password
+                            }
+                          });
+                        }}
+                      >
+                        <h1>Login</h1>
+                        <input
+                          value={this.state.email}
+                          onChange={this.update("email")}
+                          placeholder="Email"
+                        />
+                        <input
+                          value={this.state.password}
+                          onChange={this.update("password")}
+                          type="password"
+                          placeholder="Password"
+                        />
+                        <button className='modal-button' type="submit">Log In</button>
+                        <FacebookLogin />
+                        <button id='google-button' className="g-signin2 modal-button" data-onsuccess="onSignIn">Sign in with Google</button>
+                      </form>
+                      
+                    </div>
+                  </div>
+        );
+        }}
+        </Mutation>
     );
   }
 }

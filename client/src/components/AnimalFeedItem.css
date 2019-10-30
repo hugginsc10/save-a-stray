@@ -1,0 +1,46 @@
+.animal-feed-item-div{
+    color: lightsalmon;
+    background: white;
+    border-radius: 15px;
+    grid-column-start: 2;
+    margin: 4%;
+}
+
+.animal-feed-item{
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    height: 25vw;
+    width: 25vw;
+}
+
+.animal-feed-item-header{
+    display: flex;
+    justify-content: space-evenly;
+    background: rgb(43, 177, 255);
+    border-radius: 15px 15px 0 0;
+    border-bottom: 7px solid black;
+    height: 15%;
+    color: black;
+
+
+}
+
+#animal-feed-item-image-container{
+    height: 70%;
+    background-size: cover;
+}
+
+.apply-button{
+    width: 100%;
+    background: lightsalmon;
+    border: none;
+    border-top: 7px solid black;
+    border-radius: 0 0 6px 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: calc(1vh + 1vw);
+    height: 15%;
+}
+
+.animal-feed-image{
+    width: inherit;
+}
