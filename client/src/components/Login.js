@@ -7,7 +7,7 @@ import {
 import FacebookLogin from "./FacebookLogin";
 import Mutations from "../graphql/mutations";
 import Querys from "../graphql/queries";
-import './auth.css';
+import './css/auth.css';
 import { Link, withRouter } from 'react-router-dom';
 import ShelterLanding from "./ShelterLanding" ;
 const { LOGIN_USER } = Mutations;
@@ -56,7 +56,7 @@ class Login extends Component {
 
                   <div className='auth-modal'>
                     <div className='auth-div'>
-                    <Link className='modal-exit' to="/">X</Link> 
+                    <Link to="/" className='modal-exit' >X</Link> 
                       <form className='auth-form'
                         onSubmit={e => {
                           e.preventDefault();

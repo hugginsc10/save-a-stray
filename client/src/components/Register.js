@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Mutation,ApolloConsumer } from "react-apollo";
 import FacebookLogin from "./FacebookLogin";
 import Mutations from "../graphql/mutations"
-import './auth.css'
+import './css/auth.css'
 import { Link } from 'react-router-dom';
 const { REGISTER_USER } = Mutations
 
@@ -48,7 +48,7 @@ class Register extends Component {
 
           <div className='auth-modal'>
             <div className='auth-div'>
-            <Link className='modal-exit' to="/">X</Link>   
+            <Link to="/"className='modal-exit' >X</Link>   
               <form className='auth-form'
                 onSubmit={e => {
                   e.preventDefault();

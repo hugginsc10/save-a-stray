@@ -3,13 +3,13 @@ import Queries from "../graphql/queries";
 import { ApolloConsumer } from 'react-apollo';
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import './slug.css'
+import './css/slug.css'
 const { IS_LOGGED_IN } = Queries;
 
 const Slug = props => {
   return (
     <div id='slug'>
-        <Link id='logo' to="/">
+        <Link to="/" id='logo' >
             <h1 id='logo-h1'>Save Your Stray</h1>
         </Link>
         <p id='lorem'>Save Your Stray is a non-profit operation with 

@@ -3,7 +3,7 @@ import {Query,ApolloConsumer} from "react-apollo";
 import Querys from "../graphql/queries";
 import UserShow from "./UserLanding";
 import ShelterShow from "./Shelter";
-import './AnimalShow.css'
+import './css/AnimalShow.css'
 const { FETCH_ANIMAL} = Querys;
 
 class NewAnimal extends React.Component {
