@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../graphql/mutations"
+import { Link } from 'react-router-dom';
 const { CREATE_SHELTER } = Mutations
 
 class NewShelter extends Component {
@@ -33,8 +34,10 @@ class NewShelter extends Component {
 
       >
         {loginUser => (
-          <div>
-            <form
+          <div className='auth-modal'>
+           <div className='auth-div'>
+           <Link to="/"className='modal-exit' >X</Link>   
+             <form className='auth-form'
               onSubmit={e => {
                 e.preventDefault();
                 loginUser({
@@ -48,6 +51,7 @@ class NewShelter extends Component {
                 });
               }}
             >
+              <h1 id='shelter-signup'>Shelter Signup</h1>
               <input
                 value={this.state.name}
                 onChange={this.update("name")}
@@ -73,8 +77,9 @@ class NewShelter extends Component {
                 onChange={this.update("animals")}
                 placeholder="animals"
               />
-              <button type="submit">new shelter</button>
+              <button className='modal-button' type="submit">new shelter</button>
             </form>
+          </div>
           </div>
         )}
       </Mutation>

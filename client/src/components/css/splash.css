@@ -81,6 +81,8 @@
 #browse{
     color: white;
     font-size: calc(1vh + 2vw);
+    margin: auto;
+    transition: all .8s ease-in ;
 }
 
 #splash-feed-exit{
