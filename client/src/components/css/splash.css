@@ -68,6 +68,39 @@
     border-radius: 15px;
 }
 
+#splash-feed-wrapper{
+    width: 100%;
+    height: 100%;
+    animation: .75s ease-in 0s 1 droop;
+    
+}
+
+.hidden{ 
+    display: none;
+}
+#browse{
+    color: white;
+}
+
+#splash-feed-exit{
+    text-decoration: none;
+    color: white;
+    font-size: 4em;
+    margin: 0;
+    font-family: 'Capriola', sans-serif;
+    float: left;
+    margin-left: 2%;
+}
+
+#mock-map{
+    background: lavenderblush;
+    height: 45vh;
+    width: 45vw;
+    margin: auto;
+    transition: all .75s ease-in-out;
+    border-radius: 15px;
+}
+
 @media screen and (max-width: 690px) {
     #splash{
         grid-column-start: 1;
@@ -86,3 +119,11 @@
     }
 }
 
+@keyframes droop {
+    0%{
+        opacity: 0%;
+    };
+    100%{
+        opacity: 100%;
+    }
+}
