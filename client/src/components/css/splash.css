@@ -80,6 +80,7 @@
 }
 #browse{
     color: white;
+    font-size: calc(1vh + 2vw);
 }
 
 #splash-feed-exit{
