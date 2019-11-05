@@ -7,7 +7,7 @@ import {
 import FacebookLogin from "./FacebookLogin";
 import Mutations from "../graphql/mutations";
 import Querys from "../graphql/queries";
-import './auth.css';
+import './css/auth.css';
 import { Link, withRouter } from 'react-router-dom';
 import ShelterLanding from "./ShelterLanding" ;
 const { LOGIN_USER } = Mutations;

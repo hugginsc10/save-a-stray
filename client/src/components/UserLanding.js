@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {Query} from "react-apollo";
 import Queries from "../graphql/queries"
 import AnimalFeedItem from './AnimalFeedItem'
-import './userLanding.css'
+import './css/userLanding.css'
 const {FIND_ANIMALS} = Queries
 
 class UserLanding extends Component {

@@ -3,7 +3,7 @@ import Queries from "../graphql/queries";
 import { ApolloConsumer } from 'react-apollo';
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import './slug.css'
+import './css/slug.css'
 const { IS_LOGGED_IN } = Queries;
 
 const Slug = props => {

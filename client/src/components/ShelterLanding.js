@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import './ShelterLanding.css'
+import './css/ShelterLanding.css'
 
 class ShelterLanding extends Component {
   constructor(props) {

@@ -40,3 +40,30 @@
     width: fit-content;
     height: fit-content;
 }
+
+@media screen and (max-width: 690px) {
+
+    #animal-show-top{
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 4;
+        height: 110%;
+        border-radius: 0;
+        overflow: hidden;
+    }
+    
+    #show-image{
+        margin-top: 23%;
+
+    }
+
+    #animal-show-top p{
+        font-size: calc(1vh + 2.5vw);
+        text-align: center;
+    }
+
+    #adopt-button{
+        margin-bottom: 8%;
+    }
+}
