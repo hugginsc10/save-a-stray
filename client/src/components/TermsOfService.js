@@ -1,5 +1,5 @@
 import React from 'react';
-import './tos.css'
+import './css/tos.css'
 
 class TermsOfService extends React.Component {
 

@@ -13,7 +13,7 @@ import UserLanding from "./UserLanding";
 import AuthRoute from '../util/route_util'
 import Nav from "./Nav";
 import Slug from './slug'
-import './App.css'
+import './css/App.css'
 import Privacy from "./Privacy";
 import TermsOfService from "./TermsOfService";
 const App = () => {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../graphql/mutations"
-import './application.css'
+import './css/application.css'
 const { CREATE_APPLICATION } = Mutations
 
 class NewApplication extends Component {

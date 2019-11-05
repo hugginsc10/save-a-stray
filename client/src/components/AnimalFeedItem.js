@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import Mutations from "../graphql/mutations"
 import { withRouter } from "react-router";
-import './AnimalFeedItem.css'
+import './css/AnimalFeedItem.css'
 class AnimalFeedItem extends Component {
   constructor(props) {
     super(props);
