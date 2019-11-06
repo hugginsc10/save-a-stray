@@ -22,7 +22,7 @@ class Login extends Component {
       password: ""
     };
   }
-  
+   this.handleDemo = this.handleDemo.bind(this);
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
