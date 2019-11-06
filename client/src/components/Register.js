@@ -63,6 +63,11 @@ class Register extends Component {
                 }}
               >
                 <h1>Signup</h1>
+                <div id='shelter-signup-wrapper'>
+                  <p id='preShelter'>If you are a shelter  </p> 
+                  &nbsp;
+                  <Link to="/newShelter"> click here</Link>
+                </div>
                 <input
                   value={this.state.name}
                   onChange={this.update("name")}
@@ -90,7 +95,7 @@ class Register extends Component {
               </form>
             </div>
             
-            <Link to="/newShelter">New Shelter</Link>
+            
             <br />
           </div>
        
