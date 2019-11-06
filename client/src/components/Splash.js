@@ -27,7 +27,7 @@ const Splash = props => {
                 <p id='splash-feed-exit' onClick={e => openFeed(e)}>X</p>
                 <div id='google-maps-wrapper'>
                     <div id='mock-map'></div>
-                    <input type='range' min='1' max='400'/>
+                    <input id='splash-slider' type='range' min='1' max='400'/>
                 </div>
                  
               </div>

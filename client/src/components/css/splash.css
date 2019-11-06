@@ -104,6 +104,24 @@
     border-radius: 15px;
 }
 
+#splash-slider{
+    margin: 10px;
+    width: 50%;
+}
+input::-webkit-slider-runnable-track{
+    background: #2ab1ff;
+    height: 7px;
+    border-radius: 15px;
+}
+
+input::-webkit-slider-thumb{
+    color: orange;
+    background: orange;
+    height: 24px;
+    border: none;
+    -webkit-appearance: none;
+}
+
 @media screen and (max-width: 690px) {
     #splash{
         grid-column-start: 1;
