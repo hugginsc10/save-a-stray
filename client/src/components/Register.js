@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { Mutation,ApolloConsumer } from "react-apollo";
+import { Mutation, ApolloConsumer } from "react-apollo";
 import Mutations from "../graphql/mutations"
 import './auth.css'
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
 const { REGISTER_USER } = Mutations
 
+let baseUrl = `Https://save-a-stray.herokuapp.com`;
 
-let baseUrl = '';
 class Register extends Component {
   constructor(props) {
     super(props);

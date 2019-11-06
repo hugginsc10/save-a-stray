@@ -3,16 +3,14 @@ import {
   Mutation,
   ApolloConsumer
 } from "react-apollo";
-import FacebookLogin from "./FacebookLogin";
 import Mutations from "../graphql/mutations";
 import './auth.css';
-import RaisedButton from 'material-ui/RaisedButton';
 import { Link, withRouter } from 'react-router-dom';
 import SocialButtons from './Buttons';
 const { LOGIN_USER } = Mutations
 
 
-let baseUrl = "";
+
 
 
 class Login extends Component {

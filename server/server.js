@@ -1,6 +1,5 @@
 const models = require("./models");
 const express = require("express");
-const app = express();
 const db = require("../config/keys.js").MONGO_URI;
 const expressGraphQL = require("express-graphql");
 const schema = require("./schema/schema");
@@ -12,49 +11,22 @@ const Keys = require("../config/keys");
 const User = require("./models/User");
 const passport = require("passport");
 const facebookRegister = require("./services/auth");
+const googleRegister = require("./services/auth");
 const GoogleStrategy = require("passport-google").Strategy;
 const AmazonStrategy = require("passport-amazon").Strategy;
 const chalk = require("chalk");
-
-const router = express.Router();
-
-let baseUrl = "";
+const app = express();
+const GoogleLogin = require("../client/src/components/GoogleLogin");
 
 
-app.use(cors());
 
-app.use(
-  "/graphql",
-  expressGraphQL( req => {
-    return {
-    schema,
-    context: {
-      token: req.headers.authorization
-    },
-    graphiql: true
-    };
-  })
-  );
+
+// passport.serializeUser((user, cb ) => {cb(null, user);});
+
+// passport.deserializeUser((obj, cb) => {cb(null, obj);});
+
 
 app.use(passport.initialize());
-
-mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log("Connected to MongoDB successfully"))
-  .catch(err => console.log(err));
-
-
-app.use(bodyParser.json());
-
-passport.serializeUser((user, cb ) => {cb(null, user);});
-
-passport.deserializeUser((obj, cb) => {cb(null, obj);});
-
-
-
 
 
 // Social Auth
@@ -66,12 +38,9 @@ passport.use(
       callbackURL: 'https://save-a-stray.herokuapp.com/auth/facebook/callback'
     },
     (accessToken, refreshToken, profile, cb) => {
-      User.findOrCreate(...(err, user) => {
-        if (err) { return cb(err);}
-        cb(null, user);
-      });
-     
-    },
+      console.log(profile);
+      cb(facebookRegister, profile);
+      }
   ),
 );
 passport.use(
@@ -81,12 +50,9 @@ passport.use(
       callbackURL: 'https://save-a-stray.herokuapp.com/auth/google/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
-      console.log(chalk.blue(JSON.stringify(profile)));
-      User.findOrCreate(...(err, user) => {
-        if (err) { return cb(err);}
-        cb(null, user);
-      });
-    },
+      console.log(profile);
+      cb(googleRegister, profile);
+      }
   ),
 );
 
@@ -121,36 +87,43 @@ passport.use(
 // );
 
 // AMZN routes
-router.get("/auth/amazon", passport.authenticate("amazon", 
-{scope: ["profile"]}));
 
-router.get("/auth/amazon/callback",
-  passport.authenticate("amazon", {failureRedirect: '/login' }), 
-    (req, res) => {
-      res.redirect("/");
-    });
+
+
+// router.get("/auth/amazon", passport.authenticate("amazon", 
+// {scope: ["profile"]}));
+
+// router.get("/auth/amazon/callback",
+//   passport.authenticate("amazon", {failureRedirect: '/login' }), 
+//     (req, res) => {
+//       res.redirect("/");
+//     });
 
 
 // GOOG routes
 router.get("/auth/google", passport.authenticate("google", 
-{scope: ["profile, email"]}));
+{scope: ["profile"]}));
 
 router.get("/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: '/login'}), 
+  passport.authenticate("google", { 
+    session: false
+  }), 
   (req, res) => {
-  res.redirect("/");
-});
+    res.send(Keys.googClient)
+  }
+
+);
 
 // TWTR routes
-router.get("/auth/twitter", passport.authenticate("twitter", {
-  scope: ["profile"]
-}));
+// router.get("/auth/twitter", passport.authenticate("twitter", {
+//   scope: ["profile"]
+// }));
 
-router.get("/auth/twitter/callback",
-  passport.authenticate("twitter", {failureRedirect: '/login'}),
-    (req, res) => {
-      res.redirect("/");
-    });
+// router.get("/auth/twitter/callback",
+//   passport.authenticate("twitter", {failureRedirect: '/login'}),
+//     (req, res) => {
+//       res.redirect("/");
+//     });
 
 // FBOOK routes
 
@@ -175,6 +148,29 @@ router.get("/auth/logout", (req, res) => {
   user = {};
   res.redirect("/");
 });
+
+mongoose
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("Connected to MongoDB successfully"))
+  .catch(err => console.log(err));
+
+app.use(cors());
+
+app.use(
+  "/graphql",
+  expressGraphQL(req => {
+    return {
+      schema,
+      context: {
+        token: req.headers.authorization
+      },
+      graphiql: true
+    };
+  })
+);
 
 
 // remember we use bodyParser to parse requests into json

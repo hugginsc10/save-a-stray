@@ -143,10 +143,7 @@ const googleRegister = async data => {
   console.log(data)
   try {
 
-    const {
-      id,
-      displayName
-    } = data
+    const {id, displayName } = data
     const email = id
     const name = displayName
     const userRole = "endUser"
