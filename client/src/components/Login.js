@@ -29,7 +29,16 @@ class Login extends Component {
     client.writeData({
       data: { isLoggedIn: data.login.loggedIn,userId: data.login._id }
     });
-  }  
+  }
+  handleDemo(e) {
+    // e.preventDefault();
+    let user = {
+      email: "demo@demo.demo",
+      password: "123456"
+    };
+    this.props.login(user)
+      .then(() => this.props.closeModal());
+  }
   
   render() { 
     return (
@@ -74,7 +83,8 @@ class Login extends Component {
                           placeholder="Password"
                         />
                         <button className='modal-button' type="submit">Log In</button>
-                        <FacebookLogin />
+                        {/* <FacebookLogin /> */}
+                        <button id="demo" className="session-button" onClick={() => this.handleDemo()}>Demo User</button>
                         <button id='google-button' className="g-signin2 modal-button" data-onsuccess="onSignIn">Sign in with Google</button>
                       </form>
                       
