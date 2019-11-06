@@ -3,7 +3,7 @@ import Queries from "../graphql/queries";
 import { ApolloConsumer } from 'react-apollo';
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import './App.css'
+import './css/App.css'
 const { IS_LOGGED_IN } = Queries;
 
 const Nav = props => {
@@ -17,10 +17,6 @@ const Nav = props => {
                 if (data.isLoggedIn) {
                   return (
                     <div className='auth-links'>
-                      <br/>
-                      <Link to="/newAnimal">New Animal</Link>
-                      <br/>
-                      <Link to="/newApplication">New Application</Link>
                       <button id='logout'
                         onClick={e => {
                           e.preventDefault();
@@ -53,6 +49,11 @@ const Nav = props => {
           )}
         </ApolloConsumer>
       </div>
+      {/* <div id='hamburger'>
+              <ul>
+
+              </ul>
+      </div> */}
     </div>
   );
 };

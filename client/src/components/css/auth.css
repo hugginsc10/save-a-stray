@@ -1,0 +1,183 @@
+.auth-modal{
+    position: fixed;
+    background: rgba(43, 177, 255, 0.8);
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    transition: all .25s ease-in-out;
+    justify-content: center;
+    top: 0;
+    z-index: 4;
+    display: grid;
+    grid: inherit;
+}
+
+.auth-div{
+    background: white;
+    width: 100%;
+    height: fit-content;
+    border-radius: 20px;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    display: grid;
+    grid: inherit;
+    margin-bottom: 2%;
+  }
+
+.auth-form{
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 3;
+}
+
+
+
+.auth-form h1 {
+    font-size: 85px;
+    overflow-wrap: break-word;
+    color: rgb(43, 177, 255);
+    margin-top: 0;
+    text-align: center;
+    font-family: 'Capriola', sans-serif;
+    text-decoration: underline;
+    line-height: 69px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.auth-form input {
+    margin-top: 7.5px;
+    background: rgb(232, 240, 254);
+    padding: 10px;
+    color: black;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    width: 25%;
+    align-self: center;
+    min-width: 255px;
+}
+
+.auth-form input:focus{
+    none: 0;
+}
+
+.auth-form select{
+    width: 93%;
+    align-self: center;
+}
+
+.modal-button {
+    border: none;
+    padding: 1%;
+    border-radius: 15px;
+    color: white;
+    font-size: 24px;
+    background: lightsalmon;
+    font-family: 'Nunito', sans-serif;
+    align-self: center;
+    cursor: pointer;
+    margin: 10px;
+    outline: 0ch;
+    display: flex;
+    justify-content: center;
+    min-width: 255px
+}
+
+.modal-exit{
+    text-decoration: none;
+    color: rgb(43, 177, 255);
+    font-size: 4em;
+    margin-right: 3%;
+    font-family: 'Capriola', sans-serif;
+    grid-column-start: 5;
+}
+
+.modal-exit:hover{
+    color: lightsalmon;
+    cursor: pointer;
+}
+#legal{
+    color: lightsalmon;
+    text-align: center;
+    font-size: 16px;
+    margin: 2% 0px;
+}
+#legal pre{
+    margin: 0;
+    height: 0;
+}
+
+#facebook-button{
+    background: rgb(66,103,178);
+    text-decoration: none;
+    margin-top: 30px;
+    transition: all .25s ease-in-out
+}
+
+#facebook-button:hover{
+    background: rgb(124, 152, 207)
+}
+
+@media screen and (max-width: 690px) {
+    .auth-div{
+        height: inherit;
+        width: -webkit-fill-available;
+        margin: 0;
+        top: 0;
+        border-radius: 0;
+        justify-content: normal;
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 1;
+    
+    }
+    .auth-form{
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 2;
+    grid-column-end: 5; 
+    }
+    .auth-form h1{
+        padding: 20px 0;
+    }
+
+    .modal-exit{
+        margin: 5%;
+        font-size: 12vw
+    }
+
+    .modal-button{
+        width: 80%;
+    }
+
+    .auth-form input{
+        margin: 3%;
+        width: 80%;
+    }
+    #legal{
+        font-size: 12px;
+    }
+
+    
+
+    .auth-modal{
+        background: rgba(43, 177, 255, 1);
+        animation: .5s ease-in-out 0s 1 slideInFromRight;
+    }
+
+    .auth-div{
+        
+        animation: .5s ease-in-out 0s 1 slideInFromRight;
+    }
+    
+  }
+
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }

@@ -1,11 +1,15 @@
 import React from 'react';
-
+import './css/tos.css'
 
 class TermsOfService extends React.Component {
 render() {
     return(
+<<<<<<< HEAD
       
 <div>
+=======
+        <div id='tos-top'>
+>>>>>>> d2368c76eb1f9ef1aad04ceef80490ce8596c372
 
 
 <h2 color="blue">Welcome to Save A Stray</h2>

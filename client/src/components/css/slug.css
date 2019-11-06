@@ -1,0 +1,53 @@
+#slug{
+  z-index: 4;
+  margin-right: 3vw;
+  grid-column-start: 2;
+}
+.animalIndex{
+  background: black
+}
+#logo{
+    color: rgb(43, 177, 255);
+    font-family: 'Capriola', sans-serif;
+      font-size: 55px;
+      grid-column-start: 1;
+      text-decoration-color: lightsalmon;
+  }
+  
+#logo-h1{
+  margin: 0;
+  margin-top: 3%;
+  font-size: 6vw;
+  -webkit-font-smoothing: subpixel-antialiased;
+  letter-spacing: 0px;
+  
+
+}
+
+#lorem{
+  color: rgb(43, 177, 255);
+  margin-top: 10px;
+  font-size: 1.8vw;
+}
+
+#hamburger{
+  display: none;
+}
+
+@media screen and (max-width: 690px) {
+  #lorem{
+    display:none;
+  } 
+
+  #logo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    grid-column-start: 1;
+    margin-left: 2vw;
+    margin-top: 1vw
+  }
+
+  
+}

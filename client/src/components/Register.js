@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { Mutation, ApolloConsumer } from "react-apollo";
 import Mutations from "../graphql/mutations"
+<<<<<<< HEAD
 import './auth.css'
 import RaisedButton from 'material-ui/RaisedButton';
+=======
+import './css/auth.css'
+>>>>>>> d2368c76eb1f9ef1aad04ceef80490ce8596c372
 import { Link } from 'react-router-dom';
 const { REGISTER_USER } = Mutations
 
@@ -25,10 +29,14 @@ class Register extends Component {
   }
 
   updateCache(client, { data }) {
-    console.log(data);
+     
     client.writeData({
+<<<<<<< HEAD
       data: {  isLoggedIn: data.register.loggedIn,
         userRole: data.register.userRole }
+=======
+      data: {  isLoggedIn: data.register.loggedIn,userId: data.register._id }
+>>>>>>> d2368c76eb1f9ef1aad04ceef80490ce8596c372
     });
   }
   
@@ -43,12 +51,7 @@ class Register extends Component {
             onCompleted={data => {
               const { token } = data.register;
               localStorage.setItem("auth-token", token);
-              if (client.cache.data.data.ROOT_QUERY.userRole === "admin") {
-                this.props.history.push("/Shelter");
-              } else {
-                this.props.history.push("/User")
-                
-              }
+              this.props.history.push("/Landing");
             }}
             update={(client, data) => this.updateCache(client, data)}
           >
@@ -56,14 +59,18 @@ class Register extends Component {
 
           <div className='auth-modal'>
             <div className='auth-div'>
+<<<<<<< HEAD
             <Link to="/" className='modal-exit'>X</Link>   
+=======
+            <Link to="/"className='modal-exit' >X</Link>   
+>>>>>>> d2368c76eb1f9ef1aad04ceef80490ce8596c372
               <form className='auth-form'
                 onSubmit={e => {
                   e.preventDefault();
                   registerUser({
                     variables: {
                       name: this.state.name,
-                      userRole: this.state.userRole,
+                      userRole: 'endUser',
                       email: this.state.email,
                       password: this.state.password
                     }
@@ -81,17 +88,13 @@ class Register extends Component {
                   onChange={this.update("email")}
                   placeholder="Email"
                 />
-                <select onChange={this.update("userRole")}>
-                  <option value="admin">Admin</option>
-                  <option value="endUser">Adopt</option>
-                  <option value="volunteer">Volunteer</option>
-                </select>
                 <input
                   value={this.state.password}
                   onChange={this.update("password")}
                   type="password"
                   placeholder="Password"
                 />
+<<<<<<< HEAD
                 <div className="modal-twitter-button">
                 <RaisedButton
                   href={`${baseUrl}/auth/twitter`}
@@ -128,7 +131,16 @@ class Register extends Component {
                 />
               </div>
   
+=======
+>>>>>>> d2368c76eb1f9ef1aad04ceef80490ce8596c372
                 <button className='modal-button' type="submit">Register Account</button>
+                <FacebookLogin />
+                <pre id='legal'>By clicking "Sign Up" I agree to the Save A Stray  
+                  <br/> 
+                   <a href='#/tos'>Terms of Service</a>
+                   <pre> </pre>
+                   <a href='#/privacy'>Privacy Policy</a>
+                </pre>
               </form>
             </div>
             
