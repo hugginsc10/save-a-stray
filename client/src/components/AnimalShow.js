@@ -41,7 +41,7 @@ class NewAnimal extends React.Component {
                        
                       return (
                         <div id='animal-show-top'>
-                            <h1>{data.animal.name}</h1>
+                            <h1 id='show-dog-name'>{data.animal.name}</h1>
                             <img id='show-image' src={data.animal.image}/>
                             <p>Hi my name is <span>{data.animal.name}</span></p>
                             <p>I am a {data.animal.age} year old {data.animal.sex}</p>

@@ -90,7 +90,8 @@
 }
 
 .feed-button:hover{
-    transform: rotate(10deg)
+    transform: rotate(10deg);
+    cursor: pointer;
 }
 
 .feed-button:focus{

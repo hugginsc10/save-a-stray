@@ -41,6 +41,12 @@
     height: 15%;
 }
 
+.apply-button:hover{
+    cursor: pointer;
+    background: rgb(209, 130, 99);
+    transition: all .5s ease-in-out;
+}
+
 .animal-feed-image{
     width: inherit;
 }
