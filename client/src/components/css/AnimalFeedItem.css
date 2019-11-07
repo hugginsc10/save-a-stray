@@ -8,9 +8,9 @@
 
 .animal-feed-item{
     display: grid;
-    grid-template-columns: 10% 80% 10%;
-    height: 25vw;
-    width: 25vw;
+    grid-template-columns: 5% 90% 5%;
+    height: 20vw;
+    width: 20vw;
 }
 
 .animal-feed-item-header{
@@ -21,7 +21,7 @@
     border-bottom: 7px solid black;
     height: 15%;
     color: black;
-
+    align-items: center;
 
 }
 

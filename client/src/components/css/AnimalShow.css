@@ -3,18 +3,21 @@
     grid-column-end: 5;
     grid-row-start: 2;
     color: lightsalmon;
-    background: aliceblue;
+    background: rgb(232, 240, 254);
     border-radius: 25px;
     font-family: 'Nunito', sans-serif;
     flex-direction: column;
     height: fit-content ;
     margin-bottom: 3%;
     border: 7px solid black;
+    padding-bottom: 3%;
 }
 
 #animal-show-top p{
-    font-size: calc(1vh + 1vw);
-    text-align: center;
+    font-size: calc(1.5vh + 1vw);
+    width: 80%;
+    margin: auto;
+    
 }
 
 #show-dog-name{
@@ -24,7 +27,7 @@
 
 #adopt-button{
     border: none;
-    padding: 1%;
+    padding: 16px;
     border-radius: 15px;
     color: white;
     font-size: 24px;
@@ -32,13 +35,15 @@
     font-family: 'Nunito', sans-serif;
     align-self: center;
     cursor: pointer;
-    margin: 10px;
     outline: 0ch;
     display: flex;
     justify-content: center;
     min-width: 255px;
     margin:  auto;
-    margin-bottom: 5px;
+  
+}
+#animal-show-wrapper{
+    display: flex;
 }
 #show-image{
     border-radius: 15px;
@@ -47,6 +52,21 @@
     margin-left: 3vw;
     max-width: 40vw;
 }
+
+#animal-show-description{
+    display: inherit;
+    flex-direction: column;
+
+}
+
+#show-application-wrapper{
+    margin-top: 4vh;
+}
+
+.hidden{
+    display: none;
+}
+
 
 @media screen and (max-width: 690px) {
 
