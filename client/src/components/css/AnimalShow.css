@@ -27,10 +27,9 @@
 
 #adopt-button{
     border: none;
-    padding: 16px;
+    padding: calc((1.5vh + 1vw) *.66);
     border-radius: 15px;
     color: white;
-    font-size: 24px;
     background: lightsalmon;
     font-family: 'Nunito', sans-serif;
     align-self: center;
@@ -38,12 +37,32 @@
     outline: 0ch;
     display: flex;
     justify-content: center;
-    min-width: 255px;
-    margin:  auto;
+    margin: auto;
+    font-size: calc(1.5vh + 1vw);
   
+}
+
+#animal-show-header{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#back-button{
+    color: rgb(43, 177, 255);
+    text-decoration: none;
+    font-size: calc(1.5vh + 1vw);
+}
+
+#back-button:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 #animal-show-wrapper{
     display: flex;
+    justify-content: space-around;
 }
 #show-image{
     border-radius: 15px;

@@ -28,13 +28,17 @@ class AnimalShow extends React.Component {
 
   showForm(){
     document.getElementById('show-application-wrapper').classList.toggle('hidden', false)
-
   }
+
+  // backToFeed(){
+  //   history.pushState()
+  // }
   
   
   
   render() {
      let form = <NewApplication id='show-application' className='hidden'/> 
+     let backText = '<-- Back to other pets'
         return(
             <Query
             query={FETCH_ANIMAL}
@@ -48,19 +52,24 @@ class AnimalShow extends React.Component {
                        
                       return (
                         <div id='animal-show-top'>
-                            <h1 id='show-dog-name'>{data.animal.name}</h1>
+                            <div id='animal-show-header'>
+                              <a href='/#/Landing' id='back-button'>{backText}</a>
+                              <h1 id='show-dog-name'>{data.animal.name}</h1>
+                            </div>
                             <div id='animal-show-wrapper'>
-                              <img id='show-image' src={data.animal.image}/>
                               <div id='animal-show-description'>
 
                                 <p>Hi my name is <span>{data.animal.name}</span>.
+                                <br/>
                                 I am a {data.animal.age} year old {data.animal.sex}.
+                                <br/>
                                 My coat is {data.animal.color}.
                                 <br/>
                                 People say: {data.animal.description}
                                 {data.animal.application}</p>
                                 <button id='adopt-button' onClick={this.showForm}>Apply to adopt {data.animal.name}</button>
                               </div>
+                              <img id='show-image' src={data.animal.image}/>
                             </div>
                             <div id='show-application-wrapper' className='hidden'>
                                 {form}
