@@ -27,7 +27,12 @@ class AnimalShow extends React.Component {
   }
 
   showForm(){
-    document.getElementById('show-application-wrapper').classList.toggle('hidden', false)
+    let app = document.getElementById('show-application-wrapper')
+    app.classList.toggle('hidden', false)
+    window.scrollTo({
+      top: (app.offsetHeight + 50),
+      behavior: 'smooth'
+    })
   }
 
   // backToFeed(){
