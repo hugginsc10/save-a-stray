@@ -23,7 +23,7 @@ class AnimalFeedItem extends Component {
             <p>{this.props.animal.age}</p>
             <p>{this.props.animal.sex}</p>
           </div>
-          <div id='animal-feed-item-image-container' style={{'background': `url(${picture})`, 'background-size': 'cover'}}>
+          <div id='animal-feed-item-image-container' style={{'background': `url(${picture})`, 'backgroundSize': 'cover'}}>
 
             {/* <img className='animal-feed-image' src='https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/46201085/1/?bust=1570458597&width=560' alt='hello'/> */}
           </div>
