@@ -24,7 +24,7 @@
 #nav-right{
   grid-row-start: 2;
   display: flex;
-  justify-self: center;
+  justify-self: end;
 }
 
 .auth-links{

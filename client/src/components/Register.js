@@ -31,12 +31,7 @@ class Register extends Component {
   updateCache(client, { data }) {
      
     client.writeData({
-<<<<<<< HEAD
-      data: {  isLoggedIn: data.register.loggedIn,
-        userRole: data.register.userRole }
-=======
       data: {  isLoggedIn: data.register.loggedIn,userId: data.register._id }
->>>>>>> d2368c76eb1f9ef1aad04ceef80490ce8596c372
     });
   }
   
@@ -59,11 +54,8 @@ class Register extends Component {
 
           <div className='auth-modal'>
             <div className='auth-div'>
-<<<<<<< HEAD
-            <Link to="/" className='modal-exit'>X</Link>   
-=======
             <Link to="/"className='modal-exit' >X</Link>   
->>>>>>> d2368c76eb1f9ef1aad04ceef80490ce8596c372
+
               <form className='auth-form'
                 onSubmit={e => {
                   e.preventDefault();
@@ -78,6 +70,11 @@ class Register extends Component {
                 }}
               >
                 <h1>Signup</h1>
+                <div id='shelter-signup-wrapper'>
+                  <p id='preShelter'>If you are a shelter  </p> 
+                  &nbsp;
+                  <Link to="/newShelter"> click here</Link>
+                </div>
                 <input
                   value={this.state.name}
                   onChange={this.update("name")}
@@ -144,7 +141,7 @@ class Register extends Component {
               </form>
             </div>
             
-            <Link to="/newShelter">New Shelter</Link>
+            
             <br />
           </div>
        

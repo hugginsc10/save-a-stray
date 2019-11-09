@@ -10,7 +10,7 @@ const Slug = props => {
   return (
     <div id='slug'>
         <Link to="/" id='logo' >
-            <h1 id='logo-h1'>Save Your Stray</h1>
+            <h1 id='logo-h1'>Save A Stray</h1>
         </Link>
         <p id='lorem'>Save Your Stray is a non-profit operation with 
         the aim of making it easier to rescue and foster abandoned animals.
