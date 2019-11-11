@@ -9,7 +9,7 @@ const { FETCH_ANIMAL} = Querys;
 class NewAnimal extends React.Component {
   constructor(props) {
     super(props);
-
+    this.handleClick = this.handleClick.bind(this)
     this.state = {
       name: "",
       type: "",
@@ -22,7 +22,9 @@ class NewAnimal extends React.Component {
       application: ""
     };
   }
-
+  handleClick(){
+    debugger
+  }
   
   
   
@@ -49,7 +51,7 @@ class NewAnimal extends React.Component {
                             <p>My coat is {data.animal.color}</p>
                             <p>People say: {data.animal.description}</p>
                             <p>{data.animal.application}</p>
-                            <button id='adopt-button'>Apply to adopt {data.animal.name}</button>
+                            <button onClick={this.handleClick(data.animal._id)} id='adopt-button'>Apply to adopt {data.animal.name}</button>
                         </div>
                     );
                     }
