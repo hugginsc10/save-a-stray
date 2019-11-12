@@ -2,7 +2,7 @@ import React from "react";
 import {Query,ApolloConsumer} from "react-apollo";
 import Querys from "../graphql/queries";
 import UserShow from "./UserLanding";
-import ShelterShow from "./Shelter";
+import ShelterShow from "./ShelterLanding.js";
 const { FETCH_USER,USER_ID} = Querys;
 
 
@@ -38,11 +38,13 @@ render(){
 
         >                        
             {({ loading, error, data }) => {
+                debugger
                 if (loading){
                     return <h1>Loading</h1>
                 }else{
-                    if (data.user.userRole === "admin") {
+                    if (data.user.userRole === "shelter") {
                         console.log("render the shelter conponint with the shelter info as a prop")
+                        debugger
                         return <ShelterShow shelterInfo={data.user.shelter}/>
                     } else if (data.user.userRole === "endUser") {
                         console.log("render the User conponint with the user info as a prop")

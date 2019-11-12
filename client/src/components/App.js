@@ -3,6 +3,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import Splash from './Splash'
 import Login from "./Login";
 import Register from "./Register";
+import RegisterShelter from "./RegisterShelter";
 import Animal from "./Animal";
 import AnimalShow from "./AnimalShow";
 import Application from "./Application";
@@ -23,6 +24,7 @@ const App = () => {
         <Slug/>
         <Nav id='navbar' />
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
+          <Route exact path="/RegisterShelter/:id" component={RegisterShelter} routeType=""  />
           <Route exact path="/AnimalShow/:id" component={AnimalShow} routeType=""  />
           <Route exact path="/Landing" component={Landing} routeType=""  />
           <Route exact path="/User" component={UserLanding} routeType=""  />
