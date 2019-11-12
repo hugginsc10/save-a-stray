@@ -19,7 +19,7 @@ export default {
         token
         loggedIn,
         _id,
-        shelterId
+        shelter
       }
     }
   `,
