@@ -21,7 +21,8 @@ const App = () => {
   return (
     <HashRouter>
       <div id='root-div1'>
-        <Slug/>
+        <Route exact path='/' component={Slug} />
+        {/* <Slug/> */}
         <Nav id='navbar' />
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
           <Route exact path="/RegisterShelter/:id" component={RegisterShelter} routeType=""  />
