@@ -72,15 +72,18 @@
 #animal-feed{
     list-style: none;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: left;
     flex-wrap: wrap;
     padding: 0;
+    width: 90%;
+    margin: auto;
+    margin-top: 3vw;
 }
 
 .feed-button{
     background: url(./cat.svg) no-repeat;
-    width: 300px;
-    height: 300px;
+    width: 20vw;
+    height: 20vw;
     background-size: contain;
     border: none;
     cursor: pointer;
@@ -90,7 +93,8 @@
 }
 
 .feed-button:hover{
-    transform: rotate(10deg)
+    transform: rotate(10deg);
+    cursor: pointer;
 }
 
 .feed-button:focus{

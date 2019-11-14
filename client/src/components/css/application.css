@@ -5,7 +5,7 @@
     grid-row-end: 4;
     display: grid;
     grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 30% 70% ;
+    grid-template-rows: 30% 100% ;
     border-radius: 25px;
     background: rgb(232, 240, 254);
 }
