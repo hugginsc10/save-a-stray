@@ -20,7 +20,7 @@ class Login extends Component {
       password: ""
     };
   }
-   this.handleDemo = this.handleDemo.bind(this);
+  handleDemo = this.handleDemo.bind(this);
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
@@ -36,8 +36,8 @@ class Login extends Component {
       email: "demo@demo.demo",
       password: "123456"
     };
-    this.props.login(user)
-      .then(() => this.props.closeModal());
+    // this.props.login(user)
+    //   .then(() => this.props.closeModal());
   }
   
   render() { 
@@ -84,8 +84,16 @@ class Login extends Component {
                         />
                         <button className='modal-button' type="submit">Log In</button>
                         {/* <FacebookLogin /> */}
-                        <button id="demo" className="session-button" onClick={() => this.handleDemo()}>Demo User</button>
-                        <button id='google-button' className="g-signin2 modal-button" data-onsuccess="onSignIn">Sign in with Google</button>
+                        <button id="demo" className="session-button" onClick={e => {
+                          e.preventDefault();
+                          loginUser({
+                            variables: {
+                              email: "demo@demo.demo",
+                              password: "12345678"
+                            }
+                          });
+                        }}>Demo User</button>
+                        {/* <button id='google-button' className="g-signin2 modal-button" data-onsuccess="onSignIn">Sign in with Google</button> */}
                       </form>
                       
                     </div>

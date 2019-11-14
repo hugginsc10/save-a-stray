@@ -95,6 +95,22 @@
     justify-content: center;
     min-width: 255px
 }
+button#demo {
+  border: none;
+  padding: 1%;
+  border-radius: 15px;
+  color: white;
+  font-size: 24px;
+  background: lightsalmon;
+  font-family: 'Nunito', sans-serif;
+  align-self: center;
+  cursor: pointer;
+  margin: 10px;
+  outline: 0ch;
+  display: flex;
+  justify-content: center;
+  min-width: 255px
+}
 
 .modal-exit{
     text-decoration: none;

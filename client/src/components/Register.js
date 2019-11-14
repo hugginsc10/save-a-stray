@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import { Mutation, ApolloConsumer } from "react-apollo";
 import Mutations from "../graphql/mutations"
-<<<<<<< HEAD
-import './auth.css'
-import RaisedButton from 'material-ui/RaisedButton';
-=======
 import './css/auth.css'
->>>>>>> d2368c76eb1f9ef1aad04ceef80490ce8596c372
+import FacebookLogin from './FacebookLogin';
 import { Link } from 'react-router-dom';
 const { REGISTER_USER } = Mutations
-
 let baseUrl = `Https://save-a-stray.herokuapp.com`;
 
 class Register extends Component {
@@ -91,45 +86,6 @@ class Register extends Component {
                   type="password"
                   placeholder="Password"
                 />
-<<<<<<< HEAD
-                <div className="modal-twitter-button">
-                <RaisedButton
-                  href={`${baseUrl}/auth/twitter`}
-                  backgroundColor="#1da1f2"
-                  labelColor="#ffffff"
-                  label="Log in with Twitter"
-                />
-              </div>
-
-              <div className="modal-amazon-button">
-                <RaisedButton
-                  href={`${baseUrl}/auth/amazon`}
-                  backgroundColor="#1da1f2"
-                  labelColor="#ffffff"
-                  label="Log in with Amazon"
-                />
-              </div>
-
-              <div className="modal-google-button">
-                <RaisedButton
-                  href={`${baseUrl}/auth/google`}
-                  backgroundColor="#1da1f2"
-                  labelColor="#ffffff"
-                  label="Log in with Google"
-                />
-              </div>
-
-              <div className="modal-facebook-button">
-                <RaisedButton
-                  href={`${baseUrl}/auth/facebook`}
-                  backgroundColor="#1da1f2"
-                  labelColor="#ffffff"
-                  label="Log in with Facebook"
-                />
-              </div>
-  
-=======
->>>>>>> d2368c76eb1f9ef1aad04ceef80490ce8596c372
                 <button className='modal-button' type="submit">Register Account</button>
                 <FacebookLogin />
                 <pre id='legal'>By clicking "Sign Up" I agree to the Save A Stray  

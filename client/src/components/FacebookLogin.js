@@ -65,18 +65,11 @@ class FacebookSignIn extends Component {
       } = this.state;
       const icon = 'fa ' + (loading ? 'fa-refresh fa-spin' : 'fa-facebook');
 
-<<<<<<< HEAD
       return ( 
       <a href = '/auth/facebook' onClick={this.onFacebookLogin}> 
         <i className = {icon}> </i> 
         Facebook 
       </a>
-=======
-      return (<a className='modal-button' id='facebook-button' href = '/facebooklogin'
-        onClick = {this.onFacebookLogin}> 
-        <i className = {icon} > 
-        </i> Sign in with Facebook </a >
->>>>>>> d2368c76eb1f9ef1aad04ceef80490ce8596c372
       );
     }
   }

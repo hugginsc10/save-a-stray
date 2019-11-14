@@ -39,18 +39,18 @@ passport.use(
       }
   ),
 );
-passport.use(
-  new GoogleStrategy({
-      clientID: Keys.googClient,
-      clientSecret: Keys.googKey,
-      callbackURL: 'https://save-a-stray.herokuapp.com/auth/google/callback',
-    },
-    (accessToken, refreshToken, profile, cb) => {
-      console.log(profile);
-      cb(googleRegister, profile);
-      }
-  ),
-);
+// passport.use(
+//   new GoogleStrategy({
+//       clientID: Keys.googClient,
+//       clientSecret: Keys.googKey,
+//       callbackURL: 'https://save-a-stray.herokuapp.com/auth/google/callback',
+//     },
+//     (accessToken, refreshToken, profile, cb) => {
+//       console.log(profile);
+//       cb(googleRegister, profile);
+//       }
+//   ),
+// );
 
 passport.serializeUser(function (user, cb) {
   cb(null, user);
@@ -100,27 +100,27 @@ app.get(
 
 
 
-router.get("/auth/facebook", passport.authenticate("facebook", 
-{scope: ['profile']})
-);
+// router.get("/auth/facebook", passport.authenticate("facebook", 
+// {scope: ['profile']})
+// );
 
-router.get("/auth/facebook/callback",
-  passport.authenticate(("facebook"),{ failureRedirect: '/login' }), 
-  (req, res) => {
-      res.redirect("/");
-    });
+// router.get("/auth/facebook/callback",
+//   passport.authenticate(("facebook"),{ failureRedirect: '/login' }), 
+//   (req, res) => {
+//       res.redirect("/");
+//     });
 
-router.get("/auth/success", (req, res) => {
-  console.log("getitng user data!");
-  res.send(user);
-});
+// router.get("/auth/success", (req, res) => {
+//   console.log("getting user data!");
+//   res.send(user);
+// });
 
-router.get("/auth/logout", (req, res) => {
-  console.log("logging out !");
-  req.logout();
-  user = {};
-  res.redirect("/");
-});
+// router.get("/auth/logout", (req, res) => {
+//   console.log("logging out !");
+//   req.logout();
+//   user = {};
+//   res.redirect("/");
+// });
 
 mongoose
   .connect(db, {
