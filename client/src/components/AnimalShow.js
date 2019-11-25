@@ -25,11 +25,9 @@ class AnimalShow extends React.Component {
     this.show = false
     this.showForm = this.showForm.bind(this)
   }
-<<<<<<< HEAD
   handleClick(){
     debugger
   }
-=======
 
   showForm(){
     let app = document.getElementById('show-application-wrapper')
@@ -43,7 +41,6 @@ class AnimalShow extends React.Component {
   // backToFeed(){
   //   history.pushState()
   // }
->>>>>>> bdd240bf5004d7e7edc833ff60f90b91a9506485
   
   
   
@@ -63,17 +60,6 @@ class AnimalShow extends React.Component {
                        
                       return (
                         <div id='animal-show-top'>
-<<<<<<< HEAD
-                            <h1>{data.animal.name}</h1>
-                            <img id='show-image' src={data.animal.image}/>
-                            <p>Hi my name is <span>{data.animal.name}</span></p>
-                            <p>I am a {data.animal.age} year old {data.animal.sex}</p>
-                            
-                            <p>My coat is {data.animal.color}</p>
-                            <p>People say: {data.animal.description}</p>
-                            <p>{data.animal.application}</p>
-                            <button onClick={this.handleClick(data.animal._id)} id='adopt-button'>Apply to adopt {data.animal.name}</button>
-=======
                             <div id='animal-show-header'>
                               <a href='/#/Landing' id='back-button'>{backText}</a>
                               <h1 id='show-dog-name'>{data.animal.name}</h1>
@@ -97,7 +83,6 @@ class AnimalShow extends React.Component {
                                 {form}
                             </div>
                            
->>>>>>> bdd240bf5004d7e7edc833ff60f90b91a9506485
                         </div>
                     );
                     }
