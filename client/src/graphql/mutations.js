@@ -6,7 +6,10 @@ export default {
       register(userRole: $userRole,name: $name, email: $email, password: $password) {
         token
         loggedIn,
-        _id
+        _id,
+        shelter{
+          name
+        }
       }
     }
   `,
@@ -71,6 +74,7 @@ export default {
         name
         location
         paymentEmail
+        _id
         }
     }
   `
