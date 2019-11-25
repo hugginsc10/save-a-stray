@@ -4,6 +4,7 @@ import { ApolloConsumer } from 'react-apollo';
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './css/splash.css'
+import UserLanding from "./UserLanding";
 const { IS_LOGGED_IN } = Queries;
 
 
@@ -26,6 +27,7 @@ const Splash = props => {
             {/* <h2 id='browse' onClick={e => openFeed(e)}>Browse Local Animals</h2> mark rfq */}
               <div id='splash-feed-wrapper' className='hidden'>
                 <p id='splash-feed-exit' onClick={e => openFeed(e)}>X</p>
+                < UserLanding splash={"splash"}/>
                 {/* <div id='google-maps-wrapper'>
                     <div id='mock-map'></div>
                     <input id='splash-slider' type='range' min='1' max='400'/>
