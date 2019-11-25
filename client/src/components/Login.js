@@ -81,8 +81,8 @@ class Login extends Component {
                           placeholder="Password"
                         />
                         <button className='modal-button' type="submit">Log In</button>
-                        <FacebookLogin />
-                        <button id='google-button' className="g-signin2 modal-button" data-onsuccess="onSignIn">Sign in with Google</button>
+                        {/* <FacebookLogin />
+                        <button id='google-button' className="g-signin2 modal-button" data-onsuccess="onSignIn">Sign in with Google</button> mark rfq */}
                       </form>
                       
                     </div>

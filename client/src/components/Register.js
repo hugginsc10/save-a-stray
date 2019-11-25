@@ -63,11 +63,11 @@ class Register extends Component {
                 }}
               >
                 <h1>Signup</h1>
-                <div id='shelter-signup-wrapper'>
+                {/* <div id='shelter-signup-wrapper'>
                   <p id='preShelter'>If you are a shelter  </p> 
                   &nbsp;
                   <Link to="/newShelter"> click here</Link>
-                </div>
+                </div> mark rfq */}
                 <input
                   value={this.state.name}
                   onChange={this.update("name")}
@@ -85,7 +85,7 @@ class Register extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Register Account</button>
-                <FacebookLogin />
+                {/* <FacebookLogin /> mark rfq */}
                 <pre id='legal'>By clicking "Sign Up" I agree to the Save A Stray  
                   <br/> 
                    <a href='#/tos'>Terms of Service</a>
