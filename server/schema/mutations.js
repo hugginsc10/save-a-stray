@@ -57,6 +57,17 @@ const mutation = new GraphQLObjectType({
         return AuthService.verifyUser(args);
       }
     },
+    userId: {
+      type: UserType,
+      args: {
+        token: { type: GraphQLString }
+      },
+      resolve(_, args) {
+        let re = AuthService.userId(args);
+        console.log(re)
+        return re
+      }
+    },
     newAnimal: {
       type: AnimalType,
       args:{

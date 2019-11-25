@@ -210,10 +210,33 @@ const verifyUser = async data => {
   }
 };
 
+const userId = async data => {
+  try {
+    // we take in the token from our mutation
+    const { token } = data;
+    // we decode the token using our secret password to get the
+    // user's id
+    const decoded = jwt.verify(token, keys.secretOrKey);
+    const { id } = decoded;
+
+
+    // then we try to use the User with the id we just decoded
+    // making sure we await the response
+    const user = await User.findById(id).then(user => {
+      return user ;
+    });
+
+    return { ...user._doc };
+  } catch (err) {
+    return { loggedIn: false };
+  }
+};
+
 module.exports = {
   register,
   login,
   logout,
   verifyUser,
-  facebookRegister
+  facebookRegister,
+  userId
 };

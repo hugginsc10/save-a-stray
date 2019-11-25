@@ -11,10 +11,10 @@ import { onError } from "apollo-link-error";
 import { ApolloLink } from "apollo-link";
 
 import Mutations from "./graphql/mutations"
-const { VERIFY_USER } = Mutations
+const { VERIFY_USER,USER_ID } = Mutations
 
 const token = localStorage.getItem("auth-token");
-
+debugger
 const cache = new InMemoryCache({
   dataIdFromObject: object => object._id || null
 });
@@ -40,6 +40,7 @@ const client = new ApolloClient({
 cache.writeData({
   data: {
     isLoggedIn: Boolean(token),
+    userId : String(token)
   }
 });
 
@@ -50,15 +51,30 @@ if (token) {
     // user is loggedIn
     .mutate({ mutation: VERIFY_USER, variables: { token } })
     .then(({ data }) => {
+
       cache.writeData({
         data: {
-           isLoggedIn: data.verifyUser.loggedIn, userId: data.verifyUser.id
+           isLoggedIn: data.verifyUser.loggedIn
         }
       });
+      
+    });
+  client
+    .mutate({ mutation: USER_ID, variables: { token } })
+    .then(({ data }) => {
+      debugger
+      cache.writeData({
+        data: {
+           userId: data.userId._id
+        }
+      });
+      
     });
 }
 
+
 const Root = () => {
+  debugger
   return (
     <ApolloProvider client={client}>
       <App />

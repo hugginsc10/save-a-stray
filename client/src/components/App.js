@@ -12,6 +12,7 @@ import ShelterLanding from "./ShelterLanding";
 import Landing from "./Landing";
 import UserLanding from "./UserLanding";
 import AuthRoute from '../util/route_util'
+import ProRoute from '../util/protected_route'
 import Nav from "./Nav";
 import Slug from './slug'
 import './css/App.css'
@@ -21,7 +22,7 @@ const App = () => {
   return (
     <HashRouter>
       <div id='root-div1'>
-        <Route exact path='/' component={Slug} />
+        <AuthRoute exact path='/' component={Slug} routeType="auth" />
         {/* <Slug/> */}
         <Nav id='navbar' />
           <Route exact path="/newAnimal" component={Animal} routeType=""  />
@@ -32,9 +33,10 @@ const App = () => {
           <Route exact path="/Shelter" component={ShelterLanding} routeType=""  />
           <Route exact path="/newApplication" component={Application}  routeType="" />
 
-        <Switch>
+          <ProRoute exact path="/" component={UserLanding} routeType="" />
           <AuthRoute exact path='/' component={Splash} routeType="auth" />
-          <Route exact path="/" component={UserLanding} />
+        <Switch>
+          <Route exact path="/User" component={UserLanding} routeType=""  />
           <Route exact path="/newShelter" component={Shelter} routeType="auth" />
           <AuthRoute exact path="/register" component={Register} routeType="auth" />
           <AuthRoute exact path="/login" component={Login} routeType="auth" />

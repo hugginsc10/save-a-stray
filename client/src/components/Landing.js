@@ -44,6 +44,7 @@ render(){
                 if (loading){
                     return <h1>Loading</h1>
                 }else{
+                    debugger
                     if (data.user.userRole === "shelter") {
                         console.log("render the shelter conponint with the shelter info as a prop")
                         
