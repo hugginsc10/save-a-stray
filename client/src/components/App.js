@@ -33,7 +33,8 @@ const App = () => {
           <Route exact path="/newApplication" component={Application}  routeType="" />
 
         <Switch>
-          <Route exact path='/' component={Splash} />
+          <AuthRoute exact path='/' component={Splash} routeType="auth" />
+          <Route exact path="/" component={UserLanding} />
           <Route exact path="/newShelter" component={Shelter} routeType="auth" />
           <AuthRoute exact path="/register" component={Register} routeType="auth" />
           <AuthRoute exact path="/login" component={Login} routeType="auth" />

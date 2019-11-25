@@ -8,6 +8,7 @@ const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
 const register = async data => {
+  console.log("made it")
   try {
     const { message, isValid } = validateRegisterInput(data);
 

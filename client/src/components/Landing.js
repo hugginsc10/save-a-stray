@@ -21,13 +21,13 @@ class Landing extends React.Component{
 render(){
     return (
     <ApolloConsumer>{client => {
-        debugger
+        
         
                 const user = client.readQuery({
                     query: USER_ID
                     })
                     
-                    debugger
+                    
                     this.userId = user.userId
     return(
         <Query
@@ -40,13 +40,13 @@ render(){
 
         >                        
             {({ loading, error, data }) => {
-                debugger
+                
                 if (loading){
                     return <h1>Loading</h1>
                 }else{
                     if (data.user.userRole === "shelter") {
                         console.log("render the shelter conponint with the shelter info as a prop")
-                        debugger
+                        
                         return <ShelterShow shelterInfo={data.user.shelter}/>
                     } else if (data.user.userRole === "endUser") {
                         console.log("render the User conponint with the user info as a prop")

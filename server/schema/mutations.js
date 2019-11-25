@@ -8,10 +8,10 @@ const Application = mongoose.model("application");
 const Shelter = mongoose.model("shelter");
 
 
-const AuthService = require("../services/auth")
-const AnimalType = require("./types/animal_type")
-const ShelterType = require("./types/shelter_type")
-const ApplicationType = require("./types/application_type")
+const AuthService = require("../services/auth");
+const AnimalType = require("./types/animal_type");
+const ShelterType = require("./types/shelter_type");
+const ApplicationType = require("./types/application_type");
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {

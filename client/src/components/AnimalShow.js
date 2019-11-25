@@ -26,7 +26,6 @@ class AnimalShow extends React.Component {
     this.showForm = this.showForm.bind(this)
   }
   handleClick(){
-    debugger
   }
 
   showForm(){
@@ -45,7 +44,6 @@ class AnimalShow extends React.Component {
   
   
   render() {
-     let form = <NewApplication id='show-application' className='hidden'/> 
      let backText = '<-- Back to other pets'
         return(
             <Query
@@ -57,6 +55,8 @@ class AnimalShow extends React.Component {
                     if (loading){
                         return <h1>Loading</h1>
                     }else{
+                      debugger
+                      let form = <NewApplication animalId={data.animal._id} id='show-application' className='hidden'/> 
                        
                       return (
                         <div id='animal-show-top'>

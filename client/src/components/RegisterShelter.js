@@ -23,7 +23,7 @@ class Register extends Component {
   }
 
   updateCache(client, { data }) {
-     debugger
+     
     client.writeData({
       data: {  isLoggedIn: data.register.loggedIn,userId: data.register._id }
     });
@@ -37,7 +37,7 @@ class Register extends Component {
           <Mutation
             mutation={REGISTER_USER}
             onCompleted={data => {
-                debugger
+                
               const { token } = data.register;
               localStorage.setItem("auth-token", token);
               this.props.history.push("/Landing");

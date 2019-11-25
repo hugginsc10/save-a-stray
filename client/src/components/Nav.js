@@ -8,16 +8,13 @@ const { IS_LOGGED_IN } = Queries;
 
 const Nav = props => {
   let Back;
-  debugger
   if (props.history.location.pathname === "/" || props.history.location.pathname === "/Landing") {
     Back = (<div></div>)
   }else{
-    debugger
     Back = (
       <button id='logout'
           onClick={e => {
             e.preventDefault();
-            debugger
             props.history.goBack()
             // props.history.push("/");
           }}

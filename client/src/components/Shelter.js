@@ -30,7 +30,6 @@ class NewShelter extends Component {
         onCompleted={data => {
           const { newShelter } = data.newShelter;
           localStorage.setItem("Shelter", newShelter);
-          debugger
           this.props.history.push(`/RegisterShelter/${data.newShelter._id}`);
         }}
 
