@@ -6,23 +6,32 @@ import { Link, withRouter } from 'react-router-dom';
 import './css/splash.css'
 const { IS_LOGGED_IN } = Queries;
 
+
 function openFeed(e){
   let button = document.getElementById('splash-button')
-  if (button.classList[0] === 'closed'){
-  button.classList.remove('closed')
-  button.classList.add('open')
-  }
-  else{
-    button.classList.remove('open')
-    button.classList.add('closed')
-  }
+  let feed = document.getElementById('splash-feed-wrapper')
+  button.classList.toggle('closed')
+  button.classList.toggle('open')
+  feed.classList.toggle('hidden')
 }
 
+
 const Splash = props => {
+
   return (
     <div id='splash'>
         <div id='splash-top'>   
-            <button onClick={e => openFeed(e)} className='closed' id='splash-button'>Browse Local Animals</button>
+            <button  className='closed' id='splash-button'>
+            <h2 id='browse' onClick={e => openFeed(e)}>Browse Local Animals</h2>
+              <div id='splash-feed-wrapper' className='hidden'>
+                <p id='splash-feed-exit' onClick={e => openFeed(e)}>X</p>
+                <div id='google-maps-wrapper'>
+                    <div id='mock-map'></div>
+                    <input id='splash-slider' type='range' min='1' max='400'/>
+                </div>
+                 
+              </div>
+            </button>
             
         </div>
     </div>

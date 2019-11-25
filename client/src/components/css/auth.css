@@ -19,6 +19,7 @@
     grid-column-start: 2;
     grid-column-end: 5;
     grid-row-start: 2;
+    grid-row-end: 4;
     display: grid;
     grid: inherit;
     margin-bottom: 2%;
@@ -36,13 +37,24 @@
     font-size: 85px;
     overflow-wrap: break-word;
     color: rgb(43, 177, 255);
-    margin-top: 0;
+    margin: 0;
     text-align: center;
     font-family: 'Capriola', sans-serif;
     text-decoration: underline;
     line-height: 69px;
     padding: 15px;
-    margin-bottom: 15px;
+    
+}
+
+#shelter-signup{
+   line-height: 90px;
+}
+
+#shelter-signup-wrapper{
+    display: flex;
+    color: #ff9f7a;
+    align-items: center;
+    margin: auto;
 }
 
 .auth-form input {

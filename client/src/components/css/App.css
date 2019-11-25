@@ -1,9 +1,11 @@
-
+body{
+  
+}
 #root-div1{
   
   color: white;
     display: grid;
-    grid-template-columns: 10% 20% 40% 20% 10%;
+    grid-template-columns: 5% 20% 50% 20% 5%;
     grid-template-rows: 10% 70% 20%;
     height: -webkit-fill-available;
 }
@@ -24,7 +26,7 @@
 #nav-right{
   grid-row-start: 2;
   display: flex;
-  justify-self: center;
+  justify-self: end;
 }
 
 .auth-links{
