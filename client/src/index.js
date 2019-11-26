@@ -19,10 +19,15 @@ const cache = new InMemoryCache({
   dataIdFromObject: object => object._id || null
 });
 
+
 const httpLink = createHttpLink({
+  uri: "https://save-a-stray.herokuapp.com/graphql",
   // uri: "http://localhost:5000/graphql"
-  uri: "http://save-a-stray.herokuapp.com/graphql"
+  headers: {
+    authorization: localStorage.getItem("auth-token")
+  }
 });
+
 
 const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
