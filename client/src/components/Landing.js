@@ -27,8 +27,9 @@ render(){
                     query: USER_ID
                     })
                     
-                    
+                    debugger
                     this.userId = user.userId
+                    debugger
     return(
         <Query
         query={FETCH_USER}

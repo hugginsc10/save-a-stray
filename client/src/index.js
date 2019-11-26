@@ -21,8 +21,8 @@ const cache = new InMemoryCache({
 
 
 const httpLink = createHttpLink({
-  uri: "https://save-a-stray.herokuapp.com/graphql",
-  // uri: "http://localhost:5000/graphql"
+  // uri: "https://save-a-stray.herokuapp.com/graphql",
+  uri: "http://localhost:5000/graphql",
   headers: {
     authorization: localStorage.getItem("auth-token")
   }
@@ -45,7 +45,7 @@ const client = new ApolloClient({
 cache.writeData({
   data: {
     isLoggedIn: Boolean(token),
-    userId : String(token)
+    userId : ""
   }
 });
 
@@ -56,25 +56,25 @@ if (token) {
     // user is loggedIn
     .mutate({ mutation: VERIFY_USER, variables: { token } })
     .then(({ data }) => {
-
-      cache.writeData({
-        data: {
-           isLoggedIn: data.verifyUser.loggedIn
-        }
-      });
-      
-    });
-  client
-    .mutate({ mutation: USER_ID, variables: { token } })
-    .then(({ data }) => {
       debugger
       cache.writeData({
         data: {
-           userId: data.userId._id
+           isLoggedIn: data.verifyUser.loggedIn, userId: data.verifyUser._id
         }
       });
       
     });
+  // client
+  //   .mutate({ mutation: USER_ID, variables: { token } })
+  //   .then(({ data }) => {
+  //     debugger
+  //     cache.writeData({
+  //       data: {
+  //          userId: data.userId._id
+  //       }
+  //     });
+      
+  //   });
 }
 
 
