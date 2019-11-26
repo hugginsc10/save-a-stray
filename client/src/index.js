@@ -21,7 +21,7 @@ const cache = new InMemoryCache({
 
 
 const httpLink = createHttpLink({
-  // uri: "http://save-a-stray.herokuapp.com/graphql",
+  uri: "http://save-a-stray.herokuapp.com/graphql",
   // uri: "http://localhost:5000/graphql",
   headers: {
     authorization: localStorage.getItem("auth-token")
