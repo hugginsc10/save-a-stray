@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../graphql/mutations"
 import { Link } from 'react-router-dom';
+import RegisterShelter from "./RegisterShelter";
 const { CREATE_SHELTER } = Mutations
 
 class NewShelter extends Component {
@@ -29,7 +30,7 @@ class NewShelter extends Component {
         onCompleted={data => {
           const { newShelter } = data.newShelter;
           localStorage.setItem("Shelter", newShelter);
-          this.props.history.push("/");
+          this.props.history.push(`/RegisterShelter/${data.newShelter._id}`);
         }}
 
       >
@@ -62,21 +63,21 @@ class NewShelter extends Component {
                 onChange={this.update("location")}
                 placeholder="location"
               />
-              <input
+              {/* <input
                 value={this.state.users}
                 onChange={this.update("users")}
                 placeholder="users"
-              />
+              /> */}
               <input
                 value={this.state.paymentEmail}
                 onChange={this.update("paymentEmail")}
-                placeholder="Payment Email"
+                placeholder="Shelter Email"
               />
-              <input
+              {/* <input
                 value={this.state.animals}
                 onChange={this.update("animals")}
                 placeholder="animals"
-              />
+              /> */}
               <button className='modal-button' type="submit">new shelter</button>
             </form>
           </div>

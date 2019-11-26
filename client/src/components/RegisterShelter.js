@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Mutation,ApolloConsumer } from "react-apollo";
-import FacebookLogin from "./FacebookLogin";
 import Mutations from "../graphql/mutations"
 import './css/auth.css'
 import { Link } from 'react-router-dom';
@@ -38,6 +37,7 @@ class Register extends Component {
           <Mutation
             mutation={REGISTER_USER}
             onCompleted={data => {
+                
               const { token } = data.register;
               localStorage.setItem("auth-token", token);
               this.props.history.push("/Landing");
@@ -54,20 +54,19 @@ class Register extends Component {
                   e.preventDefault();
                   registerUser({
                     variables: {
+                      shelterId: this.props.match.params.id,
                       name: this.state.name,
-                      userRole: 'endUser',
+                      userRole: 'shelter',
                       email: this.state.email,
                       password: this.state.password
                     }
                   });
                 }}
               >
-                <h1>Signup</h1>
-                {/* <div id='shelter-signup-wrapper'>
-                  <p id='preShelter'>If you are a shelter  </p> 
-                  &nbsp;
-                  <Link to="/newShelter"> click here</Link>
-                </div> mark rfq */}
+                <h1>Admin</h1>
+                <h1>User</h1>
+                <div id='shelter-signup-wrapper'>
+                </div>
                 <input
                   value={this.state.name}
                   onChange={this.update("name")}
@@ -85,7 +84,6 @@ class Register extends Component {
                   placeholder="Password"
                 />
                 <button className='modal-button' type="submit">Register Account</button>
-                {/* <FacebookLogin /> mark rfq */}
                 <pre id='legal'>By clicking "Sign Up" I agree to the Save A Stray  
                   <br/> 
                    <a href='#/tos'>Terms of Service</a>

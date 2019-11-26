@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import { withRouter, Switch, Route ,Redirect} from 'react-router-dom';
 import {Query} from "react-apollo";
 import Queries from "../graphql/queries"
 import AnimalFeedItem from './AnimalFeedItem'
@@ -14,6 +15,7 @@ class UserLanding extends Component {
       currentSelector: null,
       animal: null
     }
+    // this.redi = this.redi.bind(this)
 
   }
   updateCurrentSelector(type){
@@ -30,11 +32,20 @@ class UserLanding extends Component {
     })
   }
 
+  // redi(){
+  //   <Redirect to="/register" />
+  // }
+
   render() {
+    debugger
         let main; 
         if (this.state.currentSelector === null) {
           main = <div id='prompt'>"When we adopt a dog or any pet, we know it is going to end with us having to say goodbye, but we still do it. And we do it for a very good reason: They bring so much joy and optimism and happiness. They attack every moment of every day with that attitude."</div>
-        } else {
+        } else if (this.props.splash === "splash") {
+          debugger
+          this.props.history.push("/register")
+        } 
+        else {
 
           main = <Query
             query={FIND_ANIMALS}
@@ -72,5 +83,5 @@ class UserLanding extends Component {
   
   }
 }
-export default UserLanding;
+export default withRouter(UserLanding);
                   

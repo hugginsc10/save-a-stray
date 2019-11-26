@@ -7,6 +7,23 @@ import './css/App.css'
 const { IS_LOGGED_IN } = Queries;
 
 const Nav = props => {
+  let Back;
+  if (props.history.location.pathname === "/" || props.history.location.pathname === "/Landing") {
+    Back = (<div></div>)
+  }else{
+    Back = (
+      <button id='logout'
+          onClick={e => {
+            e.preventDefault();
+            props.history.goBack()
+            // props.history.push("/");
+          }}
+        >
+          back
+      </button>
+    )
+  }
+
   return (
     <div id='navbar'>     
       <div id='nav-right'>
@@ -27,6 +44,7 @@ const Nav = props => {
                       >
                         Logout
                       </button>
+                        {Back}
                     </div>
 
                   );

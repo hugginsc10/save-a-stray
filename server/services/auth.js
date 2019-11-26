@@ -8,6 +8,7 @@ const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
 const register = async data => {
+  console.log("made it")
   try {
     const { message, isValid } = validateRegisterInput(data);
 
@@ -29,13 +30,17 @@ const register = async data => {
 
     if (existingEmail) {
       throw new Error("This email is already used");
-    }
+    }  
+    
+    console.log("made it 2")
 
     const existingName = await User.findOne({ name });
 
     if (existingName) {
       throw new Error("This name is taken");
     }
+
+  console.log("made it 3")
 
     // hash our password
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -53,9 +58,12 @@ const register = async data => {
         if (err) throw err;
       }
     );
+  console.log("made it 4")
+
 
     // save our user
     user.save();
+    console.log(user)
     // we'll create a token for the user
     const token = jwt.sign({ id: user._id }, keys.secretOrKey);
 
@@ -195,15 +203,35 @@ const verifyUser = async data => {
 
     // then we try to use the User with the id we just decoded
     // making sure we await the response
+    let currentUser;
     const loggedIn = await User.findById(id).then(user => {
-      if (user){      
-      user.varId =  id
-      user.save()
-    }
-      return user ? true:false;
+      currentUser = user ? user : null;
+      return user ? true : false;
     });
 
-    return { loggedIn };
+    return { loggedIn, _id: currentUser._id };
+  } catch (err) {
+    return { loggedIn: false, _id: null };
+  }
+};
+
+const userId = async data => {
+  try {
+    // we take in the token from our mutation
+    const { token } = data;
+    // we decode the token using our secret password to get the
+    // user's id
+    const decoded = jwt.verify(token, keys.secretOrKey);
+    const { id } = decoded;
+
+
+    // then we try to use the User with the id we just decoded
+    // making sure we await the response
+    const user = await User.findById(id).then(user => {
+      return user ;
+    });
+
+    return { ...user._doc };
   } catch (err) {
     return { loggedIn: false };
   }
@@ -214,5 +242,6 @@ module.exports = {
   login,
   logout,
   verifyUser,
-  facebookRegister
+  facebookRegister,
+  userId
 };

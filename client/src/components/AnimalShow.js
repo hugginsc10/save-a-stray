@@ -10,7 +10,7 @@ const { FETCH_ANIMAL} = Querys;
 class AnimalShow extends React.Component {
   constructor(props) {
     super(props);
-
+    this.handleClick = this.handleClick.bind(this)
     this.state = {
       name: "",
       type: "",
@@ -24,6 +24,8 @@ class AnimalShow extends React.Component {
     };
     this.show = false
     this.showForm = this.showForm.bind(this)
+  }
+  handleClick(){
   }
 
   showForm(){
@@ -42,7 +44,6 @@ class AnimalShow extends React.Component {
   
   
   render() {
-     let form = <NewApplication id='show-application' className='hidden'/> 
      let backText = '<-- Back to other pets'
         return(
             <Query
@@ -54,6 +55,8 @@ class AnimalShow extends React.Component {
                     if (loading){
                         return <h1>Loading</h1>
                     }else{
+                      debugger
+                      let form = <NewApplication animalId={data.animal._id} id='show-application' className='hidden'/> 
                        
                       return (
                         <div id='animal-show-top'>

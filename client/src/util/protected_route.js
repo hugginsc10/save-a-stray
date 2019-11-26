@@ -14,10 +14,9 @@ const ProtectedRoute = ({
 }) => (
     <Query query={IS_LOGGED_IN}>
       {({ data }) => {
-        // if the route type is "auth" then this route will only render if the
-        // user is not logged in - useful for authentication routes
-        // like login or register
-        if (routeType === "auth") {
+        // if the route type is "" then this route will only render if the
+        // user is logged in
+        if (routeType === "") {
           return (
             <Route
               path={path}

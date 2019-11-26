@@ -50,6 +50,7 @@ export default {
   FETCH_ANIMAL: gql `
     query Fetch_Animal($id: ID!){
       animal(_id: $id) {
+        _id,
         name,
         type
         age

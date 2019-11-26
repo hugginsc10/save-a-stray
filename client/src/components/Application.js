@@ -2,16 +2,27 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../graphql/mutations"
 import './css/application.css'
+import { withRouter } from "react-router";
+
 const { CREATE_APPLICATION } = Mutations
 
 class NewApplication extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      animalId: "",
+      animalId: this.props.animalId,
       userId: "",
-      applicationData: ""
+      applicationData: "",
+      firstName: "",
+      lastName: "",
+      streetAddress: "",
+      city: "",
+      state: "",
+      email: "",
+      phoneNumber: "",
+      housing: "",
+      housingType: "",
+      activityLevel: ""
     };
   }
 
@@ -27,7 +38,8 @@ class NewApplication extends Component {
         onCompleted={data => {
           const { newApplication } = data.newApplication;
           localStorage.setItem("Application", newApplication);
-          this.props.history.push("/");
+          debugger
+          this.props.history.push("/User");
         }}
 
       >
@@ -40,7 +52,30 @@ class NewApplication extends Component {
                   variables: {
                     animalId: this.state.animalId,
                     userId: this.state.userId,
-                    applicationData: this.state.applicationData
+                    applicationData: 
+                      `firstName: ${this.state.firstName}
+                      lastName: ${this.state.lastName}
+                      streetAddress: ${this.state.streetAddress}
+                      city: ${this.state.city}
+                      state: ${this.state.state}
+                      email: ${this.state.email}
+                      phoneNumber: ${this.state.phoneNumber}
+                      housing: ${this.state.housing}
+                      housingType: ${this.state.housingType}
+                      activityLevel: ${this.state.activityLevel}`
+                    
+                    // applicationData: { NEEDS TO BE RFQ ASAP ... JUST TEMP TO GET IT WORKING 
+                    //   firstName: this.state.firstName,
+                    //   lastName: this.state.lastName,
+                    //   streetAddress: this.state.streetAddress,
+                    //   city: this.state.city,
+                    //   state: this.state.state,
+                    //   email: this.state.email,
+                    //   phoneNumber: this.state.phoneNumber,
+                    //   housing: this.state.housing,
+                    //   housingType: this.state.housingType,
+                    //   activityLevel: this.state.activityLevel
+                    // }
                   }
                 });
               }}
@@ -63,16 +98,114 @@ class NewApplication extends Component {
               
               <h1 id='application-header'>Application for adoption</h1>
               <div id='seperator-2'></div>
-              <input type='text' id='application-first-name' placeholder='first name' ></input>
-              <input type='text' id='application-last-name' placeholder='last name' ></input>
-              <input type='text' id='application-street-address' placeholder='street address' ></input>
-              <input type='text' id='application-city' placeholder='city' ></input>
-              <input type='text' id='application-state' placeholder='state' ></input>
-              <input type='text' id='application-email'placeholder='email'></input>
-              <input type='text' id='application-phone-number'placeholder='phone number'></input>
-              <input type='text' id='application-housing'placeholder='housing'></input>
-              <input type='text' id='application-housing-type'placeholder='housing-type'></input>
-              <input type='textarea' id='application-noise-level' placeholder='what is your general noise and activity level?'></input>
+              <input
+               type='text' 
+               id='application-first-name' 
+               placeholder='first name' 
+               value={this.state.firstName}
+                onChange={this.update("firstName")}
+               >
+                
+
+              </input>
+
+              <input
+               type='text' 
+               id='application-last-name' 
+               placeholder='last name' 
+               value={this.state.lastName}
+                onChange={this.update("lastName")}
+               >
+                
+
+              </input>
+
+              <input
+               type='text' 
+               id='application-street-address' 
+               placeholder='street address' 
+               value={this.state.streetAddress}
+                onChange={this.update("streetAddress")}
+               >
+                
+
+              </input>
+
+              <input
+               type='text' 
+               id='application-city' 
+               placeholder='city' 
+               value={this.state.city}
+                onChange={this.update("city")}
+               >
+                
+
+              </input>
+
+              <input
+               type='text' 
+               id='application-state' 
+               placeholder='state' 
+               value={this.state.state}
+                onChange={this.update("state")}
+               >
+                
+
+              </input>
+
+              <input
+               type='text' 
+               id='application-email'
+               placeholder='email'
+               value={this.state.email}
+                onChange={this.update("email")}
+               >
+                
+
+              </input>
+
+              <input
+               type='text' 
+               id='application-phone-number'
+               placeholder='phone number'
+               value={this.state.phoneNumber}
+                onChange={this.update("phoneNumber")}
+               >
+                
+
+              </input>
+
+              <input
+               type='text' 
+               id='application-housing'
+               placeholder='what type of house do you live in?'
+               value={this.state.housing}
+                onChange={this.update("housing")}
+               >
+                
+
+              </input>
+
+              <input
+               type='text' id='application-housing-type'
+               placeholder='Do you rent or own?'
+               value={this.state.housingType}
+                onChange={this.update("housingType")}
+               >
+                
+
+              </input>
+
+              <input
+               type='textarea' id='application-noise-level' 
+               placeholder='what is your general noise and activity level?'
+               value={this.state.activityLevel}
+                onChange={this.update("activityLevel")}
+               >
+                
+
+              </input>
+
         
 
               <button id='application-submit' type="submit">Submit Application</button>
@@ -83,4 +216,4 @@ class NewApplication extends Component {
     );
   }
 }
-export default NewApplication;
+export default withRouter(NewApplication);
