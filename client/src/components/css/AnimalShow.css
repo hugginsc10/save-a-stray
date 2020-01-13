@@ -98,18 +98,37 @@
         border-radius: 0;
         overflow: hidden;
     }
+
+    #animal-show-header{
+        margin-top: 20px;
+        flex-direction: column;
+
+    }
+
+    #show-dog-name{
+        font-size: 36px;
+    }
     
     #show-image{
-        margin-top: 23%;
-
+       width: 75%;
+       max-width: none;
     }
 
     #animal-show-top p{
-        font-size: calc(1vh + 2.5vw);
-        text-align: center;
+        font-size: calc(1.75vh + 2.5vw);
+        text-align: left;
     }
 
     #adopt-button{
+        margin-top: 20px;
         margin-bottom: 8%;
+        padding: 10px 20px;
+        font-size: 18px;
+    }
+
+    #animal-show-wrapper{
+        flex-direction: column-reverse;
+        align-items: center;
+        height: 75vh;
     }
 }
