@@ -38,7 +38,7 @@ class NewApplication extends Component {
         onCompleted={data => {
           const { newApplication } = data.newApplication;
           localStorage.setItem("Application", newApplication);
-          debugger
+            
           this.props.history.push("/User");
         }}
 

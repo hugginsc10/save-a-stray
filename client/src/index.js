@@ -14,7 +14,7 @@ import Mutations from "./graphql/mutations"
 const { VERIFY_USER,USER_ID } = Mutations
 
 const token = localStorage.getItem("auth-token");
-debugger
+  
 const cache = new InMemoryCache({
   dataIdFromObject: object => object._id || null
 });
@@ -56,7 +56,7 @@ if (token) {
     // user is loggedIn
     .mutate({ mutation: VERIFY_USER, variables: { token } })
     .then(({ data }) => {
-      debugger
+        
       cache.writeData({
         data: {
            isLoggedIn: data.verifyUser.loggedIn, userId: data.verifyUser._id
@@ -67,7 +67,7 @@ if (token) {
   // client
   //   .mutate({ mutation: USER_ID, variables: { token } })
   //   .then(({ data }) => {
-  //     debugger
+  //       
   //     cache.writeData({
   //       data: {
   //          userId: data.userId._id
@@ -79,7 +79,7 @@ if (token) {
 
 
 const Root = () => {
-  debugger
+    
   return (
     <ApolloProvider client={client}>
       <App />

@@ -55,7 +55,7 @@ class AnimalShow extends React.Component {
                     if (loading){
                         return <h1>Loading</h1>
                     }else{
-                      debugger
+                        
                       let form = <NewApplication animalId={data.animal._id} id='show-application' className='hidden'/> 
                        
                       return (

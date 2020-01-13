@@ -50,3 +50,10 @@
 .animal-feed-image{
     width: inherit;
 }
+
+@media screen and (max-width: 690px) {
+    .animal-feed-item{
+        height: 90vw;
+        width: 90vw;
+    }
+}

@@ -1,6 +1,6 @@
 #user-landing-top{
     min-height: 45%;
-    grid-column-start: 3;
+    grid-column-start: 2;
     grid-column-end: 5;
     grid-row-start: 2;
     grid-row-end: 4;
@@ -33,11 +33,12 @@
     height: fit-content;
     grid-column-start: 1;
     grid-column-end: 6;
-    grid-row-start: 3;
+   
     grid-row-end: 6;
 }
 
 .big{
+   grid-row-start: 3;
    width: 100%;
 }
 
@@ -54,7 +55,7 @@
     height: fit-content;
     background: rgb(232, 240, 254);
     border-radius: 0 0 25px 25px;
-    border: 7px solid black;
+    
     margin-bottom: 3%;
     width: 100%;
     justify-self: center;
@@ -77,7 +78,7 @@
     padding: 0;
     width: 90%;
     margin: auto;
-    margin-top: 3vw;
+    margin-top: 4vw;
 }
 
 .feed-button{
@@ -128,8 +129,18 @@
     }
 
     #prompt{
-        font-size: 24px;
+        font-size: 18px;
         grid-row-start: 6;
+    }
+
+    .feed-button{
+        height: 35vw;
+        width: 35vw;
+    }
+
+    .small{
+        width: 100%;
+        grid-row-start: 1;
     }
 }
 
