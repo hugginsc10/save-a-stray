@@ -64,7 +64,6 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, args) {
         let re = AuthService.userId(args);
-        console.log(re)
         return re
       }
     },

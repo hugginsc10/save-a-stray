@@ -51,7 +51,11 @@ class Login extends Component {
           >
             {( loginUser,{ loading, error, data }) => {
                 if (loading) return <p>Loading</p>;
-                if (error) return <p>Error</p>;
+                let message= "";
+                if (error) {
+                  message = error.graphQLErrors[0].message
+                }
+                // if (error) return <p>Error</p>;
                 return (
 
                   <div className='auth-modal'>
@@ -68,6 +72,7 @@ class Login extends Component {
                           });
                         }}
                       >
+                        <h2 className="auth-err">{message}</h2>
                         <h1>Login</h1>
                         <input
                           value={this.state.email}
@@ -83,7 +88,30 @@ class Login extends Component {
                         <button className='modal-button' type="submit">Log In</button>
                         {/* <FacebookLogin />
                         <button id='google-button' className="g-signin2 modal-button" data-onsuccess="onSignIn">Sign in with Google</button> mark rfq */}
+                        <pre id='legal'> 
+                          <div className="nav-user-auth-login">
+                              dont have an account? &nbsp;
+                              <Link to="/register">click here sign up.</Link>
+                          </div>
+                        </pre>
                       </form>
+
+                      <form className='auth-form'
+                        onSubmit={e => {
+                          e.preventDefault();
+                          loginUser({
+                            variables: {
+                              email: "demo@demo.com",
+                              password: "hunter12"
+                            }
+                          });
+                        }}
+                      >
+                      
+                        <button className='modal-button' type="submit">DEMO</button>
+                      </form>  
+
+
                       
                     </div>
                   </div>

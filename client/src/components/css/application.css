@@ -216,3 +216,9 @@
 }
 
 
+#app-message {
+    height: 10vh;
+    width: 68vw;
+    color: black;
+    margin-bottom: 20vh;
+}
