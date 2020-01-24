@@ -8,7 +8,6 @@ const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
 const register = async data => {
-  console.log("made it")
   try {
     const { message, isValid } = validateRegisterInput(data);
 
@@ -32,15 +31,11 @@ const register = async data => {
       throw new Error("This email is already used");
     }  
     
-    console.log("made it 2")
-
     const existingName = await User.findOne({ name });
 
     if (existingName) {
       throw new Error("This name is taken");
     }
-
-  console.log("made it 3")
 
     // hash our password
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -58,12 +53,9 @@ const register = async data => {
         if (err) throw err;
       }
     );
-  console.log("made it 4")
-
 
     // save our user
     user.save();
-    console.log(user)
     // we'll create a token for the user
     const token = jwt.sign({ id: user._id }, keys.secretOrKey);
 

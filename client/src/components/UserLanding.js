@@ -32,18 +32,13 @@ class UserLanding extends Component {
     })
   }
 
-  // redi(){
-  //   <Redirect to="/register" />
-  // }
 
   render() {
-    debugger
         let main; 
         if (this.state.currentSelector === null) {
           main = <div id='prompt'>"When we adopt a dog or any pet, we know it is going to end with us having to say goodbye, but we still do it. And we do it for a very good reason: They bring so much joy and optimism and happiness. They attack every moment of every day with that attitude."</div>
         } else if (this.props.splash === "splash") {
-          debugger
-          this.props.history.push("/register")
+          this.props.history.push("/login")
         } 
         else {
 

@@ -193,3 +193,22 @@
       transform: translateY(0);
     }
   }
+
+.a1 {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    font-size: larger;
+}
+.nav-user-auth-login {
+    display: flex;
+    flex-direction: column;
+    font-size: larger;
+}
+
+.auth-err {
+    color: red;
+    text-align: center;
+    font-size: x-large;
+    margin: 2% 0px;
+}

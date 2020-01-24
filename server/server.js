@@ -106,9 +106,6 @@ passport.use(
       // return cb(err, user);
       let userData = await facebookRegister(profile)
 
-      console.log("inside of FacebookStrategy ")
-      console.log(userData)
-      console.log("inside of FacebookStrategy ")
       let userStuff = { userId: userData.id, token: userData.token }
       cb(null, userStuff);
     },

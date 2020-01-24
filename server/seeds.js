@@ -16,7 +16,6 @@ const randomAnimalColor = faker.commerce.color;
 const randomAnimalAge = faker.random.number;
 
 router.get('/newAnimal', (req, res) => {
-    console.log(req)
     const allName = [];
     const allType = [];
     const allAge = [];
@@ -81,7 +80,6 @@ router.get('/newAnimal', (req, res) => {
     }
     
     const newAnimals = Animals.map(animal => {
-        console.log()
         NewAnimal(animal)
     })
     const shelter = signupShelters(newAnimals)
@@ -104,7 +102,6 @@ const signupShelters = (animals) => {
         "paymentEmail":"",
         "password":"Hunter2"
     }
-    console.log(user)
     const newAdmin= new User(user);
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -122,7 +119,6 @@ const signupShelters = (animals) => {
 
                 const newShelter = new Shelter(shelter)
                 newShelter.save()
-                console.log(newShelter)
                 return newShelter
             })
             .catch(err => console.log(err))
